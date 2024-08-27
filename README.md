@@ -1,9 +1,10 @@
 # Cloud Pak for Applications - Warsztaty praktyczne
 
-**Lokalizacja:** Krakowiaków 32, 02-255 Warszawa
+**Lokalizacja:** IBM Polska - Krakowiaków 32, 02-255 Warszawa
+
 **Data:** 18 i 19 września 2024
 
-### Agenda warsztatów:**
+### Agenda warsztatów:
 ![](./images/AgendaCP4Apps.png)
 
 ### Laboratoria:

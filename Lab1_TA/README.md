@@ -1,160 +1,113 @@
-# Explore IBM Transformation Advisor
+# Modernizacja aplikacji z IBM Transformation Advisor
 
-## data collection, assessments, & deployment accelerators
+## data collection, assessments, & deployment accelerators zbieranie danych, ocena aplikacji pod kątem modernizacji oraz wsparcie wdrożenia
 
 ![banner](./images/media/banner1.jpeg) 
 
-**Last updated:** March 2024
+**Czas trwania:** 45 - 60 minut
 
-**Duration:** 45 minutes
+## Poznaj IBM Transformation Advisor
 
-Need support? Contact **Kevin Postreich, Yi Tang**
+To laboratorium zapewnia podstawowe praktyczne doświadczenie w procesie oceny aplikacji działających na tradycyjnym serwerze aplikacyjnym WebSphere na potrzeby ich modernizacji do środowisk kontenerach i Liberty. Pokazuje wartości wynikające z korzystania z Transformation Advisor (TA) w celu oceny lokalnych aplikacji Java i zidentyfikowania odpowienich kandydatów do modernizacji aplikacji.
 
+Dowiesz się również, jak korzystać z akceleratorów wsparcia wdrożenia generowanych przez TA, które pomagają we wdrażaniu i uruchamianiu aplikacji Java na Liberty i w kontenerach.
 
-## Explore IBM Transformation Advisor
+Po ukończeniu tego laboratorium zdobędziesz doświadczenie w korzystaniu z TA w celu szybkiej analizy lokalnych aplikacji Java bez dostępu do ich kodu źródłowego, szacowania pracy związanej z modernizacją operacyjną i korzystania z akceleratorów wsparcia wdrożenia TA w celu przyspieszenia uruchomienia aplikacji na Liberty i w kontenerach.
 
-This lab provides fundamental hands-on experience of the evaluation
-process of WebSphere application for their modernization journey to
-Liberty and container-based clouds. It shows the value of using
-Transformation Advisor (TA) to evaluate on-premises Java applications
-and identify a migration candidate for moving to the cloud.
+**IBM Cloud Transformation Advisor** (Transformation Advisor) to narzędzie wspierające proces modernizacji aplikacji, które jest dostępne w ramach licencji IBM Cloud Pak for Applications i IBM WebSphere Hybrid Edition. Transformation Advisor pomaga szybko ocenić lokalne aplikacje Java EE pod kątem wdrożenia na środowiska kontenerowe i serwery aplikacyjne Liberty.
 
-You will also learn how to use the deployment accelerators that TA
-generates to help deploy and run Java applications on Liberty and in
-containers.
+**Narzędzie Transformation Advisor zapewnia następującą warości:**
 
-Upon completion of this lab, you will have gained experience using TA to
-quickly analyze on-premises Java applications without accessing their
-source code, estimate the effort in moving to container-based clouds,
-and using TA’s deployment accelerators to accelerate your application
-modernization journey to Liberty and containers.
+  - identyfikacja modelu programowania Java EE w aplikacji.
 
-**IBM Cloud Transformation Advisor** (Transformation Advisor) is an
-application modernization tool that is entitled through IBM Cloud Pak for Applications and IBM WebSphere Hybrid Edition. Transformation Advisor helps you quickly evaluate
-on-premises Java EE applications for deployment to the cloud. 
+  - ocena złożoność aplikacji, dzięki inwentaryzacji na wysoki poziomie zawartości i struktury każdej aplikacji.
 
-**The Transformation Advisor tool provides the following value:**
+  - identyfikacja różnic w modelu programowania Java EE i interfejsów API, które mogą mieć wpływ na aplikacje, między środowiskiem startowym, a docelowym.
 
-  - identify the Java EE programming models in the app.
+  - generowanie akceleratorów wsparcia wdrożenia w celu przyspieszenia uruchomienia aplikacji na Liberty i w kontenerach.
 
-  - determine the complexity of apps by listing a high-level inventory
-    of the content and structure of each app.
+Ponadto narzędzie zapewnia rekomendację odpowiedniej edycji IBM WebSphere Application Server i oferuje porady, najlepsze praktyki i potencjalne rozwiązania, aby ocenić złożoność przenoszenia aplikacji do Liberty lub środowisk kontenerowych. Przyspiesza proces migracji aplikacji do chmury, minimalizuje błędy i ryzyko oraz skraca czas wprowadzania na rynek.
 
-  - highlight Java EE programming model and WebSphere API differences
-    between the WebSphere profile types
+## 1. Wprowadzenie
 
-  - identify Java EE specification implementation differences that might
-    affect the app
-
-  - generate accelerators for deploying the application to Liberty and
-    containers in a target environment.
-
-Additionally, the tool provides a recommendation for the right-fit IBM
-WebSphere Application Server edition and offers advice, best practices,
-and potential solutions to assess the ease of moving apps to Liberty or
-newer versions of WebSphere traditional. It accelerates application
-migrating to cloud process, minimize errors and risks and reduce time to
-market.
-
-## 1. Introduction
-
-As shown in the image below, your company has several web applications
-deployed to WebSphere Application Server (WAS) environment.
+Jak pokazano na poniższym obrazku, Twoja firma ma kilka aplikacji wdrożonych w środowisku WebSphere Application Server (WAS).
 
 ![](./images/media/image2.png)
 
-Your company wants to move these applications to the modern WebSphere
-Liberty server on a container-based cloud. However, you are not sure how
-much effort the migration process might take.
+Twoja firma chce przenieść te aplikacje na nowoczesny serwer WebSphere Liberty działając na środowisku kontenerowym. Nie jesteś jednak pewien, ile pracy może wymagać proces migracji.
 
-You decide to use the IBM Transformation Advisor to do a quick
-evaluation of these applications without their source code to identify a
-good candidate application to move to Liberty and container-based cloud.
+You decide to use the IBM Transformation Advisor to do a quick evaluation of these applications without their source code to identify a good candidate application to move to Liberty and container-based cloud.
 
-After determining a candidate application for modernization to WebSphere
-Liberty, you use the accelerators generated by TA to deploy and run the
-application to WebSphere Liberty on your local developer machine and in
-containers to validate the solution.
+After determining a candidate application for modernization to WebSphere Liberty, you use the accelerators generated by TA to deploy and run the application to WebSphere Liberty on your local developer machine and in containers to validate the solution.
 
-## 2. Objective
+Decydujesz się użyć IBM Transformation Advisor, aby przeprowadzić szybką ocenę tych aplikacji bez wglądu w ich kod źródłowy, aby zidentyfikować dobrą aplikację do przeniesienia do Liberty działającą w kontenerach.
 
-The objectives of this lab are to:
+Po określeniu aplikacji do modernizacji do WebSphere Liberty, wykorzystasz akceleratorów wygenerowanych przez TA do wdrożenia i uruchomienia aplikacji do WebSphere Liberty na lokalnym komputerze dewelopera i w kontenerach, aby sprawdzić poprawność rozwiązania.
 
-  - Learn how to collect Java application and configuration data using
-    the Transformation Advisor Data Collector tool.
+## 2. Cele
 
-  - Learn how to use the Transformation Advisor to evaluate the effort
-    involved to modernize to Liberty and container-based clouds and
-    identify good application candidates for modernization.
+Celem tego laboratorium jest::
 
-  - Learn how to use the accelerators generated by Transformation
-    Advisor to deploy a candidate application to WebSphere Liberty and
-    containers.
+  - Dowiesz się, jak zbierać dane dotyczące aplikacji Java i konfiguracji przy użyciu narzędzia Transformation Advisor Data Collector.
 
-## 3. Prerequisites
+  - Dowiesz się, jak używać narzędzia Transformation Advisor do oceny pracy wymaganej do modernizacji do  Liberty i środowisk kontenerowych oraz jak identyfikować aplikacje, które nadają się do modernizacji.
 
-The following prerequisites must be completed prior to beginning this
-lab:
+  - Dowiesz się, jak wykorzystać akceleratory wygenerowane przez TA do wdrożenia aplikacji w środowisku WebSphere Liberty i kontenerach.
 
-  - Familiarity with basic Linux commands
+## 3. Wymagania wstępne
 
-  - Have internet access
+Przed rozpoczęciem zajęć laboratoryjnych należy spełnić następujące wymagania wstępne::
 
-  - Have a lab environment ready
+  - Znajomość podstawowych poleceń systemu Linux
+
+  - Posiadać dostęp do internetu
+
+  - Posiadać dostęp do środowiska laboratoryjnego
 
 
 <br/>
 
-## Accessing the environment
+## Dostęp do środowiska
 
-If you are doing this lab as part of an instructor led workshop (virtual or face to face), an environment has already been provisioned for you. The instructor will provide the details for accessing the lab environment.
-
-Otherwise, you will need to reserve an environment for the lab. You can obtain one here. Follow the on-screen instructions for the “**Reserve now**” option.
-
-<https://techzone.ibm.com/my/reservations/create/65eb652a747d7a00108fb5db>
-
-The lab environment contains six (6) Linux VMs. 
-
-![](./images/media/env-list.png)
-
+Jeśli wykonujesz to laboratorium w ramach warsztatu prowadzonego przez instruktora, środowisko zostało już dla Ciebie przygotowane. Instruktor poda szczegóły dotyczące dostępu do środowiska laboratoryjnego.
 
 <br/>
 
-1.  Access the lab environment from your web browser. 
+1.  Uzyskaj dostęp do środowiska laboratoryjnego za pomocą przeglądarki internetowej. 
      
-    A `Published Service` is configured to provide access to the **`Workstation`** VM through the noVNC interface for the lab environment.
+    `Published Service` jest skonfigurowany tak, aby zapewnić dostęp do maszyny wirtualnej **`Stacji roboczej`** poprzez interfejs noVNC dla środowiska laboratoryjnego.
     
-    a. When the demo environment is provisioned, click on the **`environment tile`** to open its details view. 
+    a. Po utworzeniu środowiska demonstracyjnego kliknij przycisk **`environment tile`** aby otworzyć widok szczegółów. 
 
-    b. Click on the **`Published Service`** link which will display a **Directory listing**  
+    b. Kliknij na link **`Published Service`**, który wyświetli **Spis katalogów**  
     
-    c. Click on the **`vnc.html`** link to open the lab environment through the **noVNC** interface. 
+    c. Kliknij na link **`vnc.html`**, aby otworzyć środowisko laboratoryjne poprzez interfejs **noVNC**. 
     
     ![](./images/media/vnc-link.png)
     
-    d. Click the **`Connect`** button 
+    d. Kliknij **`Connect`** 
     
       ![](./images/media/vnc-connect.png)
 
 
-    e. Enter the password as:  **`passw0rd`**. Then click the **`Send Credentials`** button to access the lab environment. 
+    e. Wpisz hasło:  **`passw0rd`**. Następnie kliknij **`Send Credentials`**, aby otworzyć środowisko laboratoryjn. 
 
-    > Note: That is a numeric zero in passw0rd  
+    > Uwaga: Tam jest numeryczne zero w haśle: passw0rd  
 
       ![](./images/media/vnc-password.png)
 
 	 
 	 <br>
 	 
-2.  If prompted to Login to the "workstation" VM, use the credetials below: 
+2.  Jeśli zostaniesz poproszony o zalogowanie się do maszyny wirtualnej „stacja robocza”, użyj poniższych danych uwierzytelniających: 
 
-    The login credentials for the **workstation”** VM is:
+    Dane logowania do maszyny wirtualnej „**stacja robocza**” to:
  
      - User ID: **techzone**
 
      - Password: **IBMDem0s!**
 
-     > Note: That is a numneric zero in the password
+     > Uwaga: Tam jest numeryczne zero w haśle: passw0rd
 
 	 <br>
  
@@ -162,33 +115,33 @@ The lab environment contains six (6) Linux VMs.
 	 
 	 <br>
 
-## Tips for working in the lab environment     
+## Wskazówki dotyczące pracy w środowisku laboratoryjnym     
 
-1. You can resize the viewable area using the **noVNC Settings** options to resize the virtual desktop to fit your screen.
+1. Możesz zmienić rozmiar widocznego obszaru, korzystając z opcji **ustawień noVNC**, aby dopasować rozmiar pulpitu wirtualnego do ekranu.
 
-    a. From the environemnt VM, click on the **twisty** on the noNC control pane to open the menu.  
+    a. Z poziomu środowiska VM kliknij **strzałkę** w panelu sterowania noNC, aby otworzyć menu.  
 
     ![fit to window](./images/media/z-twisty.png)
 
-    b. To increase the visible area, click on `Settings > Scaling Mode` and set the value to `Remote Resizing`
+    b. Aby zwiększyć widoczny obszar, kliknij `Settings > Scaling Mode` i ustaw wartość na `Remote Resizing` 
       
      ![fit to window](./images/media/z-remote-resize.png)
 
 
-2.  You can copy / paste text from the lab guide into the lab environment using the clipboard in the noVNC viewer. 
+2.  Tekst z ćwiczeń można kopiować i wklejać do środowiska laboratoryjnego, korzystając ze schowka w przeglądarce noVNC. 
    
-    a. Copy the text from the lab guide that you want to paste into the lab environment
+    a. Skopiuj tekst z ćwieczenia, który chcesz wkleić do środowiska laboratoryjnego.
     
-    b. Click the **`Clipboard`** icon and **`paste`** the text into the noVNC clipboard
+    b. Kliknij ikone **`Clipboard`**, a następnie **`wklej`** tekst do schowka noVNC.
 
     ![fit to window](./images/media/paste.png)
     
-    c. Paste the text into the VM, such as to a terminal window, browser window, etc. 
+    c. Wklej tekst do maszyny wirtualnej, np. do okna terminala, okna przeglądarki itp.
 
-    d. Click on the **`clipboard`** icon again to close the clipboard
+    d. Kliknij na ikone **`clipboard`**,aby zamknąć schowek.
 
    
-3. An alternative to using the noVNC Copy / Paste option, you may consider opening the lab guide in a web browser inside of the VM. Using this method, you can easily copy / paste text from the lab guide without having to use the noVNC clipboard. 
+3. Alternatywą dla opcji Kopiuj/Wklej noVNC jest otwarcie ćwiczeń w przeglądarce internetowej wewnątrz maszyny wirtualnej. Używając tej metody, możesz łatwo skopiować/wkleić tekst z ćwiczenia bez konieczności korzystania ze schowka noVNC. 
 
 
     <br>

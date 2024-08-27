@@ -1,6 +1,6 @@
 # Modernizacja aplikacji z IBM Transformation Advisor
 
-## data collection, assessments, & deployment accelerators zbieranie danych, ocena aplikacji pod kątem modernizacji oraz wsparcie wdrożenia
+## Zbieranie danych, ocena aplikacji pod kątem modernizacji oraz wsparcie wdrożenia
 
 ![banner](./images/media/banner1.jpeg) 
 
@@ -115,7 +115,9 @@ Jeśli wykonujesz to laboratorium w ramach warsztatu prowadzonego przez instrukt
 	 
 	 <br>
 
-## Wskazówki dotyczące pracy w środowisku laboratoryjnym     
+<details>
+ <summary><b><font color="dodgerblue">Kliknij, aby otowrzyć:</font></b> Wskazówki dotyczące pracy w środowisku laboratoryjnym
+ </summary>
 
 1. Możesz zmienić rozmiar widocznego obszaru, korzystając z opcji **ustawień noVNC**, aby dopasować rozmiar pulpitu wirtualnego do ekranu.
 
@@ -143,7 +145,7 @@ Jeśli wykonujesz to laboratorium w ramach warsztatu prowadzonego przez instrukt
    
 3. Alternatywą dla opcji Kopiuj/Wklej noVNC jest otwarcie ćwiczeń w przeglądarce internetowej wewnątrz maszyny wirtualnej. Używając tej metody, możesz łatwo skopiować/wkleić tekst z ćwiczenia bez konieczności korzystania ze schowka noVNC. 
 
-
+</details>
     <br>
 
 

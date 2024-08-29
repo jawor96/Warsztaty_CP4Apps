@@ -347,58 +347,56 @@ Teraz 'zasymulujmy' kroki, aby uruchomić Data Collector.
     Na potrzeby tego laboratorium uruchomiliśmy już kolektor na serwerze aplikacji WebSphere. Wynikowe archiwum zebranych danych (plik zip) o nazwie AppSrv01.zip jest dostępne do przesłania do interfejsu Transformation Advisor UI. 
     ___
 
-### **6.4.1 FOR ILLUSTRATIVE PURPOSES ONLY: Simulation of running the Transformation Advisor Data Collector utility**
+### **6.4.1 WYŁĄCZNIE W CELACH POGLĄDOWYCH: Symulacja uruchomienia narzędzia Transformation Advisor Data Collector**
 
 <table>
 <tbody>
 <tr class="odd">
 <td><img src="./images/media/image23.png" style="width:0.60625in;height:0.60625in" alt="sign-caution" /></td>
-<td><p><strong>Important:</strong></p>
-<p>This section is for illustrative purposes only.</p>
-<p>DO NOT RUN THE COMMANDS shown in this section!</p></td>
+<td><p><strong>Ważne:</strong></p>
+<p>Ta sekcja służy wyłącznie do celów poglądowych.</p>
+<p>NIE URUCHAMIAJ poleceń przedstawionych w tej sekcji!</p></td>
 </tr>
 </tbody>
 </table>
 
-If the WebSphere Application Server and Transformation Advisor has connectivity, the data collector could be run as follows.
+Jeśli WebSphere Application Server i Transformation Advisor mają połączenie, Data Collector można uruchomić w następujący sposób.
 
-1.  Example of the **Data Collector** utility command to start collect the deployed applications information on the WebSphere Application server.
+1.  Przykład polecenia narzędzia **Data Collector** do rozpoczęcia zbierania informacji o wdrożonych aplikacjach na serwerze WebSphere Application.
 
-    **Again, DO NOT EXECUTE the following command**
+    **Ponownie, NIE WYKONUJ następującego polecenia**
 
         ./bin/transformationadvisor -w <WEBSPHERE_HOME_DIR> -p <PROFILE_NAME>
 
-2.  Type **1** to accept the license agreement and press **Enter**, as illustrated below. 
+2.  Wpisz **1**, aby zaakceptować umowę licencyjną i naciśnij **Enter**, jak pokazano poniżej. 
 
-    **Again, for reference only, DO NOT EXECUTE the commands**
+    **Tylko w celach informacyjnych, NIE WYKONUJ poleceń**
 
     ![A screenshot of a cell phone Description automatically generated](./images/media/image24.png)
  
   
-    This is an example of the output from the data collector, showing the progress of the analysis of the WebSphere profiles. 
-
-    **Again, for reference only!**
+    Oto przykład danych wyjściowych z Data Collector, pokazujący postęp analizy profili WebSphere. 
  
     ![](./images/media/image25.png)
 
     ___
     
-    **NOTE: The following details are for reference only!**
+    **UWAGA: Poniższe informacje mają charakter wyłącznie poglądowy!**
     
-    **NOTE: You will NOT run the data collector in this lab.**
+    **UWAGA: W tym laboratorium NIE będziesz uruchamiać Data Collector**.
     ___ 
 
-    This process takes time to complete, depending on how many applications are deployed on the WebSphere Application server.
+    Proces ten wymaga czasu, w zależności od liczby aplikacji wdrożonych na serwerze WebSphere Application.
  
-    When the collection utility completes, the following message is displayed; 
+    Po zakończeniu zbierania aplikacji wyświetlany jest następujący komunikat; 
     
-    “**Thank you for uploading your data. You can proceed to the application UI for  doing further analysis.”**
+    “**Dziękujemy za przesłanie danych. Możesz przejść do interfejsu użytkownika aplikacji, aby przeprowadzić dalszą analizę.”**
  
-    Your application data is collected, it is saved as a zip file.   
+    Dane aplikacji są zebrane i zapisane jako plik zip.   
  
-    In general, if your application server and the **Transformation  Advisor** are in the same network infrastructure, the collected data  will be automatically uploaded to **Transformation Advisor** for you  to view the analysis results.
+    Ogólnie rzecz biorąc, jeśli serwer aplikacji i **Transformation Advisor** znajdują się w tej samej infrastrukturze sieciowej, zebrane dane zostaną automatycznie przesłane do **Transformation Advisor** w celu wyświetlenia wyników analizy.
  
-    Otherwise, you must manually upload the data to **Transformation  Advisor** before you can view the results.
+    W przeciwnym razie należy ręcznie przesłać dane do **Transformation Advisor** przed wyświetleniem wyników.
 
 ### 6.5 Prześlij zebrane dane do Transformation Advisor
 
@@ -410,80 +408,78 @@ Ponadto należy uruchomić kolektor danych w środowisku docelowym, aby zebrać 
 
 ___
 
-**Tip:** As noted in the previous section, the data collection steps have already been done, and the resulting **`AppSrv01-3.8.1.zip`** file is provided for you in the lab environment.
+**Rada:** Jak wspomniano w poprzedniej sekcji, kroki zbierania danych zostały już wykonane, a wynikowy plik **`AppSrv01-3.8.1.zip`** jest dostępny w środowisku laboratoryjnym.
 ___
 
-1.  Go back to the Transformation Advisor page in the web browser, click the **`Workload type`** link to go to the Recommendations page.
+1.  Wróć do strony Transformation Advisor w przeglądarce internetowej, kliknij **`Workload type`**, aby przejść do strony rekomendacji.
 
     ![](./images/media/image26.png)
 
-2.  From the **Evaluation** workspace, upload the **`AppSrv01-3.8.1.zip`** data collection file.
+2.  W obszarze roboczym **Evaluation** załaduj plik kolekcji danych **`AppSrv01-3.8.1.zip**.
 
 
-    a.  Click the **`Upload`** button to upload a data collection file.
+    a.  Kliknij **`Upload`**, aby załadować plik kolekcji danych.
 
     ![](./images/media/image27.png)
 
-    b.  From the Upload Data page, click the **`Drop or add file`** link
+    b.  Na stronie Upload Data kliknij **`Drop or add file`** (Upuść lub dodaj plik).
 
     ![](./images/media/image28.png)
 
-    c.  Navigate to the location of the data collection file **Home > techzone > appmod-pot-labfiles > labs > TransformationAdvisor** and select the **`AppSrv01-3.8.1.zip`** file. Then click the **`Open`** button on the page.
+    c.   Przejdź do lokalizacji pliku kolekcji danych **Home > techzone > appmod-pot-labfiles > labs > TransformationAdvisor** i wybierz plik **`AppSrv01-3.8.1.zip`**. Następnie kliknij przycisk **`Open`**.
 
     ![](./images/media/image29.png)
 
-    d.  The **AppSrv01-3.8.1.zip** data collection file is now ready to be uploaded. Click the **`Upload`** button to continue.
+    d.  Plik **AppSrv01-3.8.1.zip** jest teraz gotowy do przesłania. Kliknij przycisk **`Upload`**, aby kontynuować.
 
     ![](./images/media/image30.png)
  
-    Once the data collection has been uploaded to Transformation Advisor, you are redirected back to the TA Recommendations screen.
+    Po przesłaniu zbioru danych do Transformation Advisor nastąpi przekierowanie z powrotem do ekranu rekomendacji TA.
  
-    Notice that the page shows “**All Java applications**” from the WebSphere Application Server profile named **AppSrv01-3.8.1**.
+    Zauważ, że strona pokazuje „**Wszystkie aplikacje Java**” z profilu WebSphere Application Server o nazwie **AppSrv01-3.8.1**..
     
  
     ![](./images/media/image31.png)
 
-    The following details are included in the `workspace summary` section at the top of the page:
+    Poniższe szczegóły znajdują się w sekcji „Podsumowanie obszaru roboczego” na górze strony:
 
-    - **Total Applications**: The total number of applications in the    workspace.
+    - **Total Applications**: Łączna liczba aplikacji w obszarze roboczym.
 
-    - **Avg. cost per application**: The average number of days of development effort required to migrate an application.
+    - **Avg. cost per application**: Średnia liczba dni pracy programistycznej wymagana do migracji aplikacji.
 
     - **Workspace estimated total costs**
     
-      - **Common Code**: The total cost to migrate all the common code in the workspace to the target platform.
+      - **Common Code**: Całkowity koszt migracji całego wspólnego kodu w obszarze roboczym na platformę docelową.
 
-      - **Unique app code**: The total cost to migrate all the unique app  code (code that is not shared between applications) in the workspace to the target platform.
+      - **Unique app code**: Całkowity koszt migracji całego unikalnego kodu aplikacji (kodu, który nie jest współdzielony między aplikacjami) w obszarze roboczym na platformę docelową..
 
-      - **Total cost**: The total cost to migrate all the applications and common code in the workspace to the target platform.
+      - **Total cost**: Całkowity koszt migracji wszystkich aplikacji i wspólnego kodu w obszarze roboczym na platformę docelową.
 
-    In the next section, you will use Transformation Advisor to view the application data analysis that was collected.
+    W następnej sekcji użyjesz Transformation Advisor, aby wyświetlić analizę danych aplikacji, które zostały zebrane.
 
-### 6.6 Evaluate On-Premises Java Applications
+### 6.6 Ocena lokalnych aplikacji Java
 
-In this section, you are going to use the Transformation Advisor UI to view the application data analysis results that was collected in the previous section.
+W tej sekcji użyjesz interfejsu użytkownika Transformation Advisor, aby wyświetlić wyniki analizy danych aplikacji, które zostały zebrane w poprzedniej sekcji.
 
-1.  From the “**All Java applications”** page, you can see there was a total of 5 applications analyzed from the WAS server.
+1.  Na stronie “**All Java applications”** można zobaczyć, że przeanalizowano łącznie 5 aplikacji z serwera WAS.
 
     ![](./images/media/image32.png)
  
-    When data is uploaded, Transformation Advisor automatically detects the **host machine** the data came from, meaning, where the WebSphere
- application server apps were running. TA creates a corresponding **collection** and adds the applications there.
+     Gdy dane są przesyłane, Transformation Advisor automatycznie wykrywa **maszynę-hosta**, z której pochodzą dane, tzn. gdzie były uruchomione aplikacje serwera aplikacji WebSphere. TA tworzy odpowiednią **kolekcję** i dodaje do niej aplikacje.
  
-    The collection name can be overridden when running the data collector  or edited in the transformation Advisor UI after the data is uploaded.
+    Nazwę kolekcji można zmienić podczas uruchamiania narzędzia Data Collector lub edytować w interfejsie użytkownika Transformation Advisor po przesłaniu danych..
  
-    In this example, the default collection name is used: **admin.ibm.demo**, which is the host machine where the data came  from.
+    W tym przykładzie używana jest domyślna nazwa kolekcji: **admin.ibm.demo**, czyli maszyna hosta, z której pochodzą dane.
 
-2.  Click on the **`Collections`** drop-down icon and view the
-    collection name: “**admin.ibm.demo**”
+2.  Kliknij ikonę **`Collections`** i wyświetl nazwę kolekcji: „**admin.ibm.demo**”.
 
     ![](./images/media/image33.png)
  
-    Transformation advisor analyzes all the **application code** and  **common code** that is shared across applications and provides an  estimated total cost for migrating the apps and common code in the  workspace.
+    Transformation Advisor analizuje cały **kod aplikacji** i **wspólny kod**, który jest współdzielony między aplikacjami i zapewnia szacunkowy całkowity koszt migracji aplikacji i wspólnego kodu w obszarze roboczym.
  
-    Total cost is the number of days of **development cost** to migrate  that code to run on the selected **migration target**. In this  example, **WebSphere Liberty** is the selected migration target.
+    Całkowity koszt to liczba dni potrzebnych na migrację tego kodu w celu uruchomienia na wybranym **środowisku docelowym**. W tym przykładzie **WebSphere Liberty** jest wybranym celem migracji.
  
-    **The Migration targets include:**
+    **Cele migracji obejmują to:**
 
     - Open Liberty
     - WebSphere Liberty
@@ -491,483 +487,453 @@ In this section, you are going to use the Transformation Advisor UI to view the 
 
     ![](./images/media/image34.png)
  
-    You can choose multiple migration targets and Transformation Advisor  will provide the workspace total cost effort for each of the selected targets.
+    Można wybrać wiele celów migracji, a Transformation Advisor przedstawi całkowity koszt obszaru roboczego dla każdego z wybranych celów.
  
-    This provides a high-level view of the scope of work to migrate all  the applications in the collection to specific migration targets.
+    Zapewnia to wysokopoziomowy widok zakresu prac związanych z migracją wszystkich aplikacji w kolekcji do określonych celów migracji.
 
     |                                          |                                                                                                                                                                                                                                                                           |
     | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | ![sign-info](./images/media/image13.png) | Depending on the applications, you may find that the effort to migrate to Open Liberty requires more effort that migrating to WebSphere Liberty. This is because Open Liberty does not include all the Java EE API specifications that are included in WebSphere Liberty. |
+    | ![sign-info](./images/media/image13.png) | W zależności od aplikacji, migracja do Open Liberty może wymagać więcej wysiłku niż migracja do WebSphere Liberty. Wynika to z faktu, że Open Liberty nie zawiera wszystkich specyfikacji API Java EE, które są zawarte w WebSphere Liberty. |
 
-3.  From the **Migration targets** section select all
-    **three** migration targets and notice the different development
-    costs associated with migration all 5 applications in the workspace
-    to the various migration target environments.
+3.  W sekcji **Migration Targets** wybierz wszystkie **trzy** cele migracji i zwróć uwagę na różne koszty rozwoju związane z migracją wszystkich 5 aplikacji w obszarze roboczym do różnych docelowych środowisk migracji.
 
-    Here you can see that moving the applications in the collection to  **WebSphere traditional** requires **0 days** of development costs, meaning there is no code changes necessary.
+    Tutaj widać, że przeniesienie aplikacji w kolekcji do **WebSphere traditional** wymaga **0 dni** kosztów developmentu, co oznacza, że nie są konieczne żadne zmiany w kodzie.
  
-    However, moving to **"WebSphere Liberty"** may require **2.5 days** and "**Open Liberty"** may take **5.5 days** of development time.
+    Jednak przeniesienie do **"WebSphere Liberty ”** może wymagać **2,5 dnia**, a **Open Liberty** może wymagać **5,5 dnia** czasu na development.
  
     ![](./images/media/image35.png)
  
-    The “**All Java applications”** page also shows the  **application**  **summary** analysis results for all the apps from the AppSrv01  profile for each of the selected migration targets.
+    Strona „**Wszystkie aplikacje Java ”** pokazuje również **podsumowanie** wyników analizy **aplikacji** dla wszystkich aplikacji z profilu AppSrv01 dla każdego z wybranych celów migracji.
  
-    For each app / migration target combination, you can see these  results:
+    Dla każdej kombinacji aplikacji / celu migracji można zobaczyć te wyniki:
 
-    - Java application
-    - Collection / Profile name
-    - Complexity
-    - Issues
-    - Required code changes
-    - Application cost (in days)
-    - Migration plan
+    - Aplikacja Java (Java application)
+    - Nazwa kolekcji / profilu (Collection / Profile name)
+    - Złożoność (Complexity)
+    - Problemy (Issues)
+    - Wymagane zmiany kodu (Required code changes)
+    - Koszt zmian aplikacji (w dniach) (Application cost)
+    - Plan migracji (Migration plan)
 
     ![](./images/media/image36.png)
 
-    The following details are included in the summary table (this is the per-application view):
+    Następujące szczegóły są zawarte w tabeli podsumowującej (jest to widok dla poszczególnych aplikacji):
 
-    - **Application Name**: The name of the EAR/WAR file found on the     application server.
+    - **Application Name**: Nazwa pliku EAR/WAR znalezionego na serwerze aplikacji..
 
-    - **Collection/Profile**: Collection represents the hostname of the  machine where the application resides. The profile represents the     profile name in the application server where the application is     installed.
+    - **Collection/Profile**: Collection reprezentuje nazwę hosta maszyny, na której znajduje się aplikacja. Profil reprezentuje nazwę profilu na serwerze aplikacji, na którym zainstalowana jest aplikacja.
 
-    - **Complexity**: Indicates how complex Transformation Advisor     considers this application to be if you were to migrate it to the     cloud.
+    - **Complexity**: Wskazuje, jak złożona jest ta aplikacja według Transformation Advisor w przypadku migracji do środowiska kontenerowego.
 
-    - **Issues**: The number and severity of potential issues with the migration of the application.
+    - **Issues**: Liczba i waga potencjalnych problemów związanych z migracją aplikacji.
 
-    - **Required code changes**: Indicates the type of code change needed. 
+    - **Required code changes**: Wskazuje rodzaj wymaganej zmiany kodu. 
     
-    - **Application cost in days**: Provides an estimate in days for the  development effort to perform the migration for just this application. Cost estimates calculated by Transformation Advisor are high-level estimates only and may vary widely based on skills and     other factors not considered by the tool.
+    - **Application cost in days**: Zapewnia oszacowanie w dniach nakładu pracy programistycznej w celu przeprowadzenia migracji tylko dla tej aplikacji. Szacunki kosztów obliczone przez Transformation Advisor są jedynie szacunkami na wysokim poziomie i mogą się znacznie różnić w zależności od umiejętności i innych czynników nieuwzględnionych przez narzędzie.
 
-    - **Migration plan**: accelerator files generated by Transformation  advisor to aide in building and deploying the selected application to the target runtime.
+    - **Migration plan**: apliki wspomagające wygenerowane przez Transformation Advisor, aby pomóc w budowaniu i wdrażaniu wybranej aplikacji w docelowym środowisku uruchomieniowym.
 
 
-### 6.6.1 Evaluate Customer Order Service application
+### 6.6.1 Ocena aplikacji Customer Order Service
 
-In this section of the lab, you will explore assessment details for the Customer Order Service application. 
+W tej części modułu zapoznasz się ze szczegółami oceny aplikacji Customer Order Service. 
 
-You will learn how TA provides insights about an application regarding modernization to different target runtimes such as WebSphere traditional, WebSphere Liberty, and Open Liberty. 
+Dowiesz się, w jaki sposób TA zapewnia wgląd w aplikację w odniesieniu do modernizacji do różnych docelowych środowisk uruchomieniowych, takich jak WebSphere traditional, WebSphere Liberty i Open Liberty. 
 
-You will learn why the different target environments result in varying degrees of development cost and potential issues. 
+Dowiesz się, dlaczego różne środowiska docelowe powodują różne koszty developmentu i potencjalne problemy. 
 
-1.	From TA’s “**All Java Applications**” page, filter on **CustomerOrderServicesApp.ear** for all three migration targets, by using the Search field searching for ‘**Customer**” 
+1.	Na stronie „**Wszystkie aplikacje Java**” przefiltruj **CustomerOrderServicesApp.ear** dla wszystkich trzech celów migracji, używając pola wyszukiwania wyszukującego „**Customer**”.
 
-    This filters the list of applications to only “CustomerOrderServicesApp.ear” on Open Liberty, WebSphere Liberty, and WebSphere Traditional. 
+    Filtruje to listę aplikacji tylko do „CustomerOrderServicesApp.ear” w Open Liberty, WebSphere Liberty i WebSphere Traditional.
 
     ![](./images/media/image107.png)
 
-2.	The first thing to notice is the number of issues and the Application Cost associated for the application for each of the three target environments 
+2.	TPierwszą rzeczą, którą należy zauważyć, jest liczba problemów i koszt aplikacji związany z aplikacją dla każdego z trzech środowisk docelowych 
 
-    At a high level, we can see the following: 
+    Na wysokim poziomie widzimy, co następuje: 
 
-    - Moving the application from WebSphere traditional on VMs to **WebSphere traditional in containers** has a **SIMPLE** level of complexity, no code change needed, requires zero development cost, and there are 2 informational issues reported. 
+    - Przeniesienie aplikacji z WebSphere traditional na maszynach wirtualnych do **WebSphere traditional w kontenerach** ma **SIMPLE** poziom złożoności, nie wymaga zmiany kodu, wymaga zerowych kosztów developmentu i zgłoszono 2 kwestie informacyjne. 
 
-    - Moving the application to **WebSphere Liberty** has a **SIMPLE** level of complexity, no code change needed, requires zero development cost, and there are 3 informational issues reported. 
+    - Przeniesienie aplikacji do **WebSphere Liberty** ma poziom złożoności **SIMPLE**, nie wymaga zmiany kodu, wymaga zerowych kosztów developmentu i zgłoszono 3 kwestie informacyjne. 
 
-    - Moving the application to **Open Liberty** has a **MODERTATE** level of complexity. Code change is needed and part of code change can be automated. Requires 3.5 days of development costs to resolve 1 sever, 2 minor and 4 informational issues reported.
+    - Przeniesienie aplikacji do **Open Liberty** ma poziom złożoności **MODERTATE**. Wymagana jest zmiana kodu, a część zmian kodu można zautomatyzować. Wymaga 3,5 dnia kosztów developmentu, aby rozwiązać 1 poważne, 2 niewielkie i 4 zgłoszone kwestie informacyjne.
 
     ![](./images/media/image108.png)
 
 
-### 6.6.1.2 Examine CustomerOrderServicesApp.ear on WebSphere Liberty
+### 6.6.1.2 Analiza CustomerOrderServicesApp.ear w WebSphere Liberty
 
-Next, let’s examine why the development costs and number of issues are higher when moving to Open Liberty instead of WebSphere Liberty. 
+Następnie zbadajmy, dlaczego koszty developmentu i liczba problemów są wyższe w przypadku przejścia na Open Liberty zamiast WebSphere Liberty. 
 
-To do that, we need to drill into some of the details and reports. 
+Aby to zrobić, musimy zagłębić się w niektóre szczegóły i raporty. 
 
-1.	Review the details for the CustomerOrderSrvicesApp.ear for **WebSphere Liberty**
+1.	Przejrzyj szczegóły dotyczące CustomerOrderSrvicesApp.ear dla **WebSphere Liberty**.
 
-    a.	Click on `CustomerOrderSrvicesApp.ear` for **`WebSphere Liberty`** to open its detail view
+    a.	Kliknij na `CustomerOrderSrvicesApp.ear` dla **`WebSphere Liberty`**, aby otworzyć jego widok szczegółowy.
 
     ![](./images/media/image109.png)
 
-    b.	Expand the **`Complexity Rules`** for moving the application to WebSphere Liberty. 
+    b.	Rozwiń **`Complexity Rules`** dla przeniesienia aplikacji do WebSphere Liberty. 
 
-    From this view, you get insights into the related issues that may require code changes or configuration changes. 
+    Z tego widoku można uzyskać wgląd w powiązane kwestie, które mogą wymagać zmian kodu lub konfiguracji. 
 
-    *In this example, there is 3 informational issues reported:*
+    *W tym przykładzie zgłoszono 3 kwestie informacyjne:*
 
-    - **Java EE security** 
-    - **Database**
-    - **Behavior change on lookups for Enterprise JavaBeans in previous versions of Liberty** 
+    - **Bezpieczeństwo Java EE** 
+    - **Baza Danych**
+    - **Zmiana zachowania podczas wyszukiwania Enterprise JavaBeans w poprzednich wersjach Liberty**
 
-    These **informational issue** are well known and documented how to resolve by the migration tools.
+    Te **kwestie informacyjne** są dobrze znane i udokumentowane, jak je rozwiązać za pomocą narzędzi migracyjnych.
 
     ![](./images/media/image110.png)
 
-    To dig deeper into these issues, let’s examine the **Analysis report** generated by Transformation Advisor. 
+    Aby zagłębić się w te kwestie, przyjrzyjmy się **Analysis Report** wygenerowanemu przez Transformation Advisor. 
 
-    c.	Scroll down to the bottom of the application detail page to locate the available reports. 
+    c.	Przewiń w dół do dolnej części strony szczegółów aplikacji, aby znaleźć dostępne raporty. 
 
-    d.	Click on the **`Analysis report`**, which will open the report in a new browser tab. 
+    d.	Kliknij **Analysis Report**, co spowoduje otwarcie raportu w nowej karcie przeglądarki. 
 
     ![](./images/media/image111.png)
 
-    e.	On the **Detailed Migration Analysis Report**, click on the **`Information`** link under the LABEL column. This will take you directly to the critical issues in the report. 
+    e.	W **Detailed Migration Analysis Report** kliknij łącze **`Informacje`** w kolumnie LABEL. Spowoduje to przejście bezpośrednio do krytycznych kwestii w raporcie. 
 
     ![](./images/media/image112.png)
 
 
-    f.	Click on **`Show rule help`** link to expand the help section for the **Java EE security** issue. 
+    f.	Kliknij łącze **`Show rule help`**, aby rozwinąć sekcję pomocy dla zagadnienia **Bezpieczeństwo Java EE**.
 
     ![](./images/media/image113.png)
 
-    g.	Read the “**rule help**”. It explains that When moving applications that use Java EE security to the cloud, consider how the application uses the user registry, Trust Association Interceptors (TAI), and JAAS custom login modules, as well as your on-premises security server.  
+    g.	Przeczytaj „**rule help**”. Wyjaśnia ona, że podczas przenoszenia aplikacji korzystających z zabezpieczeń Java EE do chmury należy rozważyć, w jaki sposób aplikacja korzysta z rejestru użytkowników, Trust Association Interceptors (TAI) i niestandardowych modułów logowania JAAS, a także lokalnego serwera zabezpieczeń.  
 
     ![](./images/media/image114.png)
 
 
-    h.	To find out where in the application code these issues are flagged, click on the **`show results`** link next to the issue. 
+    h.	Aby dowiedzieć się, gdzie w kodzie aplikacji te problemy zostały oznaczone, kliknij link **`show results`**. 
     
     ![](./images/media/image115.png)
 
-    You will see the modules, classes, method names, and line numbers that are impacted by the issue. 
+    Zobaczysz moduły, klasy, nazwy metod i numery linii, których dotyczy problem. 
  
 
     ![](./images/media/image116.png)
 
    
-2.	Return to the browser tab that displays the “**Application Details Page**” and view the **`Technology report`**. 
+2.	Wróć do karty przeglądarki, która wyświetla „**Stronę szczegółów aplikacji**” i wyświetl **`Technology Report`**.. 
 
     ![](./images/media/image44.png)
 
-    The Technology report provides the details on which IBM platforms support the Java EE technologies used by the applications.
+    Raport technologiczny zawiera szczegółowe informacje na temat tego, które platformy IBM obsługują technologie Java EE używane przez aplikacje.
 
     ![](./images/media/image118.png)
     ___
 
-    **Tip:** If checks are omitted for specific editions of Liberty, this means the application code will have to be rewritten to run on that specific target environment. That adds application and developer costs to the project. 
+    **Rada:** Jeśli pominięte zostaną pola dla określonych wydań Liberty, oznacza to, że kod aplikacji będzie musiał zostać przepisany, aby działał w określonym środowisku docelowym. Zwiększa to koszty aplikacji i dewelopera w projekcie
 
-    **Tip:** WebSphere Liberty includes more Java EE technologies than open Liberty. This is a common reason why it may be more costly to move to Open Liberty that to WebSphere Liberty. 
+    **RAda:** WebSphere Liberty zawiera więcej technologii Java EE niż Open Liberty. Jest to częsty powód, dla którego przejście na Open Liberty może być bardziej kosztowne niż na WebSphere Liberty. 
     ___
 
-### 6.6.1.3 Examine CustomerOrderServicesApp.ear on Open Liberty
+### 6.6.1.3 Analiza CustomerOrderServicesApp.ear w Open Liberty
 
-In this section, we examine the application details for moving to "**Open Liberty"**. 
+W tej sekcji zbadamy szczegóły aplikacji do przejścia na „**Open Liberty**". 
 
-Let’s understand why the effort to move the application top Open Liberty requires more effort than moving to WebSphere Liberty. 
+Spójrzmy, dlaczego przeniesienie aplikacji na platformę Open Liberty wymaga więcej wysiłku niż przeniesienie na platformę WebSphere Liberty. 
 
-1.	Return to the “**All Java Applications**” page in TA
+1.	Wróć do strony „**Wszystkie aplikacje Java**” w TA
 
-    **Note** that the number of development days to move the application to Open Liberty is 3.5 days, while moving to WebSphere Liberty is 0 day. Let’s find out why. 
+    **Uwaga** Liczba potrzebnych dni programowania na przeniesienie aplikacji do Open Liberty wynosi 3,5 dnia, podczas gdy przeniesienie do WebSphere Liberty wynosi 0 dni. Dowiedzmy się dlaczego. 
 
-2.	Click on the `CustomerOrderServicesApp.ear` for **`Open Liberty`** to open its detail view. 
+2.	Kliknij na `CustomerOrderServicesApp.ear` dla **`Open Liberty`**, aby otworzyć jego widok szczegółowy. 
 
-    **Tip:** You may type “Customer” in the search field to filter on just the Customer Order Services app
+    **Rada:** Możesz wpisać „Customer” w polu wyszukiwania, aby przefiltrować tylko aplikację Customer Order Services.
 
     ![](./images/media/image119.png)
 
 
-3.	Expand the **Complexity rules** to see the details of the issues
+3.	Rozwiń **Complexity rules**, aby zobaczyć szczegóły problemów
 
-    We can see that moving to Open Liberty flags issues related JPA, Persistence unit second-level cache and CDI scans that were not flagged for WebSphere Liberty.  
+    Widzimy, że przejście na Open Liberty flaguje problemy związane z JPA, Persistence unit second-level cache i skanowaniem CDI, które nie zostały oflagowane dla WebSphere Liberty.
 
     ![](./images/media/image120.png)
   
-4.	Scroll down to the **“Unique Code Issues”** section of the details view. 
+4.	Przewiń w dół do sekcji **"Unique Code Issues ”** w widoku szczegółów. 
 
-    You see a break-down of the effort required to resolve each of the issues that were flagged. 
+    Zobaczysz podział nakładów pracy wymaganych do rozwiązania każdego z oznaczonych problemów. 
 
     ___
     
-    **Note** that the time-consuming effort is handing these technology issues.  
+    **Uwaga** Konieczność poświęcenia dużej ilości czasu jest związana z tymi kwestiami technologicznymi.  
 
-    These issues are not present when moving to WebSphere Liberty, as the APIs are included with WebSphere Liberty. 
+    Problemy te nie występują w przypadku przejścia na WebSphere Liberty, ponieważ interfejsy API są zawarte w WebSphere Liberty. 
     ___ 
 
     ![](./images/media/image121.png)
 
 
-6.	Scroll down to the available reports. Open the **`Analysis report`**
+6.	Przewiń w dół do dostępnych raportów. Otwórz raport **`Analysis report`**
 
     ![](./images/media/image122.png)
 
-7.	Go to the **`Critical rules`** flagged for the application moving to Open Liberty. 
+7.	Przejdź do **`Critical rules`**** oznaczonych dla aplikacji przenoszącej się do Open Liberty. 
 
     ![](./images/media/image123.png)
 
-8.	Expand the **`OpenJPA and WebSphere JPA configuration properties must be migrated`** section
+8.	Rozwiń sekcję **`OpenJPA i właściwości konfiguracyjne WebSphere JPA muszą zostać zmigrowane`**.
 
-    Here you find that `JPA 2.0` was discovered in the application. 
+    Tutaj dowiesz się, że w aplikacji wykryto `JPA 2.0`. 
 
-    For **Open Liberty**, you must manually migrate from JPA 2.0 to standardized or EclipseLink. JPA 2.0 is an older Java EE 6 specification. Java EE 6 specification. 
+    W przypadku **Open Liberty** należy ręcznie przeprowadzić migrację z JPA 2.0 do wersji standardowej lub EclipseLink. JPA 2.0 jest starszą specyfikacją Java EE 6.
 
-    **Open Liberty** does not support that old specification. However, **WebSphere Liberty** does support many of the Java EE 6 API specifications, including JPA 2.0. 
+    **Open Liberty** nie obsługuje tej starej specyfikacji. Jednak **WebSphere Liberty** obsługuje wiele specyfikacji API Java EE 6, w tym JPA 2.0. 
 
     ![](./images/media/image124.png)
 
-In this examination of the Customer Order Services application for **WebSphere Liberty** and **Open Liberty**, you gained insights into why the scope of effort moving to Open Liberty may be HIGHER compared to moving to WebSphere Liberty. 
+W tym badaniu aplikacji Customer Order Services dla **WebSphere Liberty** i **Open Liberty** dowiedziałeś się, dlaczego zakres prac związanych z przejściem na Open Liberty może być WYŻSZY w porównaniu z przejściem na WebSphere Liberty. 
 
-Mainly, WebSphere Liberty includes additional JAVA APIs and libraries that Open Liberty does not include. 
+Przede wszystkim WebSphere Liberty zawiera dodatkowe starsze interfejsy API i biblioteki JAVA, których nie zawiera Open Liberty. 
 
 
-### 6.6.1.4  Examine the Liberty server configuration file (server.xml) generated by TA
+### 6.6.1.4  Analiza pliku konfiguracyjnego serwera Liberty (server.xml) wygenerowanego przez TA
 
-Transformation Advisor not only provides great insights about your applications that you consider modernizing to WebSphere Liberty or Open Liberty, it also generates deployment accelerators for building and deploying the application on Liberty, containers, and Kubernetes based clouds. 
+Transformation Advisor nie tylko dostarcza świetnych informacji na temat aplikacji, które rozważasz zmodernizować do WebSphere Liberty lub Open Liberty, ale także generuje akceleratory do budowania i wdrażania aplikacji na Liberty, kontenerach i na Kubernetes. 
 
-In this section, we take a quick peak at the **Liberty server configuration** `server.xml` that TA generates, based on the analysis of the WebSphere configuration when the Transformation Advisor data collector was run against the WebSphere server on the VM.  
+W tej sekcji przyjrzymy się **konfiguracji serwera Liberty** `server.xml`, którą TA generuje na podstawie analizy konfiguracji WebSphere, gdy Transformation Advisor Data Collector został uruchomiony na serwerze WebSphere na maszynie wirtualnej.  
 
-Simply put, Transformation Advisor creates the server.xml file that contains the Liberty server configuration required to run the application on Liberty.  
+Mówiąc prościej, Transformation Advisor tworzy plik server.xml, który zawiera konfigurację serwera Liberty wymaganą do uruchomienia aplikacji na Liberty.  
 
-1.	Return to the **“All Java applications”** page in Transformation Advisor which displays the Java application summary list 
+1.	Wróć do strony **"Wszystkie aplikacje Java ”** w Transformation Advisor, która wyświetla listę podsumowania aplikacji Java 
 
     ![](./images/media/image127.png)
 
-2.	Ensure only the **`WebSphere Liberty`** migration target is selected
+2.	Upewnij się, że wybrany jest tylko cel migracji **`WebSphere Liberty`**.
 
     ![](./images/media/image128.png)
 
-3.	Click on the **`Migration plan`** link located next to the **`CustomerOrderServicesApp.ear`** for **`WebSphere Liberty`**, which will display migration plan for the WebSphere Liberty target. 
+3.	Kliknij na link **`Migration plan`** znajdujący się obok **`CustomerOrderServicesApp.ear`** dla **`WebSphere Liberty`**, który wyświetli plan migracji dla WebSphere Liberty.
 
     ![](./images/media/image129.png)
     
-4.	The **`Migration plan`** displays a "partial list" of files generated by Transformation advisor to assist in the migration of the application.
+4.	**`Plan migracji** wyświetla „częściową listę” plików wygenerowanych przez Transformation Advisor, aby pomóc w migracji aplikacji.
 
-    - **server.xml:** the configuration for the Liberty server
-    - **pom.xml:** Build the application using Maven
-    - **Containerfile:** Create the Docker image for the application
-    - **application CR:** Custom Resource for the application to be deployed to OpenShift via the Open Liberty Operator
-    - **secret.yaml:** Configuration file for database connection settings in OpenShift
+    - **server.xml:** - Konfiguracja dla serwera Liberty
+    - **pom.xml:** - Kompilacja aplikacji przy użyciu Maven
+    - **Containerfile:** - Tworzenie obrazu Docker dla aplikacji
+    - **application CR:** - Niestandardowy zasób dla aplikacji, która ma zostać wdrożona na OpenShift za pośrednictwem Open Liberty Operator
+    - **secret.yaml:** - Plik konfiguracyjny dla ustawień połączenia z bazą danych w OpenShift
 
     ![](./images/media/image130.png)
 
-5.	Click to view the contents of the **`server.xml`** file.
+5.	Kliknij, aby wyświetlić zawartość pliku **`server.xml`**.
 
     ![](./images/media/image131.png)
 
-6.	The **server.xml** is displayed in the File preview window, click **`Show more`** to expand it.
+6.	Plik **server.xml** jest wyświetlany w oknie podglądu pliku, kliknij **`Show more`**, aby go rozwinąć.
 
     ![](./images/media/image132.png)
  
 
-7.	Review the contents of the **server.xml** file.
+7.	Przejrzyj zawartość pliku **server.xml**.
 
-    Notice that Transformation Advisor generated the **server.xml** file that includes the Liberty server configuration that has been mapped from the original WebSphere traditional application server. 
+    Zauważ, że Transformation Advisor wygenerował plik **server.xml**, który zawiera konfigurację serwera Liberty, która została zmapowana z oryginalnego tradycyjnego serwera aplikacji WebSphere. 
 
-    When the Transformation Advisors data collector was run against the WebSphere Application server, it analyzed the applications and the WebSphere server configuration. The server configuration data was used to generate an appropriate server.xml file to configure the application on Liberty. 
+    Gdy Transformation Advisors Data Collector został uruchomiony na serwerze aplikacji WebSphere, przeanalizował aplikacje i konfigurację serwera WebSphere. Dane konfiguracyjne serwera zostały wykorzystane do wygenerowania odpowiedniego pliku server.xml w celu skonfigurowania aplikacji na serwerze Liberty. 
 
     a.	The **Liberty features** that the application uses are configured. 
 
     ![](./images/media/image133.png)
 
 
-    b.	The **application endpoints** and **enterprise application module configuration** are configured. Notice that **variables ${ }** are used to simplify external configuration overrides and default values. 
+    b.	Konfigurowane są **application endpoints** i **enterprise application module configuration**. Należy zauważyć, że **zmienne ${ }** są używane w celu uproszczenia zastępowania konfiguracji zewnętrznej i przyjmowania wartości domyślnych. 
 
     ![](./images/media/image134.png)
 
-    c.	**Security roles** used by the application are configured
+    c.	**Role bezpieczeństwa** używane przez aplikację są skonfigurowane
 
     ![](./images/media/image135.png)
 
-    d.	**Database configuration** and **authentication aliases** are configured. Again, notice variables used. 
+    d.	**Konfiguracja bazy danych** i **aliasy uwierzytelniania** są skonfigurowane. Ponownie należy zwrócić uwagę na użyte zmienne. 
 
     ![](./images/media/image136.png)
 
 
-    e.	**Variables**, and default values, where it makes sense are configured.
+    e.	Konfigurowane są **zmienne** i wartości domyślne tam, gdzie ma to sens.
 
-    These variables are used to extract data that is likely going to be different between environments such as TEST, QA, PROD environments. 
+    Zmienne te są używane do wyodrębniania danych, które prawdopodobnie będą się różnić między środowiskami, takimi jak TEST, QA, PROD. 
 
-    The variables are easily overridden by environment variables or configMaps and secrets in Kubernetes environments. 
+    Zmienne można łatwo zastąpić zmiennymi środowiskowymi lub configMaps i secrets w środowiskach Kubernetes. 
 
     ![](./images/media/image137.png)
 
 
-8.	Click to download the **Migration Plan** generated by Transformation Advisor
+8.	Kliknij, aby pobrać **Plan migracji** wygenerowany przez Transformation Advisor
 
     ![](./images/media/image138.png)
 
-    The migaration bundle in the form of a zip file will be downloaded to the **Download** directory of the VM.
+    Pakiet migracji w postaci pliku zip zostanie pobrany do katalogu **Download** maszyny wirtualnej.
 
 
-###  6.6.2 Evaluate Mod Resorts application
+###  6.6.2 Analiza aplikacji Mod Resorts
 
-**Mod Resorts is one of the applications that we want to consider  migration to Liberty.**
+**Mod Resorts jest jedną z aplikacji, których migrację do Liberty chcemy rozważyć.**
  
-In this section you will review the analysis results for the **modresorts-1_0_war.ear** application and determine if it is a good candidate for migration to Open Liberty or WebSphere liberty.
+W tej sekcji przejrzysz wyniki analizy dla aplikacji **modresorts-1_0_war.ear** i określisz, czy jest ona dobrym kandydatem do migracji do Open Liberty lub WebSphere Liberty.
 
-1.	Return to the “All Java Applications” page in Transformation Advisor.
+1.	Wróć do strony „All Java Applications” w Transformation Advisor.
 
     ![](./images/media/image101.png)
 
-2.	Select all three Migration targets from the menu
+2.	Wybierz wszystkie trzy cele migracji z menu.
 
     ![](./images/media/image102.png)
 
-3.	In the **"search"** field, type **`modresorts`** which will narrow the application list to only the Mod Resorts application for all three migration target. 
+3.	W polu **"search ”** wpisz **`modresorts****, co zawęzi listę aplikacji tylko do aplikacji Mod Resorts dla wszystkich trzech celów migracji. 
 
     ![](./images/media/image103.png)
 
-    In this example, if you want to move the **modresorts-1_0_war.ear** application to **Open Liberty**, the complexity level is **Simple**, which indicates that the application code does not need to be changed before it can be moved to Open Liberty. 
+    W tym przykładzie, jeśli chcesz przenieść aplikację **modresorts-1_0_war.ear** do **Open Liberty**, poziom złożoności to **Simple**, co wskazuje, że kod aplikacji nie musi być zmieniany przed przeniesieniem do Open Liberty. 
 
-    The application has no dependency, does not have any common code or shared library files. It has one minor (informational level) issue. 
+    Aplikacja nie ma żadnych zależności, nie ma wspólnego kodu ani współdzielonych bibliotek. Ma jeden drobną kwestię (na poziomie informacyjnym). 
 
-    The estimated development effort is zero day because no code change is required.
+    Szacowany nakład pracy na rozwój wynosi zero dni, ponieważ nie jest wymagana zmiana kodu.
 
     ![](./images/media/image104.png)
 
-    Notice that the modresorts application is also simple to migrate to the WebSphere Liberty and WebSphere traditional migration targets. 
+    Należy zauważyć, że aplikacja modresorts jest również łatwa do migracji do tradycyjnych celów migracji WebSphere Liberty i WebSphere. 
 
     ![](./images/media/image105.png)
 
-    For this lab, you will focus on the modernization of `moderesorts-1.0_war.ear` to `Open Liberty`. 
+    W tym ćwiczeniu skupisz się na modernizacji aplikacji `moderesorts-1.0_war.ear` do wersji `Open Liberty`. 
 
-    Next, you will look at the analysis results for**moderesorts-1.0_war**.ear application in detail.
+    Następnie przyjrzymy się szczegółowo wynikom analizy aplikacji **moderesorts-1.0_war**.ear.
 
 
-4.  Click the **`modresorts-1_0_war.ear`** link targeting **Open Liberty** to expand its analysis results.
+4.  Kliknij link **`modresorts-1_0_war.ear`** do **Open Liberty**, aby rozwinąć wyniki analizy..
 
     ![](./images/media/image104.png)
  
 
-    The first section in the detail analysis summary page is the  **Complexity rules section**. The overall complexity for the  application is **simple**, indicating that the application can be  directly moved to Open Liberty without any code change.
+    Pierwszą sekcją na stronie podsumowania analizy szczegółowej jest sekcja **Complexity rules section**. Ogólna złożoność aplikacji to **simple**, co oznacza, że aplikacja może być bezpośrednio przeniesiona do Open Liberty bez żadnych zmian w kodzie.
  
     ![](./images/media/image106.png)
 
-5.  Scroll down to **`Complexity Rules`** section. You can see there is no
-    code change required and no development cost, the estimate migration
-    over all develop cost is **0 days**.
+5.  Przewiń w dół do sekcji **`Complexity Rules**. Możesz zobaczyć, że nie jest wymagana zmiana kodu i nie ma kosztów developmentu, szacowany koszt migracji wynosi **0 dni**..
 
-    This estimate is based on data from IBM Services engagements, which  includes migrating the application code, but does not encompass the  full scope of a migration project that would include server  configuration, testing, etc.
+    Szacunki te opierają się na danych pochodzących z usług IBM, które obejmują migrację kodu aplikacji, ale nie obejmują pełnego zakresu projektu migracji, który obejmowałby konfigurację serwerów, testowanie itp.
  
     ![](./images/media/image42.png)
 
-6.  Expand the **`Issues and details`** section. You can see the only minor potential issue listed is for configuring CDI (Context Dependency Injection beans).
+6.  Rozwiń sekcję **`Issues and details`**. Widać, że jedyny niewielki potencjalny problem dotyczy konfiguracji CDI (Context Dependency Injection beans).
 
     ![](./images/media/image43.png)
 
-7.  Next, scroll down to the bottom of the page and click the
-    **`Technology Report`** link, this opens a new browser window to show
-    the application Evaluation Report.
+7.  Następnie przewiń w dół do dolnej części strony i kliknij łącze **`Technology Report`**, co spowoduje otwarcie nowego okna przeglądarki w celu wyświetlenia raport z oceną aplikacji.
 
     ![](./images/media/image44.png)
  
-    The **Technology report** lists all java technologies the application  used and whether these technologies are supported by a specific  WebSphere platform from Liberty for Java on IBM Cloud to WebSphere  traditional for z/OS.
+    Raport **Technology report** zawiera listę wszystkich technologii Java wykorzystywanych przez aplikację oraz informację, czy technologie te są obsługiwane przez konkretną platformę WebSphere, od Liberty for Java on IBM Cloud do WebSphere traditional for z/OS.
  
-    It is used to determine whether a particular WebSphere product is  suitable for an application.
+    Służy on do określenia, czy dany produkt WebSphere jest odpowiedni dla danej aplikacji.
 
     <table>
     <tbody>
     <tr class="odd">
     <td><img src="./images/media/image13.png" style="width:1.73958in;height:0.64583in" alt="sign-info" /></td>
-    <td><p><strong>TIP:</strong></p>
-    <p>If the complexity of migrating to the target environment is “<strong>Complex</strong>” , it means that some APIs are not available in the target runtime and application will have to be rewritten to use different APIs.</p></td>
+    <td><p><strong>Rada:</strong></p>
+    <p>Jeśli złożoność migracji do środowiska docelowego wynosi „<strong>Complex</strong>”, oznacza to, że niektóre interfejsy API nie są dostępne w docelowym środowisku uruchomieniowym i aplikacja będzie musiała zostać przepisana, aby korzystać z innych interfejsów API.</p></td>
     </tr>
     </tbody>
     </table>
 
     ![](./images/media/image45.png)
  
-    As you can see from the report, the Mod Resorts application only uses  **Java Servlet** which is supported by all WebSphere editions.
+    Jak widać z raportu, aplikacja Mod Resorts używa tylko **Java Servlet**, który jest obsługiwany przez wszystkie wersje WebSphere.
 
-8. Go back to the Transformation Advisor page and click the **`Inventory
-    Report`** link.
+8. Wróć do strony Transformation Advisor i kliknij łącze **`Inventory Report`**.
 
     ![](./images/media/image52.png)
  
-    The **Inventory Report** helps you examine what is in your application, including the number of modules, their relationships, and the technologies in those modules.
+    Raport **Inventory Report** pomaga sprawdzić, co znajduje się w aplikacji, w tym liczbę modułów, ich relacje i technologie w tych modułach.
  
-    It also gives you a view of all the utility JAR files in the application, and the **Java package names** in the jar files, which will help identify if the classes are the customers application code  or 3<sup>rd</sup> party code. Potential deployment problems and  performance considerations are also included.
+    Daje również wgląd we wszystkie pliki narzędziowe JAR w aplikacji oraz **nazwy pakietów Java** w plikach jar, co pomoże zidentyfikować, czy klasy są kodem aplikacji klienta, czy kodem strony trzeciej. Uwzględniono również potencjalne problemy związane z wdrażaniem i wydajnością.
  
     ![](./images/media/image53.png)
 
-    a.  Scroll down through the `Inventory Report` to view this report which serves as good decision-making tool to info you what is inside your application runtime, and to help you to have a better understanding of the application runtime, the components it has and the relationships among them.
+    a.  Przewiń w dół `Inventory Report`, aby wyświetlić ten raport, który służy jako dobre narzędzie do podejmowania decyzji, informujące o tym, co znajduje się w środowisku uruchomieniowym aplikacji i pomagające lepiej zrozumieć środowisko uruchomieniowe aplikacji, jego komponenty i relacje między nimi.
 
     ![ta inventory report 2](./images/media/image54.png)
 
-9. In the `Inventory report`, view the package names of the classes in
-    the utility Jars
+9. W raporcie `Inventory report` przejrzyj nazwy pakietów klas w utility Jars
     
-    a.  Scroll down to view the **Contained Archives** section and click
-        on the “**show details**” link next to **modresorts-1.0.war**
+    a.  Przewiń w dół, aby wyświetlić sekcję **Contained Archives** i kliknij link „**show details*” obok **modresorts-1.0.war**.
     
-    b.  Then scroll down to the **Utility JAR files** and click on the
-        “**show details**” link next to Utility JAR files
+    b.  Następnie przewiń w dół do **Użytkowe pliki JAR** i kliknij link „**pokaż szczegóły**” obok **Użytkowych plików JAR**.
     
-    c.  View the **Archive names** of the jar files and the **packages**
-        used in the JAR files.
+    c.  Wyświetl **nazwy archiwów** plików jar i **pakiety** użyte w plikach JAR.
 
-    This is a good way to determine if the code in the utility JARS  include customer code or if they are 3<sup>rd</sup> party jars like
- (org.pache\*).
+    Jest to dobry sposób na określenie, czy kod w utility JARS zawiera kod klienta lub czy są to pliki jars trzeciej strony, takie jak (org.pache\*).
  
-    Additionally, if the application migration complexity is SIMPLE, you  may want to verify if the utility jars include any company packages  that begin with org or other package names that are IGNORED by default in the Transformation Advisor data collector.
+    Dodatkowo, jeśli złożoność migracji aplikacji to SIMPLE, warto sprawdzić, czy słoiki narzędziowe zawierają jakiekolwiek pakiety firmowe zaczynające się od org lub inne nazwy pakietów, które są domyślnie IGNOROWANE w Transformation Advisor Data Collector.
  
-    It could be possible that application code was not analyzed due to  package names that are ignored by the data collector
+    Możliwe, że kod aplikacji nie został przeanalizowany z powodu nazw pakietów, które są ignorowane przez Data Collector
  
     ![](./images/media/image55.png)
  
-    From the analysis reports you reviewed above, you know that the Mod  Resorts application is supported by Open Liberty, and the issue that  the tool identified would not affect the application migration.
+    Z raportów analitycznych, które przejrzałeś powyżej, wiesz, że aplikacja Mod Resorts jest obsługiwana przez Open Liberty, a problem zidentyfikowany przez narzędzie nie wpłynie na migrację aplikacji.
  
-    You can confidently select the application as a good candidate for  migrating to Open Liberty with minimal effort.
+    Możesz śmiało wybrać aplikację jako dobrego kandydata do migracji do Open Liberty przy minimalnym wysiłku.
 
 
 
-### 6.7 Overview of the Mod Resorts application
+### 6.7 Informacje ogólne o aplikacji Mod Resorts
 
-From the insights gained from Transformation Advisor, you learned that
-the Mod Resorts is a simple EE application and is a good candidate for
-moving to Open Liberty and container-based clouds.
+Ze spostrzeżeń uzyskanych z Transformation Advisor dowiedziałeś się, że Mod Resorts jest prostą aplikacją EE i jest dobrym kandydatem do przejścia na Open Liberty i kontenery.
 
-For illustration purposes, in this short section, a few screen shots are
-captured to illustrate the Mod Resorts application.
+Dla celów ilustracyjnych, w tej krótkiej sekcji wykonano kilka zrzutów ekranu, aby pokazać aplikację Mod Resorts.
 
-The Mod Resorts application home page is illustrated here:
+Strona główna aplikacji Mod Resorts wygląda następująco:
 
 ![mod resorts app home page](./images/media/image56.png)
 
-The user would select the destination of their travel
+Użytkownik wybiera cel swojej podróży
 
 ![mod resorts app where to](./images/media/image57.png)
 
-Perhaps the user wants to go to **PARIS, FRANCE. Mod Resorts shows the**
-weather of the city.
+Być może użytkownik chce pojechać do **PARIS, FRANCJA. Mod Resorts pokazuje** pogodę w mieście.
 
 ![mod resorts app paris](./images/media/image58.png)
 
-Continue to the next section of the lab where you are briefly introduced
-to Transformation Advisor’s migration plan.
+Przejdź do następnej sekcji laboratorium, w której pokrótce zapoznasz się z planem migracji Transformation Advisor.
 
-The migration plan includes a migration bundle of generated deployment
-artifact that accelerate the deployment of the application to Liberty
-and container-based cloud deployment.
+Plan migracji obejmuje pakiet migracji wygenerowanych artefaktów wdrożenia, które przyspieszają wdrożenie aplikacji do Liberty i wdrożenie kontenerowe.
 
-## 7. Explore the migration bundle for the Mod Resorts application
+## 7. Zapoznanie się z pakietem migracyjnym dla aplikacji Mod Resorts
 
-Transformation Advisor display details about the **migration bundle**
-that it generated to accelerate the modernization of applications to
-Liberty or traditional WebSphere in containers and to OpenShift. The
-migration bundle includes diverse artifacts, depending on the needs of
-the application to accelerate the build and deployment of an application
-Docker image into OpenShift platform.
+Transformation Advisor wyświetla szczegóły dotyczące **migration bundle**, który został wygenerowany w celu przyspieszenia modernizacji aplikacji do Liberty lub tradycyjnego WebSphere w kontenerach i na OpenShift. Pakiet migracyjny zawiera różne artefakty, w zależności od potrzeb aplikacji, aby przyspieszyć kompilację i wdrożenie obrazu Docker aplikacji na platformie OpenShift.
 
 
-Now, let’s quickly explore the **Migration Plan** for the Mod Resorts
-application to see the artifacts that Transformation Advisor creates to
-expedite the app deployment to OpenShift Platform.
+Teraz szybko przeanalizujmy **Migration Plan** dla aplikacji Mod Resorts, aby zobaczyć artefakty tworzone przez Transformation Advisor w celu przyspieszenia wdrożenia aplikacji na platformie OpenShift.
 
-1.  Return to the “**All Java applications**” page in Transformation
-    Advisor which displays the Java application summary list
+1.  Wróć do strony „**Wszystkie aplikacje Java**” w Transformation Advisor, która wyświetla listę podsumowania aplikacji Java.
 
     ![](./images/media/image59.png)
 
-2.  Ensure only the **`Open Liberty`** migration target is selected
+2.  Upewnij się, że wybrany jest tylko cel migracji **`Open Liberty`**.
 
     ![](./images/media/image60.png)
 
-3.  Click on the **`Migration plan`** link located next to the Mod Resorts application analysis for `Open Liberty`, which will display
-    **`migration plan`** for modresorts for the Open Liberty target
+3.  Kliknij link **`Migration plan`** znajdujący się obok analizy aplikacji Mod Resorts dla `Open Liberty`, który wyświetli **`plan migracji`** dla modresorts dla celu Open Liberty.
 
     ![](./images/media/image61.png)
 
-7.  Click the **`Download`** link to download the bundle of artifacts to the local filesystem on the Workstation VM.
+7.  Kliknij łącze **`Download`**, aby pobrać pakiet artefaktów do lokalnego systemu plików na maszynie wirtualnej stacji roboczej.
 
-    The **modresorts10war_migrationBundle.zip** file will be downloaded to the **/home/techzone/Downloads** directory
+    Plik **modresorts10war_migrationBundle.zip** zostanie pobrany do katalogu **/home/techzone/Downloads**.
  
      ![](./images/media/image65.png)
 
-8.  Unzip the migration bundle artifacts to a new folder on the
-    Workstation VM
+8.  Rozpakuj artefakty pakietu migracji do nowego folderu na maszynie wirtualnej Workstation.
 
-    a.  From a terminal window, run the following commands to unzip the migration bundle to a new directory named "**modresorts-bundle**":
+    a.  W oknie terminala uruchom następujące polecenia, aby rozpakować pakiet migracji do nowego katalogu o nazwie „**modresorts-bundle**”:
 
         mkdir /home/techzone/modresorts-bundle
         
@@ -981,284 +947,143 @@ expedite the app deployment to OpenShift Platform.
 
     ![](./images/media/image66.png)
 
-9.  View the **server.xml** file. DO NOT CHANGE THE FILE CONTENTS.
+9.  Wyświetl plik **server.xml**. NIE NALEŻY ZMIENIAĆ ZAWARTOŚCI PLIKU.
 
-    The server.xml file in the migration bundle is the Liberty server  configuration file generated by Transformation Advisor, configured for the modresorts application.
+    Plik server.xml w pakiecie migracyjnym jest plikiem konfiguracyjnym serwera Liberty wygenerowanym przez Transformation Advisor, skonfigurowanym dla aplikacji Modresorts.
 
         gedit ~/modresorts-bundle/src/main/liberty/config/server.xml
 
     ![](./images/media/image67.png)
 
-    - The Liberty features list include features that the application requires.
+    - Lista funkcji Liberty zawiera funkcje wymagane przez aplikację.
 
-    - **mpMetrics** feature is included, which provides a /metrics endpoint from which you can access all metrics that are emitted by the Open Liberty server and deployed applications.
+    - Dołączona jest funkcja **mpMetrics**, która zapewnia punkt końcowy /metrics, z którego można uzyskać dostęp do wszystkich metryk generowanych przez serwer Open Liberty i wdrożone aplikacje.
 
-    - Variables are used so that the values that are likely to be     different between environments can easily be overridden by external    configurations like environment variables or configMaps and Secrets    in Kubernetes.
+    - Zmienne są używane, aby wartości, które mogą się różnić między środowiskami, można było łatwo zastąpić zewnętrznymi konfiguracjami, takimi jak zmienne środowiskowe lub configMaps i Secrets w Kubernetes.
 
-10. **Close** the editor when you finish reviewing the file. **DO NOT
-    SAVE any changes** to the contents.
+10. **Zamknij** edytor po zakończeniu przeglądania pliku. **NIE ZAPISUJ żadnych zmian** w jego zawartości.
 
 
-11. View the **Containerfile** file. Do not change the file contents.
+11. Wyświetl plik **Containerfile**. Nie zmieniaj zawartości pliku.
 
-    The Containerfile file in the migration bundle is used to build the container image for running the modresorts application on a Liberty runtime in a containerized environment such ads Docker, Kubernetes, or Red Hat OpenShift. The Containerfile was generated by Transformation Advisor, configured for the building the modresorts application.
+    Plik Containerfile w pakiecie migracyjnym służy do tworzenia obrazu kontenera w celu uruchomienia aplikacji modresorts w środowisku uruchomieniowym Liberty w środowisku kontenerowym, takim jak Docker, Kubernetes lub Red Hat OpenShift. Plik Containerfile został wygenerowany przez Transformation Advisor, skonfigurowany do budowania aplikacji Modresorts.
 
         gedit ~/modresorts-bundle/Containerfile
 
-    - The Containerfile is a two-stage Containerfile.
+    - Plik Containerfile jest dwuetapowy.
     
-      - The first phase is the “**build-stage**” that creates a docker
-        image for the modresorts application.
+      - Pierwszy etap to „**build-stage**”, który tworzy obraz kontenera dla aplikacji modresorts.
     
-      - The second stage uses the **Open Liberty kernel** container
-        image and the build artifacts produced from the “build-stage” to
-        build the modresorts container image with the modresorts
-        application and configuration files for deploying to a container
-        environment.
+      - Drugi etap wykorzystuje obraz kontenera **Open Liberty kernel** i artefakty kompilacji utworzone z „etapu kompilacji” do zbudowania obrazu kontenera modresorts z aplikacją Modresorts i plikami konfiguracyjnymi do wdrożenia w środowisku kontenerowym.
 
     ![](./images/media/image68.png)
  
     ![](./images/media/image69.png)
 
-12. **Close** the editor when you finish reviewing the file. **DO NOT
-    SAVE** any changes to the contents.
+12. **Zamknij** edytor po zakończeniu przeglądania pliku. **NIE ZAPISUJ** żadnych zmian w jego zawartości.
     
-13. Finally, you need to add the executable file of the Modresorts application to the Target directory of the migration bundle.
+13. Na koniec należy dodać plik wykonywalny aplikacji Modresorts do katalogu docelowego pakietu migracyjnego.
 
         cp /home/techzone/appmod-pot-labfiles/labs/TransformationAdvisor/modresorts-1.0.war ~/modresorts-bundle/target
     
-
-## 8. Use Transformation Advisor deployment accelerators to deploy and run the Mod Resorts application on Open Liberty
-
-In this section, you will install Open Liberty, create a new Liberty
-server, and leverage the artifacts generated by Transformation Advisor
-to configure and run the Mod Resorts application on your new Open
-Liberty server.
-
-___
-
-**Tip:** Open Liberty is installed from a zip archive file.
-
-For the lab, the Open Liberty zip archive has already been downloaded to
-the lab environment.
-___
-
-To get started, you will create a new directory where you would like to
-install Open Liberty. Then unzip the archive. That’s it, Open Liberty is
-installed.
-
-1.  Install Open Liberty on the VM
-
-    a.   From a Terminal window, run the following commands to perform an     archive installation of Open Liberty
-
-        mkdir ~/Liberty
-
-        cd ~/Liberty
-
-        unzip ~/appmod-pot-labfiles/labs/TransformationAdvisor/openliberty-webProfile8-21.0.0.12.zip -d ~/Liberty
+## 8. Użyj akceleratorów Transformation Advisor, aby uruchomić aplikację Mod Resorts na Open Liberty w kontenerach
 
 
-    b.  Open Liberty is installed to the **/home/techzone/Liberty/wlp** directory.  Change to Open Liberty “**bin**” directory, which is where the Open Liberty binaries are located.
+W tej sekcji użyjesz pliku `Containerfile` z pakietu Transformation Advisor do zbudowania obrazu kontenera i uruchomienia aplikacji modresorts w lokalnym kontenerze.
 
-        cd wlp/bin
+Plik `Containerfile` jest dwuetapowym plikiem kontenera:
 
-2.  Use the **`server`** command to create a new Open Liberty server named **`modresorts_server`**
-
-        ./server create modresorts_server
-
-    ![](./images/media/image70.png)
-
-3.  Use the **`server`** command to start the Open Liberty server named
-    **`modresorts_server`**
-
-        ./server start modresorts_server
-
-    ![](./images/media/image71.png)
-
-4.  Open a new `Terminal` window and view the Open Liberty server log
-    file named “messages.log”
-
-         tail -f ~/Liberty/wlp/usr/servers/modresorts_server/logs/messages.log 
-
-    a.  Look for the message that the modresorts server started     successfully
-
-    ![](./images/media/image72.png)
-
-    At this point you have an Open Liberty Server running with a defaultserver configuration. However, there are no applications installed(deployed).
-    
-
-    Next, you will copy the Mod Resorts binary (WAR) to the Open Liberty server, in which case the application will be deployed and started. Then copy the Open Liberty server configuration file that TA generated for the Mod Resorts application. 
-    
-    The Liberty server will automatically detect and apply these changes in the running server. 
-   
-
-5.	From a new `Termninal` window, install the modresorts application to the Open Liberty server, using the WAR file that is included in the Transformation Advisor migration bundle.
-
-        cp ~/modresorts-bundle/target/modresorts-1.0.war ~/Liberty/wlp/usr/servers/modresorts_server/apps
-
-    The command above copied the modresorts application WAR file to the  Open Liberty “**apps**” folder, which where the **server.xml** file is  configured to run the application.
-
-
-6.  Copy the **server.xml** file that Transformation Advisor, which
-    includes the Open Liberty server configuration for the modresorts
-    application
-
-    a.   From a `Terminal` window, run the following command to copy the **server.xml** file to the  **modresorts_server** configuration directory.
-
-        cp ~/modresorts-bundle/src/main/liberty/config/server.xml ~/Liberty/wlp/usr/servers/modresorts_server
-
-    b.  In the Terminal window running the “**tail**” command on the Open Liberty log file, notice that the server is being updated to reflect the updates in the new server.xml file that we copied into the Liberty runtime configuration.
-
-    **Note:** You will see a message stating the modresorts application is started.  
-
-    ![](./images/media/image73.png)
-
-
-7.  Run the modresorts application from the Web browser on the VM.
-    The context root for the application is `/resorts` and is defined in
-    the Open Liberty server.xml file.
-
-        http://localhost:9080/resorts
-
-     ![](./images/media/image74.png)
-
-    a.  You may click the drop-down menu for “**WHERE TO**?” and select a destination
-
-    <table>
-    <tbody>
-    <tr class="odd">
-    <td><img src="./images/media/image23.png" style="width:0.80625in;height:0.60625in" alt="sign-caution" /></td>
-    <td><p><strong>Tip!</strong></p>
-    <p>If the application does not respond when clicking on the “WHERE TO?” menu, increase the window size of the Web browser.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
-    ![](./images/media/image75.png)
-
-8.  `Stop` the Open Liberty server, from a Terminal window. 
-
-        /home/techzone/Liberty/wlp/bin/server stop modresorts_server
-
-    ![](./images/media/image76.png)
-
-
-9.  Use **CTL-C** to stop the “**tail**” command in the 2<sup>nd</sup>
-    Terminal window
-
-
-## 9. Use Transformation Advisor accelerators to run the Mod Resorts application on Open Liberty in containers
-
-
-In this section, you will use the `Containerfile` from the Transformation Advisor bundle to build a container image and run the modresorts application in a local container.
-
-The `Containerfile` is a two-stage Containerfile:
-
-  - The first phase is the “**build-stage**” that creates a docker
-     image for the modresorts application.
+  - Pierwszy etap to „**build-stage**”, który tworzy obraz docker dla aplikacji modresorts.
   
-  -  The second stage uses the **Open Liberty kernel** container image
-     and the build artifacts produced from the “build-stage” to build
-     the modresorts container image with the modresorts application and
-     configuration files for deploying to a container environment.
-      
-      - **RUN features.sh** downloads the Open Liberty features that are defined
-    in the server.xml file
-      - **RUN configure.sh** installs the Open Liberty features into the Docker image.
+  - Drugi etap wykorzystuje obraz kontenera **Open Liberty kernel** i artefakty kompilacji utworzone z „etapu kompilacji” do zbudowania obrazu kontenera modresorts z aplikacją modresorts i plikami konfiguracyjnymi do wdrożenia w środowisku kontenerowym.
+  
+  - **RUN features.sh** pobiera funkcje Open Liberty zdefiniowane w pliku server.xml
+  
+  - **RUN configure.sh** instaluje funkcje Open Liberty w obrazie Docker.
 
 
-1.  Build the Docker image that includes the modresorts application on
-    Open Liberty
+1.  Zbuduj obraz Docker, który zawiera aplikację modresorts na Open Liberty
 
-    a.  From a Terminal window, change to the directory where the Transformation Advisor migration bundle is located. 
+    a.  W oknie terminala przejdź do katalogu, w którym znajduje się pakiet migracyjny Transformation Advisor. 
 
         cd ~/modresorts-bundle
     
-    b.  Run the Docker build command to build the image
+    b.  Wykonaj polecenie Docker build, aby utworzyć obraz
 
-    - The name of the docker image will be **modresorts:1.0,** as
-    specified by the -t (tag) parameter.
+    - Nazwa obrazu docker będzie **modresorts:1.0,** określona przez parametr -t (tag).
 
-    - The container image is built from the directives in the **Containerfile** as
-    specified by the -f (tag) parameter.
+    - Obraz kontenera jest tworzony na podstawie dyrektyw w pliku **Containerfile** określonym przez parametr -f (tag).
     
-    - The Container image is built using the artifacts in the current directoy of the migration bunlde, as specified by the training **dot** on the command
+    - Obraz kontenera jest budowany przy użyciu artefaktów w bieżącym katalogu pakietu migracyjnego, jak określono w szkoleniu **.** w poleceniu
 
             docker build --no-cache -t modresorts:1.0 -f Containerfile .
 
-    When complete, you will see that the Container image was created and tagged as “**modresorts:1.0**”
+    Po zakończeniu zobaczysz, że obraz kontenera został utworzony i oznaczony jako „**modresorts:1.0**”.
 
     ![](./images/media/image77.png)
 
 
-    c.  List the Container image and its tag. The name of the image is
-    “**modresorts**” and is tagged as “**1.0**”
+    c. Wyświetl obraz kontenera i jego znacznik. Nazwa obrazu to „**modresorts**” i jest on oznaczony jako „**1.0**”.
 
         docker images | grep modresorts
 
     ![](./images/media/image78.png)
 
-2.  Run the Modresorts app in the container
+2.  Uruchom aplikację Modresorts w kontenerze
 
         docker run -d -p 9081:9080 --name modresorts modresorts:1.0
 
-    - **-d** runs the docker command in detached mode
+    - **-d** uruchamia polecenie docker w trybie odłączonym
 
-    - **-p** maps the internal pot 9080 to an external port 9081
+    - **-p** mapuje wewnętrzny port 9080 na zewnętrzny port 9081
 
-    - **--name** specifies the name for the docker container that gets
-    spun up
+    - **--name** określa nazwę kontenera docker, który zostanie uruchomiony.
 
-    - **Modresorts:1.0** is the name of the **docker image** to use to
-    spin up the new container
-
+    - **Modresorts:1.0** to nazwa **obrazu docker**, który zostanie użyty do uruchomienia nowego kontenera
            
-3.  Verify the docker container is running
+3.  Sprawdź, czy kontener jest uruchomiony
 
         docker ps | grep modresorts
 
-    The “**docker ps**” command lists containers that are “running”.
+    Polecenie „**docker ps**” wyświetla listę kontenerów, które są „uruchomione”.
  
-    Running “**docker ps -a**” lists all containers, including  containers that are stopped.
+    Uruchomienie „**docker ps -a**” wyświetla listę wszystkich kontenerów, w tym kontenerów, które są zatrzymane.
  
     ![](./images/media/image79.png)
 
 
-4.  View the Open Liberty log in the “**modresorts**” container to
-    verify the modresorts application was installed and is running
+4.  Wyświetl dziennik Open Liberty w kontenerze „**modresorts**”, aby sprawdzić, czy aplikacja modresorts została zainstalowana i jest uruchomiona.
 
         docker logs modresorts
 
     ![](./images/media/image80.png)
 
-5.  Run the modresorts application from the Web Browser.
+5.  Uruchom aplikację modresorts z poziomu przeglądarki internetowej.
 
-    - The application is exposed on port: **9081**
+    - Aplikacja jest dostępna na porcie: **9081**
 
-    - The application context root is: **/resorts**
+    - Katalog główny kontekstu aplikacji to: **/resorts**
 
         http://localhost:9081/resorts
 
     ![](./images/media/image81.png)
 
-    a.  You may click the drop-down menu for “**WHERE TO**?” and select a destination
+    a.  Możesz kliknąć menu rozwijane „**GDZIE**?” i wybrać miejsce docelowe
 
     <table> 
     <tbody>
     <tr class="odd">
     <td><img src="./images/media/image23.png" style="width:0.90625in;height:0.60625in" alt="sign-caution" /></td>
-    <td><p><strong>Tip!</strong></p>
-    <p>If the application does not respond when clicking on the “WHERE TO?” menu, increase the window size of the browser.</p>
-    <p>This appears to be a glitch with the application</p></td>
+    <td><p><strong>Rada!</strong></p>
+    <p>Jeśli aplikacja nie odpowiada po kliknięciu menu „WHERE TO?”, zwiększ rozmiar okna przeglądarki..</p>
+    <p>Wygląda na to, że jest to usterka aplikacji</p></td>
     </tr>
     </tbody>
     </table>
 
     ![](./images/media/image75.png)
 
-6.  **`Stop`** and **`remove`** the container. Then check that the
-    container has been removed, by using the “**docker ps -a”** command
+6.  **`Zatrzymaj`** i **`Usuń`** kontener. Następnie sprawdź, czy kontener został usunięty, używając polecenia „**docker ps -a ”**.
 
         docker stop modresorts
         
@@ -1266,36 +1091,27 @@ The `Containerfile` is a two-stage Containerfile:
         
         docker ps -a | grep modresorts
 
-7.  **`Remove`** the modresorts container image. Then use the “**docker
-    images**” command to verify the image has been removed
+7.  **`Usuń`** obraz kontenera modresorts. Następnie użyj polecenia „**docker images**”, aby sprawdzić, czy obraz został usunięty
 
         docker rmi modresorts:1.0
 
         docker images | grep modresorts
 
 
-## Summary
+## Podsumowanie
 
-In this lab, you learned how to evaluate the existing Java application
-using IBM Cloud Transformation Advisor.
+W tym laboratorium dowiedziałeś się, jak ocenić istniejącą aplikację Java za pomocą IBM Cloud Transformation Advisor.
 
-You learned how to use Transformation Advisors generated deployment
-accelerators from the migration bundle to build and run an application
-in Open Liberty in stand-alone mode on a VM and in containers.
+Dowiedziałeś się, jak używać akceleratorów wdrażania wygenerowanych przez Transformation Advisors z pakietu migracji do kompilowania i uruchamiania aplikacji w kontenerach Open Liberty.
 
-As a part of IBM Application Modernization solutions, the Transformation
-Advisor tool provides a recommendation for the right-fit IBM WebSphere
-Application Server edition and offers advice, best practices, and
-potential solutions to assess the ease of moving apps to Liberty or to
-WAS container, or to newer versions of WebSphere traditional.
+Jako część rozwiązań IBM Application Modernization, narzędzie Transformation Advisor zapewnia rekomendację dla odpowiedniej edycji IBM WebSphere Application Server i oferuje porady, najlepsze praktyki i potencjalne rozwiązania w celu oceny łatwości przenoszenia aplikacji do Liberty lub do kontenera WAS, lub do nowszych wersji WebSphere traditional.
 
-Transformation Advisor accelerates application migrating to Liberty and
-containers and helps minimize errors and risks and reduce time to
-market.
+Transformation Advisor przyspiesza migrację aplikacji do Liberty i kontenerów oraz pomaga zminimalizować błędy i ryzyko oraz skrócić czas wprowadzania produktów na rynek.
 
 <br/>
 
-**Congratulations!**
+**Gratulacje!**
 
-**You have successfully completed the lab “Exploring IBM Transformation
-Advisor data collection, app assessments, and deployment accelerators”**
+**Ukończyłeś pomyślnie laboratorium "Modernizacja aplikacji z IBM Transformation Advisor Zbieranie danych, ocena aplikacji pod kątem modernizacji oraz wsparcie wdrożenia”**.
+
+W następnym laboratorium dowiesz się jak wdrażyć, bardziej skomplikowaną aplikacje na platformie Red Hat OpenShift Container Platform.

@@ -149,7 +149,7 @@ Jeśli wykonujesz to laboratorium w ramach warsztatu prowadzonego przez instrukt
 <br>
 
 
-## 5. Lab Tasks
+## 5. Zadania laboratoryjne
 
 W tym warsztacie użyjesz narzędzia Transformation Advisor, aby zidentyfikować odpowiednią aplikację do przeniesienia na WebSphere Liberty i kontenery.
 

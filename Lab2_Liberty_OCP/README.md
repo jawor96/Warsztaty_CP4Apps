@@ -1,191 +1,184 @@
-# Rapidly deploy and configure your Java applications with WebSphere Liberty and OpenShift Container Platform
+# Wdrażanie i konfiguracja aplikacji Java za pomocą WebSphere Liberty i OpenShift Container Platform
 
-![banner](./images/media/image1.jpeg) 
+![banner](./images/media/image1.jpeg)
 
-**Last updated:** March 2024
+**Czas trwania:** 75 - 90 minut
 
-**Duration:** 90 minutes
+## Wstęp
+To laboratorium zapewnia podstawowe praktyczne doświadczenie w modernizacji istniejących aplikacji Java do WebSphere Liberty, wdrożonych na platformie kontenerowej, takiej jak Red Hat OpenShift. 
 
-Need support? Contact **Kevin Postreich, Yi Tang**
+Laboratorium koncentruje się na praktycznych aspektach wdrażania i konfiguracji aplikacji, a nie na analizie wyników Transformation Advisor. *Poprzednie laboratoria szczegółowo omawiają Transformation Advisor.*
 
-## Overview
-This lab provides fundamental hands-on experience with modernizing existing Java applications to WebSphere Liberty, deployed into a container platform, such as Red Hat OpenShift. 
+Po ukończeniu tego modułu zdobędziesz umiejętności używania `pakietu migracyjnego Transformation Advisor` do wdrażania i konfigurowania aplikacji w następujących scenariuszach: 
 
-The focus of this lab is on the practical aspects of application deployment and configurations and not the analysis of the Transformation Advisor results. *Other labs cover Transformation Advisor in detail.*
+1.  **do lokalnie uruchomionego WebSphere Liberty** - przydatne do wdrożenia Liberty w maszynie wirtualnej
 
-Upon completion of this lab, you will have gained skills to download and use the `Transformation Advisor migration bundle` to deploy and configure your application in the following scenarios: 
+2.  **do obrazu kontenera** - przydatne do wdrażania w Kubernetes
 
-1.  **to a locally running WebSphere Liberty** - useful for deploying to Liberty in a VM
+3.  **używając Liberty Operator** - przydatne do wdrażania w OpenShift
 
-2.  **to a container image** – useful for deploying to Kubernetes
+**IBM Cloud Transformation Advisor** (Transformation Advisor) to narzędzie wspierające proces modernizacji aplikacji, które jest dostępne w ramach licencji IBM Cloud Pak for Applications i IBM WebSphere Hybrid Edition. Transformation Advisor pomaga szybko ocenić lokalne aplikacje Java EE pod kątem wdrożenia na środowiska kontenerowe i serwery aplikacyjne Liberty.
 
-3.  **using the Liberty Operator** – useful for deploying to OpenShift
+**Narzędzie Transformation Advisor zapewnia następującą warości:**
 
+  - identyfikacja modelu programowania Java EE w aplikacji.
 
-**IBM Cloud Transformation Advisor** (Transformation Advisor) is an application modernization tool that is entitled through IBM Cloud Pak for Applications and WebSphere Hybrid Edition. Transformation Advisor helps you quickly evaluate on-premises Java EE applications for deployment to the cloud. 
+  - ocena złożoność aplikacji, dzięki inwentaryzacji na wysoki poziomie zawartości i struktury każdej aplikacji.
 
-The Transformation Advisor tool provides the following value:
+  - identyfikacja różnic w modelu programowania Java EE i interfejsów API, które mogą mieć wpływ na aplikacje, między środowiskiem startowym, a docelowym.
 
-  - Identifies the Java EE programming models in the app
+  - generowanie akceleratorów wsparcia wdrożenia w celu przyspieszenia uruchomienia aplikacji na Liberty i w kontenerach.
 
-  - Determines the complexity of replatforming these apps by listing a high-level inventory of the content and structure of each app
+Ponadto narzędzie zapewnia rekomendację odpowiedniej edycji IBM WebSphere Application Server i oferuje porady, najlepsze praktyki i potencjalne rozwiązania, aby ocenić złożoność przenoszenia aplikacji do Liberty lub środowisk kontenerowych. Przyspiesza proces migracji aplikacji do chmury, minimalizuje błędy i ryzyko oraz skraca czas wprowadzania na rynek.
 
-  - Highlights Java EE programming model and WebSphere API differences between the WebSphere runtime profile types 
+## Cele
 
-  - Identifies Java EE specification implementation differences that might affect the app
+Cele tego laboratorium są następujące:
 
-  - Generates accelerators for deploying the application to Liberty and containers in a target environment
+  - Dowiesz się, jak pobrać pakiet migracji aplikacji i użyć go do wdrożenia aplikacji w WebSphere Liberty działającej lokalnie.
 
-Additionally, the tool provides a recommendation for the right-fit IBM WebSphere Application Server edition and offers advice, best practices, and potential solutions to assess the ease of moving apps to Liberty or newer versions of WebSphere traditional. It accelerates application migrating to cloud process, minimizes errors and risks and reduces time to market.
+  - Dowiesz się, jak w pełni wykorzystać pakiet migracyjny TA i zbudować kontenerowy obraz aplikacji.
 
+  - Poznasz rolę Kustomize podczas wdrażania pakietu migracyjnego.
 
-## Objective
+  - Dowiesz się, jak wdrożyć aplikację w OpenShift za pomocą jednego polecenia.
 
-The objectives of this lab are to:
+  - Dowiesz się, jak utworzyć wiele konfiguracji dla aplikacji i wdrożyć je w OpenShift.
 
-  - Learn how to download the application migration bundle and use it to deploy an application to WebSphere Liberty running locally
+## Wymagania wstępne
 
-  - Learn how to fully populate the migration bundle placeholders and build the application into a container image
+Przed rozpoczęciem zajęć laboratoryjnych należy spełnić następujące wymagania wstępne::
 
-  - Learn the role of Kustomize when deploying the migration bundle
+  - Znajomość podstawowych poleceń systemu Linux
 
-  - Learn how to deploy your application to OpenShift with a single command
+  - Posiadać dostęp do internetu
 
-  - Learn how to create multiple configurations for the application and deploy them to OpenShift
+  - Posiadać dostęp do środowiska laboratoryjnego
 
+## Dostęp do środowiska
 
-## Prerequisites
+Jeśli wykonujesz to laboratorium w ramach warsztatu prowadzonego przez instruktora, środowisko zostało już dla Ciebie przygotowane. Instruktor poda szczegóły dotyczące dostępu do środowiska laboratoryjnego.
 
-The following prerequisites must be completed prior to beginning this lab:
+1.  Uzyskaj dostęp do środowiska laboratoryjnego za pomocą przeglądarki internetowej. 
+     
+    `Published Service` jest skonfigurowany tak, aby zapewnić dostęp do maszyny wirtualnej **`Stacji roboczej`** poprzez interfejs noVNC dla środowiska laboratoryjnego.
+    
+    a. Po utworzeniu środowiska demonstracyjnego kliknij przycisk **`environment tile`** aby otworzyć widok szczegółów. 
 
-  - Familiarity with basic Linux commands
-
-  - Have internet access
-
-  - Access to the TechZone lab environment
-
-## Accessing the lab environment
-
-If you are doing this lab as part of an instructor led workshop (virtual or face to face), an environment has already been provisioned for you. The instructor will provide the details for accessing the lab environment.
-
-Otherwise, you will need to reserve an environment for the lab. You can obtain one here. Follow the on-screen instructions for the “**Reserve now**” option.
-
-[https://techzone.ibm.com/my/reservations/create/65eb652a747d7a00108fb5db](https://techzone.ibm.com/my/reservations/create/65eb652a747d7a00108fb5db)
-
-The lab environment contains six (6) Linux VMs.
-
-![A screenshot of a computer error Description automatically generated](./images/media/image2.png)
-
-1.  Access the lab environment from your web browser.
-
-    A `Published Service` is configured to provide access to the **`Workstation`** VM through the noVNC interface for the lab environment.
- 
-    a. When the demo environment is provisioned, click on the **`environment tile`** to open its details view.
- 
-    b. Click on the **`Published Service`** link which will display a **`Directory listing`**
- 
-    c. Click on the **`vnc.html`** link to open the lab environment through the **`noVNC`** interface.
+    b. Kliknij na link **`Published Service`**, który wyświetli **Spis katalogów**  
+    
+    c. Kliknij na link **`vnc.html`**, aby otworzyć środowisko laboratoryjne poprzez interfejs **noVNC**. 
  
     ![A list of directory listing Description automatically generated](./images/media/image3.png)
  
-    d. Click the **`Connect`** button
+    d. Kliknij **`Connect`** 
  
     ![A screenshot of a computer Description automatically generated](./images/media/image4.png)
  
-    e. Enter the password as: **`passw0rd`**. Then click the **`Send Credentials`** button to access the lab environment.
- 
-    Note: That is a numeric zero in passw0rd
+    e. Wpisz hasło:  **`passw0rd`**. Następnie kliknij **`Send Credentials`**, aby otworzyć środowisko laboratoryjn. 
+
+    > Uwaga: Tam jest numeryczne zero w haśle: passw0rd  
  
     ![A screenshot of a login box Description automatically generated](./images/media/image5.png)
 
-2.  If prompted to Login to the "workstation" VM, use the credentials below:
+2.  Jeśli zostaniesz poproszony o zalogowanie się do maszyny wirtualnej „stacja robocza”, użyj poniższych danych uwierzytelniających: 
 
-> The login credentials for the **workstation”** VM is:
+    Dane logowania do maszyny wirtualnej „**stacja robocza**” to:
+ 
+     - User ID: **techzone**
 
-  - User ID: **techzone**
+     - Password: **IBMDem0s!**
 
-  - Password: **IBMDem0s\!**
+     > Uwaga: Tam jest numeryczne zero w haśle: passw0rd
 
-> Note: That is a numeric zero in the password
-> 
-> ![student vm screen](./images/media/image6.png)
+   <br>
+ 
+    ![student vm screen](./images/media/image6.png)
+   
+   <br>
 
-## Tips for working in the lab environment
+<details>
+ <summary><b><font color="dodgerblue">Kliknij, aby otowrzyć:</font></b> Wskazówki dotyczące pracy w środowisku laboratoryjnym
+ </summary>
 
-1. You can resize the viewable area using the **noVNC Settings** options to resize the virtual desktop to fit your screen.
+1. Możesz zmienić rozmiar widocznego obszaru, korzystając z opcji **ustawień noVNC**, aby dopasować rozmiar pulpitu wirtualnego do ekranu.
 
-    a. From the environment VM, click on the **`twisty`** on the noNC control pane to open the menu.
+    a. Z poziomu środowiska VM kliknij **strzałkę** w panelu sterowania noNC, aby otworzyć menu.  
 
     ![fit to window](./images/media/image7.png)
 
-    b. To increase the visible area, click on **`Settings > Scaling Mode`** and set the value to **`Remote Resizing`**
+    b. Aby zwiększyć widoczny obszar, kliknij `Settings > Scaling Mode` i ustaw wartość na `Remote Resizing` 
 
     ![fit to window](./images/media/image8.png)
 
-2. You can copy / paste text from the lab guide into the lab environment using the clipboard in the noVNC viewer.
-
-    a. Copy the text from the lab guide that you want to paste into the lab environment
-
-    b. Click the **`Clipboard`** icon and **`paste`** the text into the noVNC clipboard
+2.  Tekst z ćwiczeń można kopiować i wklejać do środowiska laboratoryjnego, korzystając ze schowka w przeglądarce noVNC. 
+   
+    a. Skopiuj tekst z ćwieczenia, który chcesz wkleić do środowiska laboratoryjnego.
+    
+    b. Kliknij ikone **`Clipboard`**, a następnie **`wklej`** tekst do schowka noVNC.
 
     ![fit to window](./images/media/image9.png)
 
-    c. Paste the text into the VM, such as to a terminal window, browser window, etc.
+    c. Wklej tekst do maszyny wirtualnej, np. do okna terminala, okna przeglądarki itp.
 
-    d. Click on the **`clipboard`** icon again to close the clipboard
+    d. Kliknij na ikone **`clipboard`**,aby zamknąć schowek.
 
-    An alternative to using the noVNC Copy / Paste option, you may consider opening the lab guide in a web browser inside of the VM. Using this method, you can easily copy / paste text from the lab guide without having to use the noVNC clipboard.
+   
+3. Alternatywą dla opcji Kopiuj/Wklej noVNC jest otwarcie ćwiczeń w przeglądarce internetowej wewnątrz maszyny wirtualnej. Używając tej metody, możesz łatwo skopiować/wkleić tekst z ćwiczenia bez konieczności korzystania ze schowka noVNC. 
 
-## Lab Tasks
+</details>
+<br>
 
-In this lab, you will use the Transformation Advisor `migration bundle` to build a container image and deploy an application to a local container for testing.
+## Zadania laboratoryjne
 
-Then you will deploy the application to “dev” and “staging” environments in OpenShift. 
+W tym laboratorium użyjesz `migration bundle` (pakiet artefaktów wdrożeniowych) Transformation Advisor do zbudowania obrazu kontenera i wdrożenia aplikacji na lokalnym kontenerze w celu przetestowania.
 
-You will leverage the `WebSphere Liberty Operator`, Kustomize (a Kubernetes native configuration management framework), and deployment artifacts generated by IBM Cloud Transformation Advisor’s migration bundle.
+Następnie aplikacja zostanie wdrożona w środowiskach „dev” i „staging” w OpenShift. 
 
-To simplify the lab and to allow you to focus on the migration bundle, certain software and artifacts have already been put in place for you. These are as follows:
+Wykorzystane zostaną narzędzia `WebSphere Liberty Operator`, Kustomize (natywny framework do zarządzania konfiguracją Kubernetes) oraz artefakty wdrożenia wygenerowane przez pakiet migracyjny IBM Cloud Transformation Advisor.
 
-  - **Transformation Advisor** has been installed and collected data has been loaded
+Aby uprościć laboratorium i umożliwić skupienie się na pakiecie migracyjnym, pewne oprogramowanie i artefakty zostały już przygotowane. Są one następujące:
 
-  - **docker** (for creating and running images) has been installed
+  - **Transformation Advisor** został zainstalowany, a zebrane dane zostały załadowane
 
-  - **oc** (OpenShift command Line tool for running OCP commands) has been installed
+  - **docker** (do tworzenia i uruchamiania obrazów) został zainstalowany
 
-  - The **PlantsByWebSphere Sample Application**, built as an Enterprise Archive file (EAR) is available from the lab resource provided.
+  - **oc** (narzędzie wiersza poleceń OpenShift do uruchamiania poleceń OCP) zostało zainstalowane.
 
-  - **Convenience scripts** to streamline tasks will be used to save time and allow you to focus on the value and outcomes, which would ideally be scripted in your environment too.
+  - **PlantsByWebSphere Sample Application**, zbudowana jako plik Enterprise Archive (EAR), jest dostępna w dostarczonym zasobie laboratoryjnym.
+
+  - W celu zaoszczędzenia czasu i umożliwienia skupienia się na wartości i wynikach, które w idealnym przypadku byłyby również skryptowane w Twoim środowisku, zostaną użyte **skrypty usprawniające** w celu przyspieszenia wykonywania zadań.
 
 
-# Part 1: Application Assesment    
+# Cześć 1.: Ocena aplikacji    
 
-## 1.1 Pull down the Lab artifacts and setup lab environment
+## 1.1 Ściągnij artefakty laboratorium i skonfiguruj środowisko laboratoryjne
 
-1.  If you have not yet cloned the GitHub repo with the lab artifacts, in a previous lab, run the following command on your terminal:
+1.  Uruchom następujące polecenie w terminalu:
 
-    a.  Open a new Terminal window and clone the git repository to pull down the lab artifacts
+    a.  Otwórz nowe okno Terminala i sklonuj repozytorium git, aby pobrać artefakty laboratoryjne.
 
     ![A screen shot of a computer Description automatically generated](./images/media/image10.png)
 
-    b.  Run the commands to clone the git repository to the local system
+    b.  Uruchom polecenia, aby sklonować repozytorium git do systemu lokalnego.
 
         cd /home/techzone
 
         git clone https://github.com/IBMTechSales/appmod-pot-labfiles.git
 
-    c.  **Add “execute” permissions to the shell scripts**
+    c.  **Dodaj uprawnienia „execute” dla skryptów**.
 
         find ./appmod-pot-labfiles -name "*.sh" -exec chmod +x {} \;
 
-2.  Run the provided shell script to setup the lab environment.
+2.  Uruchom skrypt, aby skonfigurować środowisko laboratoryjne.
 
-    The lab-setup.sh script moves files from the cloned git repo to a **student** directory used in the lab.
+    Skrypt lab-setup.sh przenosi pliki ze sklonowanego repozytorium git do katalogu **student** używanego w laboratorium.
  
         cd /home/techzone/appmod-pot-labfiles/labs/RuntimeModernization/scripts
  
         ./lab-setup.sh
  
-    When complete, you will see the following output
+    Po zakończeniu zobaczysz następujący komunikat wyjściowy.
  
      
     ==========================
@@ -195,203 +188,204 @@ To simplify the lab and to allow you to focus on the migration bundle, certain s
     ==========================
     
 
-## 1.2 Launch Transformation Advisor (local)
+## 1.2 Uruchom Transformation Advisor (lokalnie)
 
-Transformation Advisor provides a **`migration plan`** for each application being assessed for modernization. The migration plan includes a **`migration bundle`** of generated artifacts that accelerate the deployment of applications to Liberty in containers and Kubernetes / OpenShift.
+Transformation Advisor zapewnia **`plan migracji`** dla każdej aplikacji ocenianej pod kątem modernizacji. Plan migracji obejmuje **`migration bundle`** wygenerowanych artefaktów, które przyspieszają wdrażanie aplikacji do Liberty w kontenerach i Kubernetes / OpenShift.
 
-The migration bundle includes diverse artifacts, depending on the needs of the application to accelerate the build and deployment of an application Container image into an OpenShift container platform.
+Pakiet migracyjny zawiera różne artefakty, w zależności od potrzeb aplikacji, aby przyspieszyć tworzenie i wdrażanie obrazu kontenera aplikacji na platformie kontenerowej OpenShift.
 
-The Transformation Advisor is installed locally on the **Workstation** VM. 
+Transformation Advisor jest instalowany lokalnie na maszynie wirtualnej **Stacji roboczej**. 
 
-1. Launch the Transformation Advisor tool using the steps below.
+1. Uruchom narzędzie Transformation Advisor, wykonując poniższe czynności.
 
-    a.  From **Workstation** VM Desktop Tool Bar, click the `Terminal` icon to open a Terminal window.
+    a.  Na pasku narzędzi pulpitu maszyny wirtualnej **Stacji roboczej** kliknij ikonę `Terminal`, aby otworzyć okno Terminala.
 
     ![](./images/media/image11.png)
 
-    b.  Launch the **Transformation Advisor** with commands:
+    b.  Uruchom **Transformation Advisor** za pomocą poleceń:
 
         cd /home/techzone/transformation-advisor-local-3.8.1
 
         ./launchTransformationAdvisor.sh
 
-     Wait for Transformation Advisor to initialize and display the **action menu** list.
+     Poczekaj na zainicjowanie programu Transformation Advisor i wyświetlenie listy menu akcji.
 
-    c.  Type **`5`** and press **`Enter`** to “Start” the **Transformation Advisor**.
+2.  Wpisz **`5`** i naciśnij **Enter`**, aby uruchomić **Transformation Advisor**.
 
      ![](./images/media/image12.png)
  
-    d. The **Transformation Advisor** application is started, **`right-click`** the application URL link and select **`Open Link`** to launch it in a web browser window.
- 
-     The URL is displayed in the output from the TA command: [**http://server0.gym.lan:3000**](http://server0.gym.lan:3000)
+    d. Aplikacja **Transformation Advisor** jest uruchomiona, kliknij prawym przyciskiem myszy łącze URL aplikacji i wybierz **`Open Link`**, aby uruchomić ją w oknie przeglądarki internetowej. 
+
+    Adres URL jest wyświetlany w danych wyjściowych polecenia TA: [**http://server0.gym.lan:3000**](http://server0.gym.lan:3000)
  
      ![](./images/media/image13.png)
  
-     The **Transformation Advisor** Home page is displayed in the Web Browser.
+     Strona główna **Transformation Advisor** jest wyświetlana w przeglądarce internetowej.
  
      ![](./images/media/image14.png)
 
-    In the next section, you will create a new “**Workspace**” in Transformation Advisor and upload the saved results from the scan of a WebSphere Application Server that has a single application deployed, named “PlantsByWebSphere”.
+    W następnej sekcji utworzysz nowy „**Workspace**” w Transformation Advisor i prześlesz zapisane wyniki skanowania serwera aplikacji WebSphere, który ma wdrożoną pojedynczą aplikację o nazwie „PlantsByWebSphere”.
 
 
-## 1.3 Create new workspace and upload scan results from a WebSphere Application Server
+## 1.3 Tworzenie nowego obszaru roboczego i przesyłanie wyników skanowania z serwera aplikacji WebSphere.
 
-In this section, create a new workspace named **'proof_of_concept'**.
+W tej sekcji należy utworzyć nowy obszar roboczy o nazwie **"proof_of_concept ”**.
 
-A `workspace` is a designated area that will house the migration recommendations provided by Transformation Advisor based on the Data Collector scan results of your application server environment.
+Przestrzeń robocza to wyznaczony obszar, który będzie zawierał zalecenia dotyczące migracji dostarczone przez Transformation Advisor na podstawie wyników skanowania środowiska serwera aplikacji przez Data Collector.
 
-1. Create a new workspace named **proof-of-concept**
+1. Utwórz nowy obszar roboczy o nazwie **proof-of-concept**.
 
-    a.  From the Transformation Advisor Home page, click the **`Create New`** button
+    a.  Na stronie głównej Transformation Advisor kliknij przycisk **`Create New`** (Utwórz nowy).
 
-    b.  Type **`proof_of_concept`** as the Workspace name. Then click the **`Create`** button
+    b.  Wpisz **`proof_of_concept`** jako nazwę obszaru roboczego. Następnie kliknij przycisk **`Create`** (Utwórz).
 
      ![A screenshot of a computer Description automatically generated](./images/media/image15.png)
 
-2. Upload an existing **'scan results'** file provided for the lab.
+2. Prześlij istniejący plik **"wyniki skanowania ”** dostępny w laboratorium.
 
-    The scan results file is provided for you.
+    Plik z wynikami skanowania jest dostępny dla użytkownika.
 
-    It was produced by running the Transformation Advisor **Data Collector** on a WebSphere Application Server that had the **PlantsByWebSphere** application deployed.
+    Został on utworzony przez uruchomienie narzędzia Transformation Advisor **Data Collector** na serwerze aplikacji WebSphere, na którym wdrożono aplikację **PlantsByWebSphere**.
 
-    a. Click the **`Upload`** button
+    a. Kliknij przycisk **`Upload`**
 
-    b. Click the **`Drop or add file`** link. Then click the **`Upload`** button
+    b. Kliknij łącze **`Upuść lub dodaj plik**. Następnie kliknij przycisk **`Upload`**.
 
     ![A screen shot of a computer Description automatically generated](./images/media/image16.png)
 
-    c.  Navigate to **Home \> Techzone \> appmod-pot-labfiles \> labs \> RuntimeModernization**
+    c.  Przejdź do **Home \> Techzone \> appmod-pot-labfiles \> labs \> RuntimeModernization**
 
-    d.  Select **`pbw-collection.zip`** file. Then click the **`Open`** button
+    d.  Wybierz plik **`pbw-collection.zip`**. Następnie kliknij **`Open`**.
 
     ![A screenshot of a computer Description automatically generated](./images/media/image17.png)
 
-    e. Once the **pbw-collection.zip** has been added, click on the **`Upload`** button to upload the results into Transformation Advisor.
+    e. Po dodaniu pliku **pbw-collection.zip** kliknij przycisk **`Upload`**, aby przesłać wyniki do Transformation Advisor.
 
     ![A screenshot of a computer Description automatically generated](./images/media/image18.png)
 
-    After a few moments, the application data will be uploaded to the Transformation Advisor UI.
+    Po kilku chwilach dane aplikacji zostaną przesłane do interfejsu użytkownika Transformation Advisor.
 
-    The **proof-of-concept workspace** contains data for a single app that is being used as a test case. We will now review this application in Transformation Advisor.
+    Obszar roboczy **proof-of-concept** zawiera dane dla pojedynczej aplikacji, która jest używana jako przypadek testowy. Przejrzymy teraz tę aplikację w Transformation Advisor.
 
-    The "**proof_of_concept**" workspace displays the “**All Java Applications**” page which shows the recommendations for the workspace.
+    Obszar roboczy „**proof_of_concept**” wyświetla stronę „**All Java Applications**”, która pokazuje zalecenia dla obszaru roboczego.
 
-    There is a single application called **plantsbywebsphereee6.ear**. 
+    Istnieje jedna aplikacja o nazwie **plantsbywebsphereee6.ear**. 
     
-    By default, "WebSphere Liberty" is selected as a modernization target. All the information provided assumes that this application will be modernized to WebSphere Liberty.
+    Domyślnie jako cel modernizacji wybrana jest aplikacja „WebSphere Liberty”. Wszystkie podane informacje zakładają, że ta aplikacja zostanie zmodernizowana do WebSphere Liberty.
 
     ![A screenshot of a computer Description automatically generated](./images/media/image19.png)
 
 
-## 1.4 Analyze the plantsbywebsphereee6 application
+## 1.4 Analiza aplikacji plantsbywebsphereee6
 
- Transformation Advisor provides detailed information about each application that has been analyzed. This application has a complexity of **`Simple`**.
+ Transformation Advisor dostarcza szczegółowych informacji o każdej aplikacji, która została przeanalizowana. Ta aplikacja ma złożoność **`Simple**.
  
- **Simple** means:
+ Złożoność **Simple** oznacza:
  
-  - The application is ready to be deployed to WebSphere Liberty
-  - No changes to the source code are required
+  - Aplikacja jest gotowa do wdrożenia w WebSphere Liberty
+
+  - Nie są wymagane żadne zmiany w kodzie źródłowym
  
    ___
    
-   **Note:** We will describe some of the other information displayed in Transformation Advisor later in the lab.
+   **Uwaga:** Niektóre z innych informacji wyświetlanych w Transformation Advisor opiszemy w dalszej części laboratorium..
 
    ___
 
 ![A screenshot of a computer Description automatically generated](./images/media/image20.png)
 
- ***How is this application ready for deployment when it shows 4 issues?***
+ ***Jak ta aplikacja jest gotowa do wdrożenia, skoro wykazuje 4 problemy? ***
  
- In this case, the application has four **`Informational`** issues.
+ W tym przypadku aplikacja ma cztery **`Informacyjne`** kwestie.
  
- Informational issues do not prevent the application from executing on the new runtime (WebSphere Liberty) but there may be small changes in the application’s behavior.
+ Kwestie informacyjne nie uniemożliwiają wykonania aplikacji w nowym środowisku uruchomieniowym (WebSphere Liberty), ale mogą wystąpić niewielkie zmiany w zachowaniu aplikacji.
  
- If unexpected behavior is found during testing, then reviewing these **Informational** issues may help explain what is happening.
+ Jeśli podczas testowania zostanie wykryte nieoczekiwane zachowanie, przejrzenie tych **kwestii informacyjnych** może pomóc wyjaśnić, co się dzieje.
 
-1.  We are now ready to review the **'migration plan'** for this application. 
+1.  Jesteśmy teraz gotowi do przeglądu **"planu migracji ”** dla tej aplikacji. 
 
-    a. Click on the **`Migration plan`** link at the end of the row of the **plantsbywebsphereee6.ear** application.
+    a. Kliknij łącze **`Plan migracji`** na końcu wiersza aplikacji **plantsbywebsphereee6.ear**.
 
     ![A screenshot of a computer Description automatically generated](./images/media/image21.png)
 
-    b.  The **Migration Plan** page opens.
+    b.  Zostanie otwarta strona **Plan migracji**.
 
-    This page contains a summary of the application being migrated:
+    Strona ta zawiera podsumowanie migrowanej aplikacji:
 
-    - a preview of the files that will help during deployment (highlighted below)
+    - podgląd plików, które będą pomocne podczas wdrażania (wyróżnione poniżej)
 
-    - a list of the application’s dependencies.
+    - listę zależności aplikacji.
 
-    All the files can be downloaded in a single convenient **migration bundle**.
+    Wszystkie pliki można pobrać w jednym wygodnym **migration bundle**.
 
     ![](./images/media/image22.png)
 
-2. At the bottom of the screen, there is a `Appliction Dependencies` section. 
+2. W dolnej części ekranu znajduje się sekcja „Zależności aplikacji”. 
     
-    This shows all the files, in addition to the application, that are required for a deployment. **Plantsbywebspheeee6.ear** has two dependencies.
+    Pokazuje ona wszystkie pliki, oprócz aplikacji, które są wymagane do wdrożenia. **Plantsbywebspheeee6.ear** ma dwie zależności.
 
-    a. Expand the section it to see the details
+    a. Rozwiń sekcję, aby zobaczyć szczegóły
 
-    b. In this case, DB2 drivers called **db2jcc.jar** and **db2cc_licence.jar** are required for deployment
+    b. W tym przypadku do wdrożenia wymagane są sterowniki DB2 o nazwach **db2jcc.jar** i **db2cc_licence.jar**.
 
     ![A screenshot of a computer Description automatically generated](./images/media/image23.png)
 
-3.  Download the migration bundle by clicking the **`Download`** button in the bottom right. 
+3.  Pobierz pakiet migracyjny, klikając przycisk **`Download`** w prawym dolnym rogu. 
 
-    A zip file named “**plantsbywebsphereee6.ear_migrationBundle.zip**” will download to your **Download** folder.
+    Plik zip o nazwie „**plantsbywebsphereee6.ear_migrationBundle.zip**” zostanie pobrany do folderu **Download**.
 
     ![A screenshot of a computer Description automatically generated](./images/media/image24.png)
 
 
-We will go through a step-by-step process of using the Transformation Advisor migration bundle to deploy **plantsbywebsphereee6.ear** as follows:
+Przeprowadzimy krok po kroku proces korzystania z pakietu migracyjnego Transformation Advisor w celu wdrożenia **plantsbywebsphereee6.ear** w następujący sposób:
 
-  - Ensure the application can run locally on WebSphere Liberty
+  - Upewnisz się, że aplikacja może działać lokalnie na WebSphere Liberty
 
-  - Build an immutable container image running on WebSphere Liberty
+  - Zbudujesz niezmienny obraz kontenera działający na WebSphere Liberty
 
- - Ensure the application can run locally on WebSphere Liberty in a container
+  - Upewnisz się, że aplikacja może działać lokalnie na WebSphere Liberty w kontenerze.
 
-  - Deploy the image to OpenShift “**dev**” environment (and configure it) using a single command
+  - Wdrożysz obraz aplikacji na środowisku „**dev**” (i skonfigurujesz go) za pomocą jednego polecenian na OpenShift.
 
-  - Redeploy and reconfigure the image for a “**staging**” environment with a single command
+  - Ponownie wdrożysz i skonfigurować obraz dla środowiska „**staging**” za pomocą jednego polecenia na OpenShift.
 
-# Part 2: Runtime Modernization    
+# Cześć 2.: Modernizacja środowiska wykonawczego    
 
-## 2.1 Runtime Modernization
+## 2.1 Modernizacja środowiska wykonawczego 
 
-**Runtime modernization** moves an application to a 'built for the cloud' runtime with the least amount of effort. WebSphere Liberty is a fast, dynamic, and easy-to-use Java application server.
+**Modernizacja środowiska wykonawczego** przenosi aplikację do środowiska wykonawczego „stworzonego dla chmury” przy najmniejszym wysiłku. WebSphere Liberty to szybki, dynamiczny i łatwy w użyciu serwer aplikacji Java.
 
-Ideal for the cloud and containers, Liberty is open sourced, with fast start-up times, no server restarts to pick up changes, and a simple XML configuration.
+Idealny dla chmury i kontenerów, Liberty jest open source, z krótkim czasem uruchamiania, bez restartów serwera w celu pobrania zmian i prostą konfiguracją XML.
 
-Applications deployed on the WebSphere Liberty container runtime can be built, deployed and managed with the same common technologies and methodologies that would be used by cloud-native (built for the cloud) applications.
+Aplikacje wdrażane w kontenerowym środowisku wykonawczym WebSphere Liberty mogą być budowane, wdrażane i zarządzane przy użyciu tych samych wspólnych technologii i metodologii, które byłyby używane przez aplikacje natywne dla chmury.
 
-### 2.1.1  Deploy PlantsByWebSphere app to a locally running WebSphere Liberty
+### 2.1.1 Wdrażanie aplikacji PlantsByWebSphere w lokalnie uruchomionym środowisku WebSphere Liberty
 
-In this lab environment, WebSphere Liberty is installed locally on the Workstation VM.
+W tym środowisku laboratoryjnym WebSphere Liberty jest zainstalowany lokalnie na maszynie wirtualnej **Stacji roboczej**.
 
-In this step, you will create a new Liberty server to run the PlantsByWebSphere application.
+W tym kroku utworzony zostanie nowy serwer Liberty, na którym uruchomiona zostanie aplikacja PlantsByWebSphere.
 
-Then you will review the `placeholder files` in the Transformation Advisor bundle to see the dependency files that need to be copied into the Liberty Server.
+Następnie przejrzysz 'pliki do podmiany' w pakiecie Transformation Advisor, aby zobaczyć pliki zależności, które należy skopiować na serwer Liberty.
 
-Then you will use the `server.xml` file generated by Transformation Advisor, and included in the migration bundle, to configures the Liberty erver for the application.
+Następnie użyjesz pliku `server.xml` wygenerowanego przez Transformation Advisor i zawartego w pakiecie migracyjnym, aby skonfigurować serwer Liberty dla aplikacji.
 
-### 2.1.2   Create a local Liberty Server
+### 2.1.2 Tworzenie lokalnego serwera Liberty
 
-1.  From a **`Terminal`** window, create a new local WebSphere Liberty server named ‘**pbwserver**”
+1.  W oknie **`Terminal`** utwórz nowy lokalny serwer WebSphere Liberty o nazwie „**pbwserver**”.
 
         /home/techzone/wlp/bin/server create pbwserver
 
-    **output:**
+    **Odpowiedź:**
 
     ```
     Server pbwserver created.
     ```
 
-2.  From the **Terminal** window, start the local WebSphere Liberty server.
+2.  W oknie **Terminal** uruchom lokalny serwer WebSphere Liberty.
 
         /home/techzone/wlp/bin/server start pbwserver
 
-    **Output:**
+    **Odpowiedź:**
 
     ```
     Starting server pbwserver.
@@ -399,96 +393,95 @@ Then you will use the `server.xml` file generated by Transformation Advisor, and
     Server pbwserver started with process ID #####
     ```
 
-3.  Confirm the local WebSphere Liberty server is running. Open the `Firefox` web browser, open a new browser tab. Then go to: **http://localhost:9080**
+3.  Upewnij się, że lokalny serwer WebSphere Liberty jest uruchomiony. Otwórz przeglądarkę internetową `Firefox`, otwórz nową kartę przeglądarki. Następnie przejdź do: **http://localhost:9080**
 
     ![A screenshot of a computer Description automatically generated](./images/media/image25.png)
 
-4.  Currently, the PlantsByWebSphere application is NOT deployed to the Liberty server. Furthermore, the Liberty server is NOT configured to run the application. 
+4.  Obecnie aplikacja PlantsByWebSphere NIE jest wdrożona na serwerze Liberty. Co więcej, serwer Liberty NIE jest skonfigurowany do uruchamiania aplikacji. 
 
-    a. From the web browser, attempt to reach the application:
+    a. Z poziomu przeglądarki internetowej spróbuj uzyskać dostęp do aplikacji:
 
     [**http://localhost:9080/PlantsByWebSphere**](http://localhost:9080/PlantsByWebSphere)
  
-    You will receive the message that the “**Context Root Not Found**”. This is expected as the application is not yet deployed to the Liberty server.
-
+    Otrzymasz komunikat, że „**Context Root Not Found**”. Jest to oczekiwane, ponieważ aplikacja nie została jeszcze wdrożona na serwerze Liberty.
+    
     ![A screenshot of a computer Description automatically generated](./images/media/image26.png)  
 
 
 <br/>    
 
-### 2.1.3 Review the placeholder files in the migration bundle
+### 2.1.3 Przejrzyj pliki zastępcze w pakiecie migracyjnym
 
-In this section, you will review the migration bundle to see what files need to be added to the WebSphere Liberty configuration to run the application. 
+W tej sekcji przejrzysz pakiet migracyjny, aby zobaczyć, jakie pliki należy dodać do konfiguracji WebSphere Liberty, aby uruchomić aplikację. 
 
-Then you will use the provided Liberty configuration file,  **`server.xml`**, to configure the Liberty server.
+Następnie użyjesz dostarczonego pliku konfiguracyjnego Liberty, **`server.xml`**, aby skonfigurować serwer Liberty.
 
-The `server.xml` file is used to configure Liberty by providing values for ports, security, context routes and by providing application-specific configuration such as access to application data sources.
+Plik `server.xml` służy do konfigurowania Liberty poprzez dostarczanie ustawień dla portów, zabezpieczeń, ścieżek kontekstowych oraz konfiguracji specyficznych dla aplikacji, takich jak dostęp do źródeł danych aplikacji.
 
+1.  Zwróćmy uwagę na 3 „pliki zastępcze”, które są umieszczone w `pakiecie migracyjnym`.
 
-1.  Let’s make note of the 3 `placeholder files` that are placed in the `migration bundle`.
-
-    The placeholder files are convenient references to let you know which files you will need to copy to the **Liberty server**.
+    Pliki zastępcze są wygodnymi odniesieniami, które informują, które pliki należy skopiować na serwer **Liberty**.
  
-    *Note: You will fully populate the migration bundle in later steps*.
+    *Uwaga: W pełni wypełnisz pakiet migracyjny w późniejszych krokach.*
 
-    a.  From the **Terminal window**, list the placeholder files in the migration bundle.
+    a.  W oknie **Terminal** wyświetl listę plików zastępczych w pakiecie migracyjnym.
 
         unzip -l /home/techzone/Downloads/plantsbywebsphereee6.ear\_migrationBundle.zip | grep placeholder
  
     ![](./images/media/placeholder-files.png)
  
-    - The **`target`** directory contains the placeholder file for the PlantsByWebSphere application EAR deployment file. This is a reminder that you need to copy the PlantsByWebSphere EAR file the Liberty server.
+    - Katalog **`target`** zawiera plik zastępczy dla pliku EAR aplikacji PlantsByWebSphere. Jest to przypomnienie, że należy skopiować plik EAR aplikacji PlantsByWebSphere na serwer Liberty.
 
-    - The **`src/main/liberty/lib`** directory contains the placeholder files for the DB2 database libraries required by the application. This is a reminder that you need to copy the DB2 libraries to the Liberty server.
+    - Katalog **`src/main/liberty/lib`** zawiera pliki zastępcze dla bibliotek bazy danych DB2 wymaganych przez aplikację. Jest to przypomnienie o konieczności skopiowania bibliotek DB2 na serwer Liberty.
 
     <br/>
 
-### 2.1.4   Configure the Liberty server for PlantsByWebSphere
+### 2.1.4   Konfiguracja serwera Liberty dla PlantsByWebSphere
 
-In this section, you will copy the required dependency files and server configuration to the Liberty server.
+W tej sekcji skopiowane zostaną wymagane pliki zależne i konfiguracja serwera do serwera Liberty.
 
-  - Copy the **DB2 libraries** to the directory defined in the "DB2 driver configuration" in the server.xml file.
+  - Skopiujesz **biblioteki DB2** do katalogu zdefiniowanego w „konfiguracji sterownika DB2” w pliku server.xml.
 
-  - Copy the **PlantsByWebSphere EAR** file to the “apps” directory of the Liberty server
+  - Skopiujesz plik **PlantsByWebSphere EAR** do katalogu „apps” na serwerze Liberty.
 
-  - Copy the **server.xml** file from the migration bundle to the Liberty server, replacing the default server.xml file
+  - Skopiujesz plik **server.xml** z pakietu migracyjnego na serwer Liberty, zastępując domyślny plik server.xml.
 
-To facilitate executing the `copy` steps above, we have provided a `convenience shell script` that creates the required directories and copies the files to the Liberty server.
+Aby ułatwić wykonanie powyższych kroków „kopiowania”, przygotowaliśmy „skrypt usprawniający”, który tworzy wymagane katalogi i kopiuje pliki na serwer Liberty.
 
-You will run the script, which will prompt you to press the  “**Enter**” key before executing each of the commands in the script. This allows you to examine the command, while avoiding having to perform mundane copy/paste activities in the lab.
-
-<br/>
-
-**The script performs the following steps for you.** 
-
-- **Step 1:** Create a new directory where the migration bundle will be extracted
-
--  **Step 2**: Unzip the migration bundle, replacing the one you had previously extracted in the lab
-
--  **Step 3:** create the "**lib/global**" directory in Liberty server, where the DB2 libraries will be copied. This directory matches the location defined in the **server.xml**
-
--  **Step 4:** Copy the DB2 driver libraries to Liberty server's "lib/global" directory
-
--  **Step 5:** Copy the PlantsByWebSphere application EAR file to Liberty server. The EAR is copied to the “**apps**” directory of the server.
-
--  **Step 6:** Copy the **server.xml** file from the migration bundle to the Liberty server. This replaces the existing default server.xml that was created when you created the server.
+Skrypt zostanie uruchomiony, co spowoduje wyświetlenie komunikatu o naciśnięciu klawisza „**Enter**” przed wykonaniem każdego z poleceń w skrypcie. Pozwoli to na zapoznanie się z poleceniem, unikając konieczności wykonywania przyziemnych czynności kopiowania/wklejania w laboratorium.
 
 <br/>
 
-1.  Run the `local-liberty-config.sh` shell script to configure the Liberty server as noted above.
+**Skrypt wykonuje następujące kroki. 
+
+- **Krok 1:**: Tworzy nowy katalog, w którym zostanie rozpakowany pakiet migracyjny.
+
+- **Krok 2**: **Rozpakuje pakiet migracyjny, zastępując ten, który wcześniej rozpakowałeś w laboratorium.
+
+- **Krok 3:** Stwórzy katalog „**lib/global**” na serwerze Liberty, do którego zostaną skopiowane biblioteki DB2. Katalog ten odpowiada lokalizacji zdefiniowanej w pliku **server.xml**.
+
+- **Krok 4:** Kopiuje bibliotek sterownika DB2 do katalogu „lib/global” na serwerze Liberty.
+
+- **Krok 5:** Kopiuje pliku EAR aplikacji PlantsByWebSphere na serwer Liberty. Plik EAR jest kopiowany do katalogu „**apps**” na serwerze.
+
+- **Krok 6:** Kopiuje plik **server.xml** z pakietu migracyjnego na serwer Liberty. Zastąpi on istniejący domyślny plik server.xml, który został utworzony podczas tworzenia serwera.
+
+<br/>
+
+1.  Uruchom skrypt `local-liberty-config.sh`, aby skonfigurować serwer Liberty, jak wspomniano powyżej.
 
         cd /home/techzone/appmod-pot-labfiles/labs/RuntimeModernization/scripts
  
         ./local-liberty-config.sh -i
 
-    Examine the command to be executed. Then press the `Enter` key when you are ready for the script to execute the command for you.
+    Sprawdź polecenia, które mają zostać wykonane. Następnie naciśnij klawisz `Enter`, gdy będziesz gotowy do wykonania polecenia przez skrypt.
     
-    Note: The “`-i`” parameter tells the script to run in interactive mode, prompting you to press the **`Enter` key** to run the command shown.
+    Uwaga: Parametr „`-i`” mówi skryptowi, aby działał w trybie interaktywnym, prosząc o naciśnięcie klawisza **`Enter`**, aby uruchomić wyświetlone polecenie.
 
     <br/>
     
     <details>
-     <summary><b><font color="dodgerblue">Click to expand:</font></b> For reference: The screenshots of each step of the "local-liberty-config" script
+     <summary><b><font color="dodgerblue">Kliknij, aby otowrzyć:</font></b> Zrzuty ekranu każdego kroku skryptu „local-liberty-config”
      </summary>
 
     <br/>
@@ -509,184 +502,183 @@ You will run the script, which will prompt you to press the  “**Enter**” key
 
     ___
 
-    The following message is displayed when all of the steps in the script are complete. 
+    Po zakończeniu wszystkich kroków skryptu wyświetlany jest następujący komunikat.
 
     ![A close up of a code Description automatically generated with medium confidence](./images/media/image35.png)
 
     ___
 
-2.  From a **Terminal** window, `start` the Liberty server named ‘**pbwserver**”
+2.  W oknie **Terminal** uruchom serwer Liberty o nazwie „**pbwserver**”.
 
         /home/techzone/wlp/bin/server start pbwserver
 
-3.  Rerun the PlantsByWebSphere application from the browser.
+3.  Uruchom ponownie aplikację PlantsByWebSphere z przeglądarki.
 
         http://localhost:9080/PlantsByWebSphere
  
-    Now the application is running in Liberty, and the main page is displayed.
+    Teraz aplikacja działa w Liberty i wyświetlana jest strona główna.
  
     ![A website page of a garden Description automatically generated](./images/media/image36.png)
 
-4.  Attempt to click on any of the tabs: “**Flowers**”, **Fruits & Vegetables**”, or “**Trees**”.
+4.  Spróbuj kliknąć dowolną z zakładek: “**Flowers**”, **Fruits & Vegetables**”, lub “**Trees**”..
 
     ___
 
-    **Note the exception.** This is an expected erorr. The issue is in the JPA persistence (Database access). A user is not defined, and therefore authentication to the database failed.
+    **Uwaga na wyjątek.** Jest to oczekiwany błąd. Kwestia dotyczy trwałości JPA (dostęp do bazy danych). Użytkownik nie jest zdefiniowany, a zatem uwierzytelnianie w bazie danych nie powiodło się.
  
     ![A screen shot of a computer Description automatically generated](./images/media/image37.png)
  
     ___
 
-    These pages should display a catalog of items in their respective category, which are rereived from the application database. 
+    Strony te powinny wyświetlać katalog elementów w odpowiedniej kategorii, które są pobierane z bazy danych aplikacji. 
 
-    **So what happened?** 
+    **Co się stało?**
     
-    Transformation Advisor does not collect any `sensitive data` for the application server.  This means the application-specific configuration information in the **server.xml** file has not been set. In this case, the `username` and `password` to access the database are missing.
+    Transformation Advisor nie zbiera żadnych „wrażliwych danych” dla serwera aplikacji.  Oznacza to, że informacje konfiguracyjne specyficzne dla aplikacji w pliku **server.xml** nie zostały ustawione. W tym przypadku brakuje `nazwy użytkownika` i `hasła` dostępu do bazy danych.
 
-    In the next section, you will review the server.xml file and add the sensitive data required to access the application database.  
+    W następnej sekcji przejrzysz plik server.xml i dodasz wrażliwe dane wymagane do uzyskania dostępu do bazy danych aplikacji.  
 
     <br/>
 
-### 2.1.5   Review the server.xml file
+### 2.1.5   Przejrzyj plik server.xml
 
-Now you will review the **`server.xml`** file and set the necessary configuration information. 
+Teraz należy przejrzeć plik **`server.xml`** i ustawić niezbędne informacje konfiguracyjne. 
 
-The **server.xml** file defines a set of **`features`** that the application requires. By importing only the necessary **features** to support the application’s API needs, the footprint of the deployed application and Liberty server is kept as small as possible.
+Plik **`server.xml`** definiuje zestaw **`funkcji`** wymaganych przez aplikację. Importując tylko niezbędne **funkcje** do obsługi potrzeb API aplikacji, wielkość wdrożonej aplikacji i serwera Liberty jest tak mała, jak to tylko możliwe.
 
-1. Review the server.xml file
+1. Przejrzyj plik server.xml
 
-    Using the “**`gedit`**” editor in a **`Terminal`** window, open the **server.xml** file located in the Liberty server
+    Używając edytora „**`gedit`**” w oknie **`Terminala`**, otwórz plik **server.xml** znajdujący się na serwerze Liberty
 
         gedit /home/techzone/wlp/usr/servers/pbwserver/server.xml
 
-    - **Section 1** contains the `features` that the application requires, and these are discovered automatically during analysis performed the Transformation Advisor **Data Collector**.
+    - **Sekcja 1** zawiera „funkcje” wymagane przez aplikację, które są wykrywane automatycznie podczas analizy wykonywanej przez **Data Collector** Transformation Advisor.
 
       ![A screenshot of a computer Description automatically generated](./images/media/image38.png)
 
-    - **Section 2:** Defines the `resources` required to access the database
+    - **Sekcja 2:** Definiuje `zasoby` wymagane do uzyskania dostępu do bazy danych
 
-      - The **`authdata`** defies the BD2 user and password that is used by the datasources. These refer to variables that are defined in the server.xml file.
+      - **`authdata`** określa użytkownika i hasło DB2, które są używane przez źródła danych. Odnoszą się one do zmiennych zdefiniowanych w pliku server.xml.
 
-      - The **`jdbc`** driver defines the required libraries. These are the libraries you copied into this location via the script
+      - Sterownik **`jdbc`** definiuje wymagane biblioteki. Są to biblioteki skopiowane do tej lokalizacji za pomocą skryptu.
 
       ![A computer code with green and white text Description automatically generated](./images/media/image39.png)
 
-    - **Section 3:** The **`datasource`** contains all the information required to access the database: Database user, password, database name, host, and port number.
+    - **Sekcja 3:** **`datasource`** zawiera wszystkie informacje wymagane do uzyskania dostępu do bazy danych: Użytkownik bazy danych, hasło, nazwa bazy danych, host i numer portu.
 
       ![A computer screen shot of a program Description automatically generated](./images/media/image40.png)
 
 
-    - **Section 4** contains the variables for the **`non-sensitive configuration data`**. For example, the port to run the server on. The values of these variables are collected by Transformation Advisor.
+    - **Sekcja 4** zawiera zmienne dla **`niewrażliwych danych konfiguracyjnych`**. Na przykład port, na którym ma być uruchomiony serwer. Wartości tych zmiennych są zbierane przez Transformation Advisor.
 
       ![A screen shot of a computer code Description automatically generated](./images/media/image41.png)
 
-    - **Section 5** contains the **`sensitive data variables`**. 
+    - **Sekcja 5** zawiera **`zmienne danych wrażliwych`**. 
     
-      You can see that the values for these variables are all **blank**, as this information is **never** collected by Transformation Advisor.
+      Można zauważyć, że wszystkie wartości tych zmiennych są **puste**, ponieważ informacje te **nie** są gromadzone przez Transformation Advisor.
 
       ![A screenshot of a computer program Description automatically generated](./images/media/image42.png)
 
 
-2.  The reason that the **PlantsByWebSphere** application retuned an “Exception” is because the values for the **sensitive variables** has not been set. 
+2.  Powodem, dla którego aplikacja **PlantsByWebSphere** zwróciła „Exception” jest to, że wartości **zmiennych wrażliwych** nie zostały ustawione. 
   
     ![](./images/media/image43.png)
 
-    Next, you will update the server.xml to include the credentials required to access the application database. 
+    Następnie należy zaktualizować plik server.xml, aby zawierał poświadczenia wymagane do uzyskania dostępu do bazy danych aplikacji. 
 
 
-### 2.1.6   Update the server.xml and retest the PlantsByWebSphere application
+### 2.1.6   Zaktualizuj server.xml i ponownie przetestuj aplikację PlantsByWebSphere
 
 
-1. From a Terminal window, `stop` the Liberty server named ‘pbwserver”
+1. W oknie terminala zatrzymaj serwer Liberty o nazwie „pbwserver”.
 
         /home/techzone/wlp/bin/server stop pbwserver
 
-2. From the `gedit` editor that you have open, update the values in the **server.xml** file for the sensitive data as illustrtated below:
+2. W otwartym edytorze `gedit` zaktualizuj wartości w pliku **server.xml** dla wrażliwych danych, jak pokazano poniżej:
 
-   a. Scroll to the bottom of the server.xml file to view the sensitive-data variables. 
+   a. Przewiń do dołu pliku server.xml, aby wyświetlić zmienne danych wrażliwych. 
 
-   b.  Set the default value for **rhel9_baseNode01_pbwuser_password** to: **`db2inst1-pwd`**
+   b.  Ustaw wartość domyślną dla **rhel9_baseNode01_pbwuser_password** na: **`db2inst1-pwd`**.
     
-   c. Set the default value for **rhel9_baseNode01_pbwuser_user** to: **`db2inst1`**
+   c. Ustaw wartość domyślną dla **rhel9_baseNode01_pbwuser_user** na: **`db2inst1`**
 
      ![](./images/media/image44.png)
     
-   d. **`Save`** and **`close`** the server.xml in the editor
+   d. **`Zapisz`** i **`zamknij`** plik server.xml w edytorze.
 
-
-3. From a Terminal window, `start` the Liberty server named ‘pbwserver”
+3. W oknie Terminala uruchom serwer Liberty o nazwie „pbwserver”.
 
         /home/techzone/wlp/bin/server start pbwserver
 
 
-4. Reload and test PlantsByWebSphere application in the browser
+4. Przeładuj i przetestuj aplikację PlantsByWebSphere w przeglądarce
 
         http://localhost:9080/PlantsByWebSphere
 
 
-    a. Click the “**Flowers**” tab. The catalog of flowers should now be displayed.
+    a. Kliknij zakładkę „**Flowers**”. Powinien zostać wyświetlony katalog kwiatów.
 
     ![A screenshot of a computer Description automatically generated](./images/media/image45.png)
 
 
-3. From a **Terminal** window, `Stop` the Liberty server named ‘**pbwserver**”
+3. W oknie **Terminal**, `Zatrzymaj` serwer Liberty o nazwie „**pbwserver**”.
 
         /home/techzone/wlp/bin/server stop pbwserver
 
 
-### Checkpoint
+### Punkt kontrolny
 
-At this point in the lab, you have successfully demonstrated "Runtime Modernization" of the PlantsByWebSphere application to WebSPhere Lberty on a local VM. 
+Na tym etapie laboratorium z powodzeniem zademonstrowano „ Modernizację środowiska wykonawczego” aplikacji PlantsByWebSphere do WebSphere Lberty na lokalnej maszynie wirtualnej. 
 
-In the next sections, you will perform "Operational Moderniztion" whereby deploying the PlantsByWebSphere application to containers and Red Hat OpenShift. 
+W następnych sekcjach przeprowadzisz „Modernizację operacyjną”, wdrażając aplikację PlantsByWebSphere w kontenerach i Red Hat OpenShift. 
 
-# Part 3: Operational Modernization    
+# Part 3: Modernizacja operacyjna    
 
 ## 3.1 Operational Modernization
 
-Operational modernization gives an operations team the opportunity to embrace modern operations best practices without putting change requirements on the development team. 
+Modernizacja operacyjna daje zespołowi operacyjnemu możliwość przyjęcia nowoczesnych, najlepszych praktyk operacyjnych bez konieczności wprowadzania zmian w pracy zespołu programistów. 
 
-The scaling, routing, clustering, high availability, and continuous availability functionality that were previously provided by the application server middleware, can be provided by the container platform. 
+Funkcje skalowania, routingu, klastrowania, wysokiej dostępności i ciągłej dostępności, które wcześniej były dostarczane przez oprogramowanie pośredniczące serwera aplikacji, mogą być dostarczane przez platformę kontenerową. 
 
-This allows the operations team to run cloud-native and modernized applications in the same environment with the same standardized logging, monitoring, and security frameworks.
+Pozwala to zespołowi operacyjnemu na uruchamianie natywnych dla chmury i zmodernizowanych aplikacji w tym samym środowisku z tymi samymi standardowymi ramami rejestrowania, monitorowania i bezpieczeństwa.
 
 
-## 3.1.1  Explore the Containerfile used to build PlantsByWebSphere as a container image
+## 3.1.1 Analiza pliku Containerfile użytego do zbudowania PlantsByWebSphere jako obrazu kontenera
 
-In the previous section, you used the **server.xml** to get the  application running on a local Liberty instance. This was to show you how the Transformation Advisor **server.xml** file is used. If you are moving to Liberty in VMs as your new runtime, then you are done! 
+W poprzedniej sekcji użyłeś pliku **server.xml**, aby uruchomić aplikację na lokalnej instancji Liberty. Miało to na celu pokazanie, w jaki sposób używany jest plik Transformation Advisor **server.xml**. Jeśli przechodzisz na Liberty w maszynach wirtualnych jako nowe środowisko uruchomieniowe, to gotowe! 
 
-However. if containers are to be your final destination, this section explores the Transformation Advisor migration bundle artifacts that accelerate application deployment to Lberty in containers. 
+Jeśli jednak ostatecznym miejscem docelowym mają być kontenery, w tej sekcji przeanalizujemy artefakty pakietu migracyjnego Transformation Advisor, które przyspieszają wdrażanie aplikacji do Liberty w kontenerach. 
 
-In the case of **`Simple`** applications, it is not necessary to carry out a separate step of deploying to a local Liberty instance at all. Instead, by using the Transformation Advisor migration bundle, you can deploy your application to Liberty running in a container all in one go. This is what we will do now.
+W przypadku aplikacji **`Simple** nie jest konieczne wykonywanie oddzielnego kroku wdrażania do lokalnej instancji Liberty. Zamiast tego, korzystając z pakietu migracyjnego Transformation Advisor, można wdrożyć aplikację do Liberty działającego w kontenerze za jednym razem. To właśnie zrobimy teraz.
 
 ___
 
-For this section of the lab, the migration bundle has already been updated as follows:
+W tej części laboratorium pakiet migracji został już zaktualizowany w następujący sposób:
 
-  - The **PlantsByWebSphere EAR** file has been added to the migration bundle. And its placeholder has been removed
+  - Plik **PlantsByWebSphere EAR** został dodany do pakietu migracji. Jego element zastępczy został usunięty.
 
-  - The **DB2 libraries** have been added to the migration bundle, and the placeholders have been removed
+  - Biblioteki **DB2** zostały dodane do pakietu migracyjnego, a ich elementy zastępcze zostały usunięte.
 
-  - The **server.xml** file is configured with default values for the database access
+  - Plik **server.xml** został skonfigurowany z domyślnymi wartościami dostępu do bazy danych.
     
 ___
 
  
 
 
-1.  The `migration bundle` is ready to be used to generate an image of your application running on WebSphere Liberty. To do this, we will use the **`Containerfile`** that comes with the migration bundle.
+1.  `Pakiet migracyjny` jest gotowy do użycia w celu wygenerowania obrazu aplikacji działającej na WebSphere Liberty. Aby to zrobić, użyjemy **`Containerfile`**, który jest dostarczany z pakietem migracyjnym.
 
     ![A screenshot of a computer Description automatically generated](./images/media/image49.png)
 
-    a. Explore the Containerfile in the migration bundle
+    a. Przejrzyj plik Containerfile w pakiecie migracyjnym
 
         gedit /home/techzone/Student/labs/appmod/pbw-bundle-complete/Containerfile
  
  
-    - The **FROM** statements in the **Containerfile** pull in the following two images. 
+    - Instrukcje **FROM** w pliku **Containerfile** pobierają następujące dwa obrazy. 
      
       - **`Open JDK 8`**
-      - **23.0.0.12** version of **`WebSphere Liberty`**.
+      - **`WebSphere Liberty`** w wersji **23.0.0.12**.
 
       ![](./images/media/image50.png)
 
@@ -694,67 +686,67 @@ ___
 
       ___
 
-      **Note:** The Containerfile has been modified for this lab to pull `23.0.0.12` of `WebSphere Liberty`. By default, it pulls the latest WebSphere Liberty.
+      **Uwaga:** Plik Containerfile został zmodyfikowany na potrzeby tego laboratorium, aby pobrać `WebSphere Liberty` w wersji `23.0.0.12`. Domyślnie pobierana jest najnowsza wersja WebSphere Liberty.
 
       ___
 
    
-    - The **RUN** commands in the Containerfile create the necessary folder structures and copies the **`binary files`** from the migration bundle into the appropriate locations in the image.
+    - Polecenia **RUN** w pliku Containerfile tworzą niezbędne struktury folderów i kopiują **pliki binarne** z pakietu migracyjnego do odpowiednich lokalizacji w obrazie.
 
       ![A close-up of a computer code Description automatically generated](./images/media/image52.png)
 
-    - There are several lines in the file that have been commented out. 
+    - W pliku znajduje się kilka linii, które zostały zakomentowane. 
     
-      By default, the **Containerfile** assumes that your application is available as a **binary** file. However, it can also be used to build your application from **source** code. The full details of how to do this can be found in **README.md** in the migration bundle.
+      Domyślnie **Containerfile** zakłada, że aplikacja jest dostępna jako plik **binarny**. Jednakże, można go również użyć do zbudowania aplikacji z **kodu źródłowego**. Szczegółowe informacje na temat tego, jak to zrobić, można znaleźć w pliku **README.md** w pakiecie migracyjnym.
 
       ![](./images/media/image53.png)
 
-    b. `Close` the "gedit" editor. **DO NOT SAVE ANY CHNAGES TO THE FILE!** 
+    b. Zamknij edytor „gedit”. **NIE ZAPISUJ ŻADNYCH ZMIAN W PLIKU!** 
 
     <br/>
 
 
-### 3.1.2 Setup, build and run PlantsByWebSphere in a local container
+### 3.1.2 Konfiguracja, budowanie i uruchamianie PlantsByWebSphere w lokalnym kontenerze
 
-For the PlantsByWebSphere application to propery run in a local container, it requires access to the application database, which runs in a separate container. 
+Aby aplikacja PlantsByWebSphere mogła poprawnie działać w lokalnym kontenerze, wymaga dostępu do bazy danych aplikacji, która działa w oddzielnym kontenerze. 
 
-The application container and the database container must be connected to the same local Docker network.
+Kontener aplikacji i kontener bazy danych muszą być podłączone do tej samej lokalnej sieci Docker.
 
-In this lab, the steps to build, setup, and run the PlantsByWebSphere application in a local container are:
+W tym laboratorium należy wykonać następujące kroki, aby zbudować, skonfigurować i uruchomić aplikację PlantsByWebSphere w lokalnym kontenerze:
 
-- **Step 1:** Ensure the DB2 application database is running
+- **Krok 1:** Upewnij się, że baza danych aplikacji DB2 jest uruchomiona
 
-- **Step 2:** Create a local Docker network
+- **Krok 2:** Utwórz lokalną sieć Docker
 
-- **Step 3:** Ensure the Docker network is created
+- **Krok 3:** Upewnij się, że sieć Docker została utworzona
 
-- **Step 4:** Connect the DB2 database container to the Docker network
+- **Krok 4:** Podłącz kontener bazy danych DB2 do sieci Docker
 
-- **Step 5:**  Build and tag the application container image
+- **Krok 5:** Zbuduj i oznacz obraz kontenera aplikacji
 
-- **Step 6:**  Start the application in the container
+- **Krok 6:** Uruchom aplikację w kontenerze
 
-To facilitate executing the steps above, we have provided a `convenience shell script` that performs these steps.
+Aby ułatwić wykonanie powyższych kroków, przygotowaliśmy „skrypt usprawniający”, który wykonuje te kroki.
 
-You will **run the script**, which will prompt you to press “**Enter**” key before executing each of the commands in the script. This allows you to examine the command before they are executed, while avoiding having to perform mundane copy/paste activities in the lab.
+Należy **uruchomić skrypt**, który wyświetli komunikat z prośbą o naciśnięcie klawisza „**Enter**” przed wykonaniem każdego z poleceń w skrypcie. Pozwala to na sprawdzenie polecenia przed jego wykonaniem, unikając konieczności wykonywania przyziemnych czynności kopiowania/wklejania w laboratorium.
 
-1. Run the following command to setup, ,build, and run the PlantsByWebSphere application in a local container.
+1. Uruchom następujące polecenie, aby skonfigurować, zbudować i uruchomić aplikację PlantsByWebSphere w lokalnym kontenerze.
 
         cd /home/techzone/appmod-pot-labfiles/labs/RuntimeModernization/scripts
  
         ./build-container -i
 
-    **Note:** The `-i` parameter tells the script to run in interactive mode, prompting you to press **`Enter`** key to run the command shown.
+    **Uwaga:** Parametr `-i` nakazuje skryptowi uruchomienie się w trybie interaktywnym, wyświetlając komunikat o naciśnięciu klawisza **Enter`** w celu uruchomienia pokazanego polecenia.
 
     ___
 
-    **Note:** The script also performs any necessary cleanup tasks, in the event you need to rerun the script for some unknown reason.
+    **Uwaga:** Skrypt wykonuje również wszelkie niezbędne zadania porządkowe, na wypadek konieczności ponownego uruchomienia skryptu z nieznanego powodu.
     ___
     
    
     
     <details>
-     <summary><b><font color="dodgerblue">Click to expand:</font></b> For reference: The screenshots of each step of the "build-container" script
+     <summary><b><font color="dodgerblue">Kliknij, aby otowrzyć:</font></b> Zrzuty ekranu każdego kroku skryptu "build-container".
      </summary>
 
   
@@ -776,15 +768,15 @@ You will **run the script**, which will prompt you to press “**Enter**” key 
     ![A screenshot of a computer Description automatically generated](./images/media/image59.png)
 
     
-    **Note:** The `docker run` command contains a few parameters that are defined below: :
+    **Uwaga:** Polecenie `docker run` zawiera kilka parametrów, które zostały zdefiniowane poniżej: :
  
-    \-d : start the container in detached mode. This is just for convenience
+    \-d : uruchomienie kontenera w trybie odłączonym.
+    
+    \-p : udostępnia porty HTTP i HTTPS aplikacji
  
-    \-p : expose the applications HTTP and HTTPS ports
+    \--network : podłącz kontener do sieci Docker, do której podłączona jest baza danych DB2
  
-    \--network : connect the container to the Docker network that the DB2 database is connected
- 
-    \--rm : remove the container when the container is stopped. This is just for convenience
+    \--rm : usunięcie kontenera po jego zatrzymaniu.
  
 
 
@@ -792,78 +784,78 @@ You will **run the script**, which will prompt you to press “**Enter**” key 
 
     ___
 
-    The following message is displayed when all of the steps in the script are complete. 
+    Po zakończeniu wszystkich kroków skryptu wyświetlany jest następujący komunikat. 
 
     ![](./images/media/build-container-done.png)
 
     ___   
 
-2.  Check that the container is up and running.
+2.  Sprawdź, czy kontener jest uruchomiony.
 
         docker ps | grep pbw
 
     ![A screenshot of a computer Description automatically generated](./images/media/image60.png)
 
-3.  From the browser, access the PlantsByWebSphere application that is running in the local container
+3.  Z poziomu przeglądarki uzyskaj dostęp do aplikacji PlantsByWebSphere uruchomionej w lokalnym kontenerze.
 
         http://server0.gym.lan:9080/PlantsByWebSphere
  
      ![A screenshot of a web page Description automatically generated](./images/media/image61.png)
  
-    And view the catalog of `Flowers`, which are retrieved from the database.
+    I wyświetlić katalog `Flowers`, który jest pobierany z bazy danych.
  
     ![A screenshot of a computer Description automatically generated](./images/media/image62.png)
 
-9.  `Stop` the PlantsByWebSphere container
+9.  `Zatrzymaj` kontener PlantsByWebSphere
 
         docker stop pbw
 
-**Considerations and recommendations:**
+**Uwagi i zalecenia:**
 
-In the section of the lab you just completed, running the application in a local container, we updated the **server.xml** by adding the sensitive data values for the database access. Then we baked that configuration into the container image.
+W sekcji laboratorium, którą właśnie ukończyłeś, uruchamiając aplikację w lokalnym kontenerze, zaktualizowaliśmy plik **server.xml**, dodając wartości danych wrażliwych dla dostępu do bazy danych. Następnie umieściliśmy tę konfigurację w obrazie kontenera.
 
-However, a big part of container image value is that they are **`immutable`**. No matter where you take and deploy the image, the operating system, runtime, security patch level, etc. will be the same. This gives you great reproducibility and gets away from the classic **"but it works for me!"** issue.
+Jednak istotną wartością obrazu kontenera jest to, że jest on **`niezmienny`**. Bez względu na to, gdzie obraz zostanie pobrany i wdrożony, system operacyjny, środowisko uruchomieniowe, poziom poprawek zabezpieczeń itp. będą takie same. Daje to dużą powtarzalność i pozwala uniknąć klasycznego **„ale to działa dla mnie!”**.
 
-We lose much of this value if we bake in the configuration with the image, as we will have to produce an image for each new configuration.
+Tracimy wiele z tej wartości, jeśli dodamy konfigurację do obrazu, ponieważ będziemy musieli stworzyć nowy obraz dla każdej nowej konfiguracji.
 
-Instead of using the exact same image in each of your development, staging and production environments, you would need to use different images. 
+Zamiast używać dokładnie tego samego obrazu w każdym środowisku deweloperskim, przejściowym i produkcyjnym, należałoby użyć różnych obrazów. 
 
 ___
 
-It is **never** best practice to hard code configuration into your image.
+Dlatego sztywne zakodowanie konfiguracji w obrazie nie jest dobrą praktyką.
 ___
 
-**Recommendation:**
+**Zalecenie:**
 
-In the next section, we will look at how the migration bundle helps you manage this configuration easily across all your environments and how it will simplify deployment to your OpenShift cluster. The migration bundle uses `Kustomize` to help achieve this.
+W następnej sekcji przyjrzymy się, w jaki sposób pakiet migracyjny pomaga łatwo zarządzać konfiguracją we wszystkich środowiskach i jak upraszcza wdrażanie w klastrze OpenShift. Aby to osiągnąć, pakiet migracyjny wykorzystuje funkcję `Kustomize`.
 
 
 
-## 3.2 Explore how Kustomize is used in the migration bundle
+## 3.2 Dowiedz się, jak Kustomize jest używany w pakiecie migracyjnym
 
-**`kustomize`** is simple way to manage configuration across all your different deployments and environments without the need for templates.
+**`kustomize`** to prosty sposób na zarządzanie konfiguracją we różnych wdrożeniach i środowiskach bez potrzeby stosowania szablonów.
 
-By using **`overlays`**, it allows you to break out your basic configuration information (ports, names, hosts, etc.) from your sensitive data (usernames, password, etc.) that are likely to change in every deployment.
+Korzystając z **`overlays`**, możesz oddzielić podstawowe informacje konfiguracyjne (porty, nazwy, hosty itp.) od wrażliwych danych (nazwy użytkowników, hasła itp.), które mogą ulec zmianie w każdym wdrożeniu.
 
-Every **kustomize** artifact is plain `YAML` and can be validated and processed in a standardized way. Plus, it makes them very human readable\! It is natively built into **kubectl** and the **OpenShift client**.
+Każdy artefakt **kustomize** to zwykły `YAML`, który może być walidowany i przetwarzany w standardowy sposób. Dodatkowo sprawia to, że są bardzo czytelne dla użytkownika! Jest on natywnie wbudowany w **kubectl** i klienta **OpenShift**.
 
-1.  From a **`Terminal` window**, list the contents of the **`deploy`** folder of the migration bundle
+1.  W oknie **`Terminala** wylistuj zawartość folderu **`deploy** pakietu migracyjnego
 
         ls /home/techzone/Student/labs/appmod/pbw-bundle-complete/deploy
 
     ![A screenshot of a computer Description automatically generated](./images/media/image63.png)
 
-    a.  There are two folders.
+    a.  Istnieją dwa foldery.
     
-      - **`k8s:`** Contains files to accelerate deployment into **Kubernetes**. These help to create routes, services, and deployments. We will focus on deployment to OpenShift with **kustomize** in this lab.
+      - **`k8s:`** Zawiera pliki przyspieszające wdrażanie w **Kubernetes**. Pomagają one tworzyć routes, services i wdrożenia. W tym module skupimy się na wdrażaniu w OpenShift za pomocą **kustomize**.
     
-      - **`kustomize:`** Contains the files for deployment using **kustomize**.
+      - **`kustomize:`** Zawiera pliki do wdrożenia przy użyciu **kustomize**.
 
-2.  Go to the `Kustomize` folder located under the `deploy` directory 
+2.  Przejdź do folderu `Kustomize` znajdującego się w katalogu `deploy` 
 
         cd /home/techzone/Student/labs/appmod/pbw-bundle-complete/deploy/kustomize
 
-3.  Examine the structure of the **kustomize** folder:
+3.  Zbadaj strukturę folderu **kustomize**.:
     
         ls -R
         
@@ -873,138 +865,138 @@ Every **kustomize** artifact is plain `YAML` and can be validated and processed 
 
     **Base:**
 
-    - contains the **`Kustomization.yaml`** that describes the resources managed by Kustomize
+    - zawiera **`Kustomization.yaml`**, który opisuje zasoby zarządzane przez Kustomize
 
-    - contains the **`application.cr-yaml`** This is the **WebSphere Liberty operator custom resource file** that will execute the deployment and mount the necessary secrets and configuration that are created from the secret file and config map file. 
+    - zawiera **application.cr-yaml** Jest to **spersonalizowany plik zasobów operatora WebSphere Liberty**, który wykona wdrożenie i zamontuje niezbędne secrets i konfigurację, które są tworzone z pliku secrets i pliku config map. 
     
     **Overlays:**
 
-    - contains all your different deployment configurations.
+    - zawiera różne konfiguracje wdrożenia.
 
-    - In this case, only a single deployment has been created for your **`dev`** systems.
+    - W tym przypadku tylko jedno wdrożenie zostało utworzone dla systemów **`dev`**.
 
 
-    **Obverlays/dev**
+    **Overlays/dev**.
 
-    - The `config map yaml file` will contain all your application-specific non-sensitive data that will be created as configMaps in OpenShift.
+    - Plik `config map yaml` będzie zawierał wszystkie niewrażliwe dane specyficzne dla aplikacji, które zostaną utworzone jako configMaps w OpenShift.
 
-    - The `secret yaml file` will contain all your application-specific sensitive data that will be created as secrets in OpenShift.
+    - Plik `secret yaml` będzie zawierał wszystkie wrażliwe dane specyficzne dla aplikacji, które zostaną utworzone jako secrets w OpenShift.
 
-    - Optionally contain additional yaml files that override configuration in the `base` configuration.
+    - Opcjonalnie zawierają dodatkowe pliki yaml, które nadpisują konfigurację w konfiguracji `base`.
 
     ___
 
-    **Note:** In the next section we will use this kustomize structure to deploy your application image.
+    **Uwaga:** W następnej sekcji użyjemy tej struktury kustomize do wdrożenia obrazu aplikacji.
 
-    Further information on **kustomize** can be found at <http://kustomize.io>
+    Więcej informacji na temat **kustomize** można znaleźć na stronie <http://kustomize.io>.
     
     ___
 
 
-## 3.3 Deploy to OpenShift with config
+## 3.3 Wdrożenie na OpenShift
 
-From the previous sections in the lab, you have an `immutable container image` built. 
+Z poprzednich sekcji laboratorium mamy już zbudowany „niezmienny obraz kontenera”. 
 
-In this section, you will push that image to an image registry and then deploy it into OpenShift “**dev**” project, along with its configuration, with a single command, using the `WebSphere Liberty Operator` and the generated deployment artifacts in the `migration bundle`.
+W tej sekcji zostanie on przesłany do rejestru obrazów, a następnie wdrożony do projektu OpenShift „**dev**” wraz z konfiguracją za pomocą jednego polecenia, przy użyciu `WebSphere Liberty Operator` i wygenerowanych artefaktów wdrożenia w `migration bundle`.
 
 
-### 3.3.1 Deploy the application to the OpenShift “dev” environment
+### 3.3.1 Wdrożenie aplikacji do środowiska OpenShift „dev”
 
-The application uses a DB2 database that contains a catalog of items used for the ”dev” environment.
-
-___
-
-**Note:**  
-After you deploy the application to the **dev** environment in OpenShift, you will explore and examine the Liberty Operator and Kustomize yaml artifacts in the migration bundle, which are used to deploy the application.
+Aplikacja korzysta z bazy danych DB2, która zawiera katalog elementów używanych w środowisku „dev”.
 
 ___
 
-Deploying the PlantsByWebSphere application and its configuration to OpenShift is easily accomplished using a single command.
+**Uwaga:**.  
+Po wdrożeniu aplikacji do środowiska **dev** w OpenShift, zbadasz i przeanalizujesz artefakty Liberty Operator i Kustomize yaml w pakiecie migracyjnym, które są używane do wdrożenia aplikacji.
 
-However, in this lab, before you can deploy the application to OpenShift, the container image must be propery tagged and pushed to an image registry. In this lab, we use the OpenShift Internal registry.
+___
 
-The following steps need to be performed, and will be done using a `convemience script` that is provided for this lab. 
+Wdrożenie aplikacji PlantsByWebSphere i jej konfiguracji w OpenShift można łatwo wykonać za pomocą jednego polecenia.
 
-  - Tag the container image for pushing to the OpenShift Internal Registry
+Jednak w tym laboratorium, zanim będzie można wdrożyć aplikację w OpenShift, obraz kontenera musi zostać odpowiednio oznaczony i przesłany do rejestru obrazów. W tym laboratorium korzystamy z wewnętrznego rejestru OpenShift.
 
-  - Login to OpenShift
+Należy wykonać następujące kroki, które zostaną wykonane przy użyciu skryptu dostarczonego na potrzeby tego laboratorium. 
 
-  - Create the “dev” project where the application will be deployed
+  - Oznaczenie obrazu kontenera do wypchnięcia do wewnętrznego rejestru OpenShift
 
-  - Login to the OpenShift internal registry
+  - Logowanie do OpenShift
 
-  - Push the container image to the registry
+  - Utworzenie projektu „dev”, w którym zostanie wdrożona aplikacja.
 
-  - Deploy the application and it configuration to OpenShift “dev” project
+  - Logowanie do wewnętrznego rejestru OpenShift
 
-To streamline executing the steps above, we have provided a `convenience shell script` that performs the steps.
+  - Wysłanie obrazu kontenera do rejestru
 
-You will run the script, which will prompt you to press **`Enter`** key before executing each of the commands in the script. This allows you to examine the command before they are executed, while avoiding having to perform mundane copy/paste activities in the lab.
+  - Wdrożenie aplikacji i jej konfiguracji do projektu „dev” OpenShift
 
-1. Run the following command to tag and push the PlantsByWebSphere container image to the OpenShift internal registry and deploy the application to the dev” project.
+Aby usprawnić wykonywanie powyższych kroków, przygotowaliśmy „skrypt usprawniający”, który je wykonuje.
+
+Po uruchomieniu skryptu zostanie wyświetlony komunikat z prośbą o naciśnięcie klawisza **`Enter`** przed wykonaniem każdego z poleceń w skrypcie. Pozwala to na sprawdzenie polecenia przed jego wykonaniem, unikając konieczności wykonywania przyziemnych czynności kopiowania/wklejania w laboratorium.
+
+1. Uruchom następujące polecenie, aby oznaczyć i wypchnąć obraz kontenera PlantsByWebSphere do wewnętrznego rejestru OpenShift i wdrożyć aplikację w projekcie „dev”.
 
         cd /home/techzone/appmod-pot-labfiles/labs/RuntimeModernization/scripts
  
         ./dev-deploy-pbw-ocp.sh -i
 
-    **Note:** The `-i` parameter tells the script to run in interactive mode, prompting you to press **`Enter`** key to run the command shown.
+    **Uwaga:** Parametr `-i` nakazuje skryptowi uruchomienie się w trybie interaktywnym, wyświetlając komunikat o naciśnięciu klawisza **Enter`** w celu uruchomienia pokazanego polecenia.
 
     ___
 
-    **Note:** The script also performs any necessary cleanup tasks, in the event you need to rerun the script for some unknown reason.
+    **Uwaga:** Skrypt wykonuje również wszelkie niezbędne zadania porządkowe, na wypadek konieczności ponownego uruchomienia skryptu z nieznanego powodu.
 
     ___
 
 
     <details>
-     <summary><b><font color="dodgerblue">Click to expand:</font></b> For reference: The screenshots of each step of the "dev-deploy-pbw-ocp" script
+     <summary><b><font color="dodgerblue">CKliknij, aby otowrzyć:</font></b> Zrzuty ekranu każdego kroku skryptu "dev-deploy-pbw-ocp".
      </summary>
 
    <br/> 
 
-    **Step 1:** Tag the PlantsByWebSphere container image for pushing to the OpenShift internal registry
+    **Krok 1:** Oznaczenie obrazu kontenera PlantsByWebSphere w celu wypchnięcia go do wewnętrznego rejestru OpenShift
 
     ![A white paper with black text Description automatically generated](./images/media/image65.png)
 
 
-    **Step 2:** Login to OpenShift
+    **Krok 2:** Logowanie do OpenShift
 
     ![A white paper with black text Description automatically generated](./images/media/image66.png)
 
-    **Step 3:** Create the ‘dev’ project in OpenShift, where the application will be deployed
+    **Krok 3:** Utworzenie projektu „dev” w OpenShift, gdzie aplikacja zostanie wdrożona.
 
     ![A screenshot of a computer Description automatically generated](./images/media/image67.png)
 
-    **Step 4:** Switch to the ‘dev’ project, where subsequent OCP commands in the script will be executed.
+    **Krok 4:** Przejście do projektu „dev”, gdzie będą wykonywane kolejne polecenia OCP w skrypcie.
 
     ![A screen shot of a computer Description automatically generated](./images/media/image68.png)
   
-    **Step 5:** Login to the OpenShift internal registry, so we can push the PlantsByWebSphere image.
+    **Krok 5:** Logowanie do wewnętrznego rejestru OpenShift, abyśmy mogli wypchnąć obraz PlantsByWebSphere.
 
     ![A close-up of a computer screen Description automatically generated](./images/media/image69.png) 
 
-    **Step 6:** Push the PlantsByWebSphere container image to the OpenShift interna image registry.
+    **Krok 6:** Przesłanie obrazu kontenera PlantsByWebSphere do rejestru obrazów OpenShift.
 
     ![A screenshot of a computer program Description automatically generated](./images/media/image70.png)
 
-    **Step 7:** List the Image Stream and see that it is available.
+    **Krok 7:** Wyświetl strumień obrazu i sprawdź, czy jest dostępny.
 
     ![A close-up of a computer screen Description automatically generated](./images/media/image71.png)
 
-    **Step 8:** Deploy the PlantsByWebSphere application and its  configuration to the ‘dev’ project.
+    **Krok 8:** Wdrożenie aplikacji PlantsByWebSphere i jej konfiguracji do projektu „dev”.
 
     ![A screen shot of a computer program Description automatically generated](./images/media/image72.png)
 
-    **Step 9:** List the new ‘deployment’ and see that it is available.
+    **Krok 9:** Wylistowanie nowego „wdrożenia” i sprawdzenie, czy jest ono dostępne.
 
     ![A screenshot of a computer program Description automatically generated](./images/media/image73.png)
 
 
-    **Step 10:** List the PlantsByWebSphere ‘pod’ and see that it is ready.
+    **Krok 10:** Wyświetl „pod” PlantsByWebSphere i sprawdź, czy jest gotowy.
 
     ![A screenshot of a computer Description automatically generated](./images/media/image74.png)
 
-    **Step 11:** Show the ‘route’ to the PlantsByWebSphere application running in the ‘dev’ project.
+    **Krok 11:** Pokaż `route` do aplikacji PlantsByWebSphere uruchomionej w projekcie „dev”.
 
     ![A screenshot of a computer Description automatically generated](./images/media/image75.png)
  
@@ -1012,41 +1004,41 @@ You will run the script, which will prompt you to press **`Enter`** key before e
 
     ___
 
-    When the script completes, you will see the **PlantsByWebSphere Route** shown.
+    Po zakończeniu działania skryptu wyświetlona zostanie **PlantsByWebSphere Route**.
 
     ![A close-up of a computer code Description automatically generated](./images/media/image76.png)
 
     ___
 
-2. From the browser, navigate to the PlantsByWebSphere route for the `dev` deployment:
+2. W przeglądarce przejdź do route PlantsByWebSphere dla wdrożenia `dev`:
 
         http://plantsbywebsphereee6-dev.apps.ocp.ibm.edu/PlantsByWebSphere
  
 
-    Optionally, you can use **`Right-mouse click`** on the **`PlantsByWebSphere URL`** in the Terminal window and select **`open Link`**. This will launch the application in the web browser.
+    Opcjonalnie można użyć **`kliknięcia prawym przyciskiem myszy`** na adresie URL **`PlantsByWebSphere`** w oknie Terminala i wybrać **`otwórz link`**. Spowoduje to uruchomienie aplikacji w przeglądarce internetowej.
  
     ![A screenshot of a computer Description automatically generated](./images/media/image77.png)
 
-3. The PlantsByWebSphere main page is displayed.
+3. Zostanie wyświetlona strona główna PlantsByWebSphere.
 
     ![A website page of a garden Description automatically generated](./images/media/image78.png)
 
-4. Click on the **`Trees`** category and view the trees that are loaded in the ‘dev’ environment database.
+4. Kliknij kategorię **`Trees`** i wyświetl drzewa załadowane do bazy danych środowiska „dev”.
 
-    This catalog of trees was retrieved from the DB2 database in the `dev` environment.
+    Ten katalog drzew został pobrany z bazy danych DB2 w środowisku `dev`.
  
     ![A screenshot of a computer Description automatically generated](./images/media/image79.png)
 
 
 
-###  3.3.2 Review the “dev” overlay configuration that was used to deploy the application and configuration
+###  3.3.2 Przegląd konfiguracji „dev”, która została użyta do wdrożenia aplikacji i konfiguracji
 
-The **`overlays/dev`** directory contains configuration that is specific and unique for the **`dev`** deployment.
+Katalog **`overlays/dev`** zawiera konfigurację, która jest specyficzna i unikalna dla wdrożenia **`dev`**.
 
 
-1. Examine and understand how to configure the sensitive data as Kubernetes secrets
+1. Sprawdź i dowiedz się, jak skonfigurować wrażliwe dane jako secret Kubernetes
  
-    a. From a **`Terminal`** window, navigate to the 'secrets' yaml file in the 'dev'overlay folder in the migration bundle
+    a. W oknie **`Terminal`** przejdź do pliku yaml „secrets” w folderze nakładki „dev” w pakiecie migracyjnym.
 
         clear
         
@@ -1056,16 +1048,16 @@ The **`overlays/dev`** directory contains configuration that is specific and uni
  
     ![A screenshot of a computer Description automatically generated](./images/media/image80.png)
  
-    Notice that we already inserted the DB2 database `user` and `password` in the yaml file that configures the sensitive data in a Kubernetes secret.
+    Zauważ, że już wstawiliśmy `user` i `password` bazy danych DB2 do pliku yaml, który konfiguruje wrażliwe dane w secret Kubernetes.
  
-    **Note:** Data in this file is REQUIRED to be bese64 encoded.
+    **Uwaga:** Dane w tym pliku MUSZĄ być zakodowane w bese64.
 
 
-    b. `How did we encode the values?` 
+    b. `Jak zakodowaliśmy wartości?`
     
-    To update the migration bundle with the sensitive data, we **Base64 encoded** the values as illustrated below.
+    Aby zaktualizować pakiet migracyjny wrażliwymi danymi, zakodowaliśmy **Base64** wartości, jak pokazano poniżej.
  
-    - We encoded the following values:
+    - Zakodowaliśmy następujące wartości:
    
       ___
 
@@ -1073,7 +1065,7 @@ The **`overlays/dev`** directory contains configuration that is specific and uni
 
         echo db2inst1 | base64
 
-      The encoded value is: **ZGIyaW5zdDEK**
+      Zakodowana wartość to: **ZGIyaW5zdDEK**
 
       ___
 
@@ -1081,165 +1073,165 @@ The **`overlays/dev`** directory contains configuration that is specific and uni
 
         echo db2inst1-pwd | base64
 
-      The encoded value is: **ZGIyaW5zdDEtcHdkCg==**
+      Zakodowana wartość to: **ZGIyaW5zdDEtcHdkCg==**
 
       ___ 
 
-2.  From a **Terminal** window, examine the **`application-cr.yaml`**
+2.  W oknie **Terminal** należy sprawdzić plik **`application-cr.yaml`**.
 
-    The **`application-cr.yaml`** is the WebSphere Liberty custom resource used to deploy the PlantsByWebSphere application.
+    Plik **`application-cr.yaml`** jest customowym zasobem WebSphere Liberty używanym do wdrożenia aplikacji PlantsByWebSphere.
  
         
         cd /home/techzone/Student/labs/appmod/pbw-bundle-complete/deploy/kustomize
  
         gedit base/application-cr.yaml
 
-    a.  In this lab, we chose to override the application image, as we will push the same immutable image to different namespaces in OpenShift. 
+    a.  W tym laboratorium zdecydowaliśmy się nadpisać obraz aplikacji, ponieważ będziemy przesyłać ten sam niezmienny obraz do różnych przestrzeni nazw w OpenShift. 
     
-    Therefore, following the rules of Kustomize, the **applicationImage** definition in the application-cr.yaml is “blank”. It is overridden in overlays/dev.
+    Dlatego też, zgodnie z zasadami Kustomize, definicja **applicationImage** w pliku application-cr.yaml jest „pusta”. Jest ona nadpisana w overlays/dev.
 
     ![A screenshot of a computer Description automatically generated](./images/media/image81.png)
 
-    b.  The `secret` and `configmap` references pull in the server configuration as `environment variables`.
+    b.  Referencje `secret` i `configmap` pobierają konfigurację serwera jako `zmienne środowiskowe`.
 
     ![A screenshot of a computer code Description automatically generated](./images/media/image82.png)
 
-    c.  For this lab, we do not have transport level security enabled.
+    c.  W tym module nie mamy włączonych zabezpieczeń na poziomie warstwy transportowej.
 
     ![](./images/media/image83.png)
 
-    d.  We must accept the license.
+    d.  Musimy zaakceptować licencję.
 
     ![](./images/media/image84.png)
 
-    e.  **`Close`** the `gedit` editor. **DO NOT SAVE ANY CHANGES TO THE FILE\!**
+    e.  **`Zamknij`** edytor `gedit`. **NIE ZAPISUJ ŻADNYCH ZMIAN W PLIKU!
     
 
-3.  From a **Terminal** window, examine the `config map` for the `dev` deployment
+3.  W oknie **Terminal**, sprawdź `config map` dla wdrożenia `dev`
 
-     The **`plantsbywebsphereee6-configmap.yaml`** contains the variables defined in the `server.xml`.
+     Plik **`plantsbywebsphereee6-configmap.yaml`** zawiera zmienne zdefiniowane w pliku `server.xml`.
  
-     All values defined in the **configMap** are created as environment variable in the container. These environment variables override any default values that may have been set in the server.xml.
+     Wszystkie wartości zdefiniowane w **configMap** są tworzone jako zmienne środowiskowe w kontenerze. Te zmienne środowiskowe zastępują wszelkie wartości domyślne, które mogły zostać ustawione w server.xml.
  
         cd /home/techzone/Student/labs/appmod/pbw-bundle-complete/deploy/kustomize
  
         gedit overlays/dev/plantsbywebsphereee6-configmap.yaml
 
 
-    a. This configuration overrides the **database server name.** It references the application database server for the “**dev**” environment.
+    a. Ta konfiguracja zastępuje **nazwę serwera bazy danych**. Odwołuje się do serwera bazy danych aplikacji dla środowiska „**dev**”.
 
     ![](./images/media/image85.png)
 
-    b.  **`Close`** the “**gedit**” editor. **DO NOT SAVE AY CHANGES TO THE FILE!**
+    b.  **`Zamknij`** edytor „**gedit**”. **NIE ZAPISUJ ŻADNYCH ZMIAN W PLIKU!**
 
 
 
-###  3.3.3 Explore the WebSphere Liberty Operator in OpenShift
+###  3.3.3 Poznaj WebSphere Liberty Operator w OpenShift
 
-In this section, you will take a look at the **WebSphere Liberty Operator** in the OpenShift console to see what has been deployed.
+W tej sekcji przyjrzysz się **WebSphere Liberty Operator** w konsoli OpenShift, aby zobaczyć, co zostało wdrożone.
 
-1.  Login to OpenShift console
+1.  Zaloguj się do konsoli OpenShift
 
-    a.  Open a new tab in the web browser
+    a.  Otwórz nową kartę w przeglądarce internetowej
 
-    b.  Click on the **`OpenShift Console`** bookmark on the bookmark toolbar
+    b.  Kliknij zakładkę **`OpenShift Console`** na pasku narzędzi zakładek.
 
-    c.  Login credentials:
+    c.  Dane logowania:
 
     - Username: `ocadmin`
 
     - Password: `ibmrhocp`
 
-2.  View the **IBM WebSphere Liberty** `Operator`
+2.  Zobacz **IBM WebSphere Liberty** `Operator`
 
-    a.  Click on **`Operators > Installed Operators`** in the left-hand menu
+    a.  Kliknij na **`Operators > Installed Operators`** w menu po lewej stronie.
 
-    b.  Type **`Liberty`** in the filter
+    b.  Wpisz **`Liberty`** w filtrze
 
-    c.  Click on **`IBM WebSphere Liberty`**
+    c.  Kliknij na **`IBM WebSphere Liberty`**.
 
     ![A screenshot of a computer Description automatically generated](./images/media/image86.png)
 
 
-3. View the **WebSphereLibertyApplication** `Deployment`
+3. Wyświetl **WebSphereLibertyApplication** `Deployment`.
 
-    a.  Click on the tab called **`WebSphereLibertyApplication`**
+    a.  Kliknij zakładkę o nazwie **WebSphereLibertyApplication**.
 
     ![A green circle with text Description automatically generated](./images/media/image87.png)
 
-    b. You will see the **plantsbywebsphereee6** application listed in the ‘dev’ namespace
+    b. Zobaczysz aplikację **plantsbywebsphereee6** wymienioną w namespace „dev”.
 
-    b. Click on the link called **`plantsbywebsphereee6`** under the **Name** column
+    c. Kliknij łącze o nazwie **`plantsbywebsphereee6`** w kolumnie **Name**.
 
     ![A screenshot of a computer Description automatically generated](./images/media/image88.png)
 
-    c.  Select the **`Resources`** tab
+    d.  Kliknij zakładkę **`Resources`**.
 
     ![A screenshot of a computer Description automatically generated](./images/media/image89.png)
 
-    d. Select the link for the **`Deployment`**
+    e. Wybierz łącze dla **`Deployment`**.
 
     ![A screenshot of a computer Description automatically generated](./images/media/image90.png)
 
-    e. The PlantsByWebSphere deployment has one `pod` running
+    f. Wdrożenie PlantsByWebSphere ma uruchomiony jeden `pod`
 
     ![A screenshot of a computer Description automatically generated](./images/media/image91.png)
 
 
-4.  View the WebSphereLibertyApplication **`Route`**
+4.  Wyświetl WebSphereLibertyApplication **`Route`**.
 
-    a.  Return to the **plantsbywebsphereee6 operator** page
+    a.  Wróć do strony **plantsbywebsphereee6 operator**.
 
     ![A screenshot of a computer Description automatically generated](./images/media/image92.png)
 
-    b.  Click the **`Resources`** tab
+    b.  Kliknij zakładkę  **`Resources`**
 
     ![A screenshot of a computer Description automatically generated](./images/media/image89.png)
 
-    c.  Select the link of **Kind: `route`**
+    c.  Kliknij **Kind: `route`**
 
     ![A screenshot of a computer Description automatically generated](./images/media/image93.png)
 
-    d.  Click on the **`Location`** link for the route
+    d.  Kliknij link **`Location`**
 
     ![A screenshot of a computer Description automatically generated](./images/media/image94.png)
 
-    e.  The **Welcome to Liberty** page is displayed in a new Browser tab. 
+    e.  Strona **Witamy w Liberty** zostanie wyświetlona w nowej karcie przeglądarki. 
 
     ![A screenshot of a computer Description automatically generated](./images/media/image95.png)
 
-    f.  Append the context root ‘**PlantsByWebSphere’** to access the PlantsByWebSphere application
+    f.  Dodaj kontekst główny „**PlantsByWebSphere ”**, aby uzyskać dostęp do aplikacji PlantsByWebSphere.
 
         http://plantsbywebsphereee6-dev.apps.ocp.ibm.edu/PlantsByWebSphere
 
 
-# Summary
+# Podsumowanie
 
 ___
-**Congratulations!**
+**Gratulacje!**
 
-**You have successfully completed the core learning objectives in the lab**
-
-___
-
-In this lab, you learned how to deploy applications to WebSphere Liberty using the WebSphere Liberty Operator and the deployment artifacts produced by Transformation Advisor in its migration bundle.
-
-You explored the options for deployment: 
-
-  - locally running Liberty
-  - Liberty as an image running in local container
-  - Liberty as an image running in OpenShift.
-
-You learned how to easily configure deployments to OpenShift to allow the same immutable image to be deployed for different configurations such as ‘dev’ and ‘staging’ environment deployments.
-
-You learned about some of the practical ways you can secure your configuration data.
-
-You explored the PlantsByWebSphere assessment details and reports in Transformation Advisor.
-
+**Pomyślnie zrealizowano podstawowe cele szkoleniowe w laboratorium!**
 
 ___
 
-You may continue your learning journey with the optional sections of the lab. 
+W tym module dowiedziałeś się, jak wdrożyć aplikacje do WebSphere Liberty przy użyciu WebSphere Liberty Operator i artefaktów wdrożenia utworzonych przez Transformation Advisor w pakiecie migracji.
+
+Zapoznano się z opcjami wdrażania: 
+
+  - Liberty uruchamiane lokalnie
+  - Liberty jako obraz uruchomiony w lokalnym kontenerze
+  - Liberty jako obraz uruchomiony w OpenShift.
+
+Dowiedziałeś się, jak łatwo skonfigurować wdrożenia w OpenShift, aby umożliwić wdrożenie tego samego niezmiennego obrazu dla różnych konfiguracji, takich jak wdrożenia środowiska „dev” i „staging”.
+
+Dowiedziałeś się o niektórych praktycznych sposobach zabezpieczania danych konfiguracyjnych.
+
+Zapoznałeś się ze szczegółami oceny PlantsByWebSphere i raportami w Transformation Advisor.
+
+
+___
+
+Możesz kontynuować naukę w opcjonalnych sekcjach laboratorium.
 
 ___
 
@@ -1247,158 +1239,157 @@ ___
 # Optional Sections: 
 
 <details>
- <summary><b><font color="dodgerblue">Click to expand:</font></b> Section 3.4 GitOps and configuration management
+ <summary><b><font color="dodgerblue">Kliknij, aby rozwinąć:</font></b> Sekcja 3.4 (opcjonalna - teoretyczna) GitOps i zarządzanie konfiguracją
  </summary>
 
 <br/>
 
-## 3.4 GitOps and configuration management
+## 3.4 GitOps i zarządzanie konfiguracją
 
-At this point we have two distinct elements for deployment: the **application image** and the **configuration for that image for each potential environment**. In the GitOps model, these two elements are stored in separate Git repositories. 
+W tym momencie mamy dwa odrębne elementy do wdrożenia: **obraz aplikacji** i **konfigurację tego obrazu dla każdego potencjalnego środowiska**. W modelu GitOps te dwa elementy są przechowywane w oddzielnych repozytoriach Git. 
 
-You can further distribute the configuration into different repositories for each environment. This approach allows you to treat configuration as if it were code and to apply standard code development techniques such as Pull Requests, code review and maintain a full audit history. This approach delivers excellent controls and oversights for configuration changes for your OpenShift clusters, especially as you promote changes through your environments.
+Konfigurację można dalej dystrybuować do różnych repozytoriów dla każdego środowiska. Takie podejście pozwala traktować konfigurację tak, jakby była kodem i stosować standardowe techniki tworzenia kodu, takie jak Pull Requests, przegląd kodu i utrzymywać pełną historię audytu. Takie podejście zapewnia doskonałą kontrolę i nadzór nad zmianami konfiguracji klastrów OpenShift, zwłaszcza podczas promowania zmian w środowiskach.
 
-![A black background with white arrows and dots Description automatically generated](./images/media/image105.png)
+![Czarne tło z białymi strzałkami i kropkami Opis wygenerowany automatycznie](./images/media/image105.png)
 
-This illustration above comes from an excellent article on real world GitOps: <https://developer.ibm.com/blogs/gitops-best-practices-for-the-real-world/>
+Powyższa ilustracja pochodzi z interesującego artykułu na temat GitOps w świecie rzeczywistym: <https://developer.ibm.com/blogs/gitops-best-practices-for-the-real-world/>.
 
-We will not cover all of GitOps it in detail in this lab - however, there are two relevant areas that are worth mentioning briefly.
+W tym laboratorium nie będziemy szczegółowo omawiać wszystkich aspektów GitOps, jednak istnieją dwa istotne obszary, o których warto krótko wspomnieć.
 
-**Configuration Drift**
+**Dryf konfiguracji**
 
-With the GitOps approach, there is the risk that the deployed configuration for the OpenShift cluster does not match what is in the Git repository. Someone could have updated the OpenShift cluster directly, for example. There are a number of tools to manage this configuration drift, with ArgoCD being a common tool to address this issue. It can be configured to sync manually or automatically, so that any changes made directly on the cluster are reverted to what is in the Git repository. 
+W przypadku podejścia GitOps istnieje ryzyko, że wdrożona konfiguracja klastra OpenShift nie odpowiada temu, co znajduje się w repozytorium Git. Ktoś mógł na przykład bezpośrednio zaktualizować klaster OpenShift. Istnieje wiele narzędzi do zarządzania tym dryfem konfiguracji, przy czym ArgoCD jest powszechnym narzędziem do rozwiązywania tego problemu. Można go skonfigurować do synchronizacji ręcznej lub automatycznej, dzięki czemu wszelkie zmiany wprowadzone bezpośrednio w klastrze są przywracane do tego, co znajduje się w repozytorium Git. 
 
-The OpenShift GitOps Operator can be used to install ArgoCD into your OpenShift cluster. Further details on how to this can be found here: <https://developer.ibm.com/tutorials/deploy-open-liberty-applications-with-gitops/>
+Operator OpenShift GitOps może być użyty do zainstalowania ArgoCD w klastrze OpenShift. Więcej informacji na ten temat można znaleźć tutaj: <https://developer.ibm.com/tutorials/deploy-open-liberty-applications-with-gitops/>
 
-**Securing Secrets**
+**Zabezpieczanie Secrets**
 
-Even with controls and restricted access to Git repositories, it is not considered good practice to store the sensitive data in plain text (aka the values entered into the secrets files). There are generally two approaches you can take to tackle this: encrypt the values or use a reference:
+Nawet w przypadku kontroli i ograniczonego dostępu do repozytoriów Git, przechowywanie wrażliwych danych w postaci zwykłego tekstu (czyli wartości wprowadzonych do plików sekretów) nie jest uważane za dobrą praktykę. Zasadniczo istnieją dwa podejścia, które można zastosować, aby sobie z tym poradzić: zaszyfrować wartości lub użyć odniesienia:
 
-  - **Encrypt the values**: In this approach, the value in the secret file is encrypted when it is committed to the Git repo. During deployment to OpenShift there is an extra step where the secret values are decrypted. `SealedSecrets` is one implementation of such an approach.
+  - **Szyfrowanie wartości**: W tym podejściu wartość w pliku sekretnym jest szyfrowana, gdy jest zatwierdzana w repozytorium Git. Podczas wdrażania na OpenShift istnieje dodatkowy krok, w którym tajne wartości są odszyfrowywane. `SealedSecrets` jest jedną z implementacji takiego podejścia.
 
-  - **Use a reference**: In this case, the secrets and their values are stored in a secret manager. During deployment, a reference is provided to the secret manager which will then mount the secret to the deployed container. `HashiCorp Vault` is a common implementation of this approach.
+  - **Użyj referencji**: W tym przypadku sekrety i ich wartości są przechowywane w menedżerze sekretów. Podczas wdrażania, referencja jest dostarczana do menedżera sekretów, który następnie montuje sekret do wdrożonego kontenera. Powszechną implementacją tego podejścia jest `HashiCorp Vault`.
 
-In both cases, there is additional work to be done above what has been covered in this lab. However, the kustomize files provided in the migration bundle gives you a good starting point to identify the secrets and provide a standard output that can be transformed to suit your selected approach.
+W obu przypadkach należy wykonać dodatkową pracę ponad to, co zostało omówione w tym module. Jednak pliki kustomize dostarczone w pakiecie migracyjnym stanowią dobry punkt wyjścia do identyfikacji sekretów i zapewniają standardowe dane wyjściowe, które można przekształcić w celu dostosowania do wybranego podejścia.
 
 </details>
 
 
 
 <details>
- <summary><b><font color="dodgerblue">Click to expand:</font></b> Section 4: (Optional)   Promote PlantsByWebSphere to the ‘staging’ environment in OpenShift
+ <summary><b><font color="dodgerblue">Kliknij, aby rozwinąć:</font></b> Sekcja 4: (opcjonalna - praktyczna) Promocja PlantsByWebSphere do środowiska „staging” w OpenShift
  </summary>
 
 <br/>
 
-## 4.1 Re-Deploy PlantsByWebSphere to the ‘staging’ environment in OpenShift
+## 4.1 Ponowne wdrożenie PlantsByWebSphere do środowiska „staging” w OpenShift
 
-You have deployed the PlantsByWebSphere application with its configuration, to a ‘dev’ environment, using a single kustomize command.
+Wdrożyłeś aplikację PlantsByWebSphere z jej konfiguracją do środowiska „dev” za pomocą pojedynczego polecenia kustomize.
 
-In this section, you will deploy the same application again, with a different configuration, to a ‘staging’ environment, using a single kustomize command with a different overlay configuration called 'staging'. 
+W tej sekcji ponownie wdrożysz tę samą aplikację, z inną konfiguracją, do środowiska „staging”, używając pojedynczego polecenia kustomize z inną konfiguracją o nazwie „staging”. 
 
-**To do this, we need to do the following:**
+**Aby to zrobić, musimy wykonać następujące czynności:**
 
-  - Copy the ‘dev’ overlays yaml files to a new overlays folder. We will name it ‘staging’.
+  - Skopiować pliki yaml „dev” do nowego folderu. Nazwiemy go „staging”.
 
-  - Update the environment specific configuration in the new ’staging’ overlays folder.
-
-___
-
-**Note:** 
-
-For this section of the lab, the PlantsByWebSphere application that you deploy to the ‘staging’ environment will access a different DB2 database than was used in the ‘dev’ environment.
-
-It is typical to use different databases as the application is promoted to higher environments that support different phases of testing to production.
+  - Zaktualizować konfigurację specyficzną dla środowiska w nowym folderze „staging”.
 
 ___
 
+**Uwaga:**. 
 
-### 4.1.1 Setup and exaamine the 'staging' deployment configuration
+W tej części laboratorium aplikacja PlantsByWebSphere wdrażana w środowisku „staging” będzie korzystać z innej bazy danych DB2 niż ta używana w środowisku „dev”.
 
-In this lab, the ‘staging’ database has a different set of ‘Trees’ loaded in the catalog, compared to the ‘dev’ database.
+Typowe jest korzystanie z różnych baz danych, gdy aplikacja jest promowana do wyższych środowisk, które obsługują różne fazy testowania do produkcji.
+___
 
-While in a real environment, the different databases might use different database access credentials, in this lab environment, the credentials remain the same as the ‘dev’ database.
 
-**What are the configuration changes between the ‘dev’ and ‘staging’ environments in this lab scenario?**
+### 4.1.1 Konfiguracja i sprawdzenie konfiguracji wdrożenia „staging
 
-  - The database **server** **hostname** is different between ‘dev’ and ‘staging’.
+W tym laboratorium baza danych „staging” ma inny zestaw „Trees” załadowany do katalogu niż baza danych „dev”.
 
-**What is staying the same between the ‘dev’ and ‘staging’ deployment?**
+Podczas gdy w rzeczywistym środowisku różne bazy danych mogą używać różnych poświadczeń dostępu do bazy danych, w tym środowisku laboratoryjnym poświadczenia pozostają takie same jak w bazie danych „dev”.
 
-  - The same immutable container image for PlantsByWebSphere application is used in ‘dev’ and ‘staging’
+**Jakie są zmiany w konfiguracji między środowiskami „dev” i „staging” w tym scenariuszu laboratoryjnym?**
 
-  - We continue to use the same database name: PBW
+  - **Nazwa hosta** **serwera** bazy danych różni się między środowiskiem „dev” i „staging”.
 
-  - We continue to use the same database port: 50000
+**Co pozostaje niezmienione między wdrożeniem „dev” i „staging”?**
 
-  - We continue to use the same database access credentials
+  - Ten sam niezmienny obraz kontenera dla aplikacji PlantsByWebSphere jest używany w „dev” i „staging”.
 
-The values for the **database name, port, and host** are all stored in a **config map** yaml file. Therefore, the config map yaml file in the ‘staging’ overlay folder will be different than the config map file used in thee ‘dev’ overlay folder.
+  - Nadal używamy tej samej nazwy bazy danych: PBW.
 
-This means that to deploy the PlantsByWebSphere application to the ‘staging’ environment, all that needs to be done is to update the `DB2 hostname` in the `config map` yaml file located in the ‘staging’ overlays folder. Then run the single command to deploy the PlantsByWebSphere application to the staging environment.
+  - Nadal używamy tego samego portu bazy danych: 50000
 
-**Now we are ready to start:**
+  - Nadal używamy tych samych poświadczeń dostępu do bazy danych
 
-  - Copy the ‘dev’ overlays yaml files to a new overlays folder. We will name it ‘staging’.
+Wartości **nazwy bazy danych, portu i hosta** są przechowywane w pliku **config map** yaml. Dlatego plik config map yaml w folderze „staging” będzie inny niż plik config map używany w folderze „dev”.
 
-  - Update the environment specific configuration in the new ’staging’ overlays folder.
+Oznacza to, że aby wdrożyć aplikację PlantsByWebSphere w środowisku „staging”, wystarczy zaktualizować nazwę hosta `DB2` w pliku yaml `config map` znajdującym się w folderze „staging”. Następnie uruchom pojedyncze polecenie, aby wdrożyć aplikację PlantsByWebSphere w środowisku przejściowym.
 
-To streamline executing the steps above, we have provided a `convenience shell script` that performs these steps.
+**Teraz jesteśmy gotowi do rozpoczęcia:**.
 
-You will `run the script` to setup the staging overlay, while avoiding having to perform mundane copy/paste activities in the lab.
+  - Skopiuj pliki yaml nakładek „dev” do nowego folderu nakładek. Nazwij go „staging”.
 
-After running the script, we will review the changes that were made to the config map yaml file.
+  - Zaktualizuj konfigurację specyficzną dla środowiska w nowym folderze  „staging”.
 
-1.  Run the following commands to setup the `overlays/staging` folder with the updated config map. 
+Aby usprawnić wykonywanie powyższych kroków, przygotowaliśmy `skrypt usprawniający`, który wykonuje te kroki.
+
+Uruchomisz skrypt, aby skonfigurować wdrożenie`staging`, unikając konieczności wykonywania przyziemnych czynności kopiowania/wklejania w laboratorium.
+
+Po uruchomieniu skryptu przejrzymy zmiany wprowadzone w pliku config map yaml.
+
+1.  Uruchom następujące polecenia, aby skonfigurować folder `overlays/staging` ze zaktualizowaną mapą konfiguracji. 
 
         cd /home/techzone/appmod-pot-labfiles/labs/RuntimeModernization/scripts
 
         ./kustomize-staging.sh
 
-    **Note:** The script also performs any necessary cleanup tasks, in the event you need to rerun the script for some unknown reason.
+    **Uwaga:** Skrypt wykonuje również wszelkie niezbędne zadania porządkowe, na wypadek konieczności ponownego uruchomienia skryptu z nieznanego powodu.
 
     ![A close-up of a logo Description automatically generated](./images/media/image96.png)
 
-2.  Examine the **staging** overlay
+2.  Sprawdź folder **staging**
 
         ls /home/techzone/Student/labs/appmod/pbw-bundle-complete/deploy/kustomize/overlays
 
-    The contents were copied ‘as-is’ from the ‘dev’ overlay directory
+    Zawartość została skopiowana „tak jak jest” z katalogu nakładki „dev"
  
     ![A computer screen shot of a computer Description automatically generated](./images/media/image97.png)
 
-3.  The ‘**staging’** overlay directory contains the same 4 yaml files as the ‘dev’ overlay
+3.  Katalog **`staging`** zawiera te same 4 pliki yaml, co nakładka "dev"
 
         ls /home/techzone/Student/labs/appmod/pbw-bundle-complete/deploy/kustomize/overlays/staging
 
     ![](./images/media/image98.png)
 
-4.  The **plantsbywebspheree6-configmap.yaml** file contains the ‘**staging’** environment specific configuration.
+4.  Plik **plantsbywebspheree6-configmap.yaml** zawiera konfigurację środowiska **staging**.
 
-    Specifically, the “**DataSource serverName**” for the DB2 database has been updated to the ‘staging’ environment database host
+    W szczególności „**DataSource serverName**” dla bazy danych DB2 został zaktualizowany do hosta bazy danych środowiska `staging`
  
         gedit /home/techzone/Student/labs/appmod/pbw-bundle-complete/deploy/kustomize/overlays/staging/plantsbywebsphereee6-configmap.yaml
  
     ![](./images/media/image99.png)
 
 
-5. **`Close`** the "gedit" editor. **DO NOT SAVE ANY CHNAGES TO THE FILE!**
+5. **Zamknij** edytor „gedit”. **NIE ZAPISUJ ŻADNYCH ZMIAN W PLIKU!**
 
 
-### 4.1.2 Deploy PlantsByWebSphere to staging evironment
+### 4.1.2 Wdrażanie PlantsByWebSphere w środowisku przejściowym
 
-In this section, you will run the same steps to deploy and configure the application to the staging environment, which were used in dev. 
+W tej sekcji wykonasz te same kroki, aby wdrożyć i skonfigurować aplikację w środowisku przejściowym, które zostały użyte w dev. 
 
-The differecne is the configuration deltas you examined in the overlays/staging folders in the migration bundle. 
+Różnica polega na zbadaniu różnic konfiguracyjnych w folderach overlays/staging w pakiecie migracyjnym. 
 
 
-1.  Run the following `convenience shell script` to deploy the PlantsByWebSphere application to the ‘**staging’** environment.
+1.  Uruchom następujący "skrypt usprawniający", aby wdrożyć aplikację PlantsByWebSphere w środowisku „**staging**".
 
-    **Note:** The script performs the same steps as the deployment to the ‘dev’ environment.
+    **Uwaga:** Skrypt wykonuje te same kroki, co wdrożenie w środowisku „dev”.
  
     ___
 
-    The script performs any necessary cleanup tasks, in the event you need to rerun the script for some unknown reason.
+    Skrypt wykonuje wszelkie niezbędne zadania porządkowe na wypadek konieczności ponownego uruchomienia skryptu z nieznanego powodu.
  
     ___
 
@@ -1406,28 +1397,28 @@ The differecne is the configuration deltas you examined in the overlays/staging 
  
         ./staging-deploy-pbw-ocp.sh
  
-    Notice in **`step 8`** of the script, the command to deploy the application uses the configuration from the `staging` overlay, as illustrated below.
+    Zauważ, że w **`kroku 8`** skryptu, polecenie wdrożenia aplikacji wykorzystuje konfigurację z katalogu `staging`, jak pokazano poniżej.
  
     ![A close-up of a computer code Description automatically generated](./images/media/image100.png)
 
-   When the script completes, the URL (Route) to the PlantsByWebSphere application running in the staging environment is displayed.
+   Po zakończeniu działania skryptu wyświetlony zostanie adres URL (Route) do aplikacji PlantsByWebSphere działającej w środowisku przejściowym.
 
    ![A screenshot of a computer Description automatically generated](./images/media/image101.png)
 
 
-2.  Open a new browser tab and go to that URL:
+2.  Otwórz nową kartę przeglądarki i przejdź do tego adresu URL:
 
         http://plantsbywebsphereee6-staging.apps.ocp.ibm.edu/PlantsByWebSphere
  
     ![A green screen with a pergola Description automatically generated](./images/media/image102.png)
 
-3.  In the application, click on the “**Trees**” category. This the list of trees in the “**staging**” database.
+3.  W aplikacji kliknij kategorię „**Drzewa**”. Jest to lista drzew w bazie danych „**staging**”.
 
     ![A screenshot of a computer Description automatically generated](./images/media/image103.png)
 
-4.  You may refer to the catalog of trees in the ‘**dev’** environment, and notice the trees are named differently in the staging environment.
+4.  Możesz odwołać się do katalogu drzew w środowisku '**dev'** i zauważyć, że drzewa mają inne nazwy w środowisku przejściowym.
 
-    a. Open a new browser tab and go to the application running in the `dev` environment.
+    a. Otwórz nową kartę przeglądarki i przejdź do aplikacji uruchomionej w środowisku `dev`.
 
         http://plantsbywebsphereee6-dev.apps.ocp.ibm.edu/PlantsByWebSphere
 
@@ -1438,61 +1429,61 @@ The differecne is the configuration deltas you examined in the overlays/staging 
 
 
 <details>
- <summary><b><font color="dodgerblue">Click to expand:</font></b> Section 5: (Optional) Exploring the PlantsByWebSphere application in the proof_of_concept workspace
+ <summary><b><font color="dodgerblue">Kliknij, aby rozwinąć:</font></b> Sekcja 5: (opcjonalna - praktyczna) Badanie aplikacji PlantsByWebSphere w przestrzeni roboczej proof_of_concept (TA)
  </summary>
 
 <br/>
 
-## 5.1 Exploring the PlantsByWebSphere application in the proof_of_concept workspace
+## 5.1 Badanie aplikacji PlantsByWebSphere w przestrzeni roboczej proof_of_concept (TA)
 
-IBM Cloud Transformation Advisor (TA) analyzes application and configuration data collected from Java application server environments. TA delivers great insights that help organizations plan and implement a modernization journey to WebSphere Liberty and Kubernetes base container platform for existing Java applications.
+IBM Cloud Transformation Advisor (TA) analizuje dane aplikacji i konfiguracji zebrane ze środowisk serwerów aplikacji Java. TA dostarcza doskonałych informacji, które pomagają organizacjom planować i wdrażać modernizację do WebSphere Liberty i Kubernetes bazowej platformy kontenerowej dla istniejących aplikacji Java.
  
-TA provides recommendations for modernization which includes and considers application complexity, dependencies, potential issues, and estimated development effort.
+TA zapewnia zalecenia dotyczące modernizacji, które obejmują i uwzględniają złożoność aplikacji, zależności, potencjalne problemy i szacowany wysiłek programistyczny.
  
 ![A screenshot of a computer Description automatically generated](./images/media/image106.png)
 
-1. In a browser window, return to Transformation Advisor using the following URL: 
+1. W oknie przeglądarki powróć do Transformation Advisor, używając następującego adresu URL: 
 
         http://localhost:3000
 
-2. Open the `proof-of-concept` workspace, if it is not already open
+2. Otwórz obszar roboczy `proof-of-concept`, jeśli nie jest jeszcze otwarty.
 
     ![](./images/media/ta-proof-of-concept.png)
 
 
-3.  Scroll down to the `Java applications` section and note the high-level summary for the ‘**plantsbywebsphereee6.ear**’application assessment.
+3.  Przewiń w dół do sekcji `Aplikacje Java` i zwróć uwagę na podsumowanie wysokiego poziomu oceny aplikacji „**plantsbywebsphereee6.ear**”.
 
-  - Complexity
+  - Złożoność
 
-  - Issues
+  - Problemy
 
-  - Required code changes
+  - Wymagane zmiany kodu
 
-  - Application cost (in days for development)
+  - Koszt aplikacji (w dniach na development)
 
     ![](./images/media/image107.png)
 
-This workspace has only a single application name `plantsbywebsphereee6.ear`. It is summarized as `simple` to  modernize to WebSphere Liberty.  
+Ten obszar roboczy ma tylko jedną nazwę aplikacji `plantsbywebsphereee6.ear`. Jest ona podsumowana jako `simple` do modernizacji do WebSphere Liberty.  
 
- ***Complexity values and their meanings:***
+ *** Wartości złożoności i ich znaczenie:***
  
-**`Simple`**: The application is ready for deployment, no access to the source code is required. 
+**`Simple`**: Aplikacja jest gotowa do wdrożenia, nie jest wymagany dostęp do kodu źródłowego. 
 
-  - Simple complexity value typically represents about 20% of applications.
+  - Prosta złożoność reprezentuje zazwyczaj około 20% aplikacji.
  
- **`Moderate`**: Code changes are required before deployment; however, these code changes are well known, and specific help is provided for each issue to assist in resolving it. 
+ **`Moderate`**: Zmiany w kodzie są wymagane przed wdrożeniem; jednak te zmiany w kodzie są dobrze znane, a dla każdego problemu zapewniona jest konkretna pomoc, aby pomóc w jego rozwiązaniu. 
  
-   - Moderate complexity value typically represents about 80% of applications.
+   - Wartość umiarkowanej złożoności zazwyczaj reprezentuje około 80% aplikacji.
  
- **`Complex`**: The application uses a technology that does not have a direct equivalent in the new runtime and a new approach will need to be adopted. In our experience, only about 1 in 6 customers have these kinds of applications. 
+ **`Complex`**: Aplikacja wykorzystuje technologię, która nie ma bezpośredniego odpowiednika w nowym środowisku uruchomieniowym i konieczne będzie przyjęcie nowego podejścia. Z naszego doświadczenia wynika, że tylko około 1 na 6 klientów ma tego rodzaju aplikacje. 
  
-   - Complex complexity value typically represents less than 1% of applications.
+   - Złożona wartość złożoności zazwyczaj reprezentuje mniej niż 1% aplikacji.
 
-4. Click on **plantsByWebSphereee6.ear** which will expand the analysis
+4. Kliknij **plantsByWebSphereee6.ear**, co spowoduje rozwinięcie analizy
 
     ![A screenshot of a computer Description automatically generated](./images/media/image108.png)
 
-    a. Scroll down, noting the groups or categories of analysis available
+    a. Przewiń w dół, zwracając uwagę na dostępne grupy lub kategorie analizy
     
     - **Complexity rules**
     
@@ -1506,7 +1497,7 @@ This workspace has only a single application name `plantsbywebsphereee6.ear`. It
 
       - Informational
     
-    - **Additional reports**
+    - **Dodatkowe raporty**
 
       - Technology report
 
@@ -1515,71 +1506,71 @@ This workspace has only a single application name `plantsbywebsphereee6.ear`. It
       - Analysis reports
 
 
-5.  View the **`Analysis Report`** for more detailed application information
+5.  Zobacz **`Analysis Report`**, aby uzyskać bardziej szczegółowe informacje o aplikacji.
 
     **Analysis Report**
 
-    The **Detailed Migration Analysis Report** does a deep dive on the preferred migration target to help you understand any migration issues, like deprecated or removed APIs, Java SE version differences, and Java EE behavioral differences.
+    **Szczegółowy raport analizy migracji** dogłębnie analizuje preferowany cel migracji, aby pomóc zrozumieć wszelkie kwestie związane z migracją, takie jak przestarzałe lub usunięte interfejsy API, różnice w wersji Java SE i różnice w zachowaniu Java EE.
 
-    a.  Click on the **`Analysis report`** link. 
+    a.  Kliknij łącze **`Raport z analizy`**. 
 
     ![A screenshot of a computer Description automatically generated](./images/media/image109.png)
 
-    b. The **Analysis report** will open in a new browser tab
+    b. **Raport z analizy** otworzy się w nowej karcie przeglądarki
 
     ![A screenshot of a computer Description automatically generated](./images/media/image110.png)
  
 
-    c.  Note the **target**
+    c.  Zwróć uwagę na **cel**
 
-    - Because the **source** was traditional WebSphere v8.5.5, which is Java EE 6, the target is also EE6.
+    - Ponieważ **źródło** było tradycyjnym WebSphere v8.5.5, czyli Java EE 6, celem jest również EE6.
 
-    - Because the source was running Jave SE 8, the target is also set to Java SE 8.
+    - Ponieważ źródło działało na Jave SE 8, cel jest również ustawiony na Java SE 8.
 
-    By default, Transformation advisor recommends the first step of modernization to Liberty that requires the minimal amount of change and effort.
+    Domyślnie, Transformation advisor zaleca pierwszy krok modernizacji do Liberty, który wymaga minimalnej ilości zmian i wysiłku.
  
-    You may use the binary scanner with the `--ta` option if you want to assess the modernization effort to newer versions Java, Jave EE, or Jakarta EE. Running the binary scanner with the `-ta` option produces an archive file that can be loaded into Transformation Advisor for analysis.
+    Możesz użyć skanera binarnego z opcją `--ta`, jeśli chcesz ocenić wysiłek modernizacji do nowszych wersji Java, Jave EE lub Jakarta EE. Uruchomienie skanera binarnego z opcją `-ta` tworzy plik archiwum, który można załadować do Transformation Advisor w celu analizy.
 
-    d.  Click on the **`Information`** label, to review the details of this item.
+    d.  Kliknij etykietę **`Information`**, aby przejrzeć szczegóły tego elementu.
 
     ![A screenshot of a computer Description automatically generated](./images/media/image112.png)
  
-    The **Information** rules provide migration related considerations. Be aware of these rules during testing. Many of these rules relate to connectivity to other resources that need to be considered during migration.
+    Reguły **Informacyjne** przedstawiają kwestie związane z migracją. Należy pamiętać o tych zasadach podczas testowania. Wiele z tych zasad dotyczy łączności z innymi zasobami, które należy wziąć pod uwagę podczas migracji.
 
-    e.  You may review the Information rules for PlantsByWebSphere migration.
+    e.  Możesz przejrzeć reguły informacyjne dotyczące migracji PlantsByWebSphere.
 
     ![A screenshot of a computer Description automatically generated](./images/media/image113.png)
 
 
-6.  Return to the **Cloud Transformation Advisor** browser tab that shows the **plantsbywebsphereee6.ear details** page. Then click on **`Inventory Report`**, which will open in a new browser tab.
+6.  Wróć do zakładki przeglądarki **Cloud Transformation Advisor**, która pokazuje stronę **plantsbywebsphereee6.ear details**. Następnie kliknij na **`Inventory Report`**, który otworzy się w nowej karcie przeglądarki.
 
     ![A screenshot of a computer Description automatically generated](./images/media/image114.png)
 
-    a.  Scroll down and review the Inventory Report, which is especially useful in larger applications.
+    a.  Przewiń w dół i przejrzyj raport inwentaryzacji, który jest szczególnie przydatny w przypadku większych aplikacji.
 
-    The **Inventory report** provides a high-level inventory of the content and structure of each application, plus information about potential deployment problems and performance considerations.
+    **Raport inwentaryzacji** zawiera ogólny spis zawartości i struktury każdej aplikacji, a także informacje o potencjalnych problemach z wdrażaniem i kwestiach związanych z wydajnością.
  
     ![](./images/media/image115.png)
 
-    b.  Scroll down to the bottom of the **Inventory report** and locate **`the Contained Archives`** section.
+    b.  Przewiń w dół do dolnej części **Raportu inwentaryzacji** i znajdź sekcję **Zawarte archiwa**.
 
-    The inventory report provides valuable insights into utility jars that are contained in the application. It also provides the ‘package’ name of the utility jar. This is extremely valuable to help determine what 3<sup>rd</sup> party utilities are used by the application.
+    Raport inwentaryzacji zapewnia cenny wgląd w utility jars, które są zawarte w aplikacji. Zawiera również nazwę „pakietu” utility jar. Jest to niezwykle cenne, aby pomóc określić, jakie narzędzia trzeciej strony są używane przez aplikację.
 
-    c.  Notice the PlantsByWebSphere application contains utility jar named **‘pbw-lib’jar**’. The archive package is “ibm.com.websphere’, indicating it is NOT a 3<sup>rd</sup> party utility jar.
+    c.  Zauważ, że aplikacja PlantsByWebSphere zawiera utility jar o nazwie **'pbw-lib'jar**'. Pakiet archiwum to „ibm.com.websphere”, co wskazuje, że NIE jest to utility jar trzeciej strony.
 
     ![A screenshot of a computer Description automatically generated](./images/media/image116.png)
 
-    d.  Return to the **Cloud Transformation Advisor** browser tab that shows the **plantsbywebsphereee6.ear details** page. Then click on **`Technology report`**, which will open in a new browser tab.
+    d.  Wróć do zakładki przeglądarki **Cloud Transformation Advisor**, która pokazuje stronę **plantsbywebsphereee6.ear details**. Następnie kliknij **`Raport technologiczny**, który otworzy się w nowej karcie przeglądarki.
 
-    The **Technology report** provides details on which editions of Liberty support the technologies used by the applications.
+    **Raport technologiczny** zawiera szczegółowe informacje o tym, które wersje Liberty obsługują technologie używane przez aplikacje.
  
     ![A screenshot of a computer Description automatically generated](./images/media/image117.png)
 
-    a.  Scroll down Technology Report, which can quickly help assess which Java EE API technologies that the PlantsByWebSphere application uses, and which editions of Liberty the APIS are available.
+    a.  SPrzewiń w dół Raport technologiczny, który może szybko pomóc ocenić, które technologie Java EE API są używane przez aplikację PlantsByWebSphere i które wersje Liberty APIs są dostępne.
 
     ![A screenshot of a computer Description automatically generated](./images/media/image118.png)
 
-    b. As you see from the report above, the APIs used in the PlantsByWebSphere application are available in ALL editions of Liberty.
+    b. Jak widać z powyższego raportu, interfejsy API używane w aplikacji PlantsByWebSphere są dostępne we WSZYSTKICH wersjach Liberty.
 
 </details>
 

@@ -29,11 +29,11 @@ Ponadto narzędzie zapewnia rekomendację odpowiedniej edycji IBM WebSphere Appl
 
 ## 1. Wprowadzenie
 
-W przyjentym scenariuszu laboratorium, Twoja firma ma kilka aplikacji wdrożonych na serwerze aplikacyjnym WebSphere Application Server (WAS).
+W przyjętym scenariuszu laboratorium, Twoja firma ma kilka aplikacji wdrożonych na serwerze aplikacyjnym WebSphere Application Server (WAS).
 
 ![](./images/media/image2.png)
 
-Twoja firma chce przenieść te aplikacje na nowoczesny serwer aplikacyjny WebSphere Liberty działając na środowisku kontenerowym. Nie jesteście jednak pewni, ile pracy może wymagać proces migracji Waszych aplikacji.
+Firma chce przenieść te aplikacje na nowoczesne serwery aplikacyjne WebSphere Liberty działające na środowisku kontenerowym. Nie jesteście jednak pewni, ile pracy może wymagać proces migracji Waszych aplikacji.
 
 Decydujecie się użyć narzędzia IBM Transformation Advisor, aby przeprowadzić szybką ocenę tych aplikacji bez wglądu w ich kod źródłowy i zidentyfikować dobrą aplikację do przeniesienia do Liberty działającą w kontenerach.
 
@@ -51,7 +51,7 @@ Cele tego laboratorium:
 
 ## 3. Wymagania wstępne
 
-Przed rozpoczęciem zajęć laboratoryjnych powinieneś spełnić następujące wymagania wstępne:
+Przed rozpoczęciem zajęć laboratoryjnych powinieneś:
 
   - Mieć podstawowe pojęcie o polecenich systemu Linux.
 
@@ -156,11 +156,11 @@ Dla tego środowiska laboratoryjnego plik archiwum zip z kolekcją danych zosta�
 
 Korzystając z Transformation Advisor, uzyskasz wgląd w potencjalne problemy, które mogą wystąpić podczas migracją i wymagają rozwiązania w przypadku przeniesienia aplikacji do Liberty i kontenerów. Przeglądając raporty z analizy, określisz złożoność wymaganego wysiłku programistycznego i wybierzesz aplikację do migracji do Liberty na kontenerach.
 
-**Oto działania związane z tym procesem:**
+**Oto zadania związane z tym procesem:**
 
-  - Symulacja uruchomienia narzędzia Transformation Advisor Data Collector na serwerze WebSphere Application Server w celu uzyskania danych aplikacji
+  - Symulacja uruchomienia narzędzia Transformation Advisor Data Collector na serwerze WebSphere Application Server w celu uzyskania danych aplikacji.
 
-  - Przesłanie pliku archiwum zip kolekcji danych, który został wygenerowany przez kolektor danych do interfejsu użytkownika Transformation Advisor w celu przeprowadzenia analizy.
+  - Przesłanie pliku archiwum zip kolekcji danych, który został wygenerowany przez Data Collector do interfejsu użytkownika Transformation Advisor w celu przeprowadzenia analizy.
 
   - Analiza raportów wygenerowanych przez Transformation Advisor, aby zidentyfikować właściwą aplikację do szybkiej i opłacalnej migracji do Liberty i kontenerów.
 
@@ -172,7 +172,7 @@ Poniższa ilustracja przedstawia aplikacje WebSphere wdrożone w środowisku Web
 
 ___
 
-Będziesz symulować proces zbierania danych. Nie należy jednak uruchamiać kolektora danych, ponieważ to środowisko laboratoryjne nie ma dostępu do środowiska WebSphere.
+Będziesz symulować proces zbierania danych. Nie należy jednak uruchamiać Data Collector, ponieważ to środowisko laboratoryjne nie ma dostępu do środowiska WebSphere.
 ___
 
 
@@ -190,7 +190,7 @@ Transformation Advisor może oceniać dowolne aplikacje oparte na Javie. W tym l
 
 Transformation Advisor jest zainstalowany lokalnie na maszynie wirtualnej **Stacji roboczej**. Uruchom narzędzie Transformation Advisor, wykonując poniższe czynności.
 
-1.  Z poziomu pulpitu **Stacji roboczej** otwórz okno Terminala.
+1.  Z poziomu pulpitu **Stacji roboczej** otwórz okno `Terminala`.
 
     ![](./images/media/image8.png)
 
@@ -252,7 +252,7 @@ Aby ocenić lokalne aplikacje Java, należy uruchomić narzędzie **Transformati
  
     ![](./images/media/image14.png)
  
-    W tym laboratorium wykonasz następujące kroki:
+    W tej cześci laboratorium wykonasz następujące kroki:
 
     - Pobierzesz narzędzie Data Collector dla środowiska Linux.
 
@@ -301,7 +301,7 @@ Teraz `zasymulujmy` kroki, aby uruchomić Data Collector.
 
         tar xvfz transformationadvisor-Linux_Evaluation.tgz
 
-    Narzędzie do zbierania danych zostanie rozpakowane do katalogu **/home/techzone/Downloads/transformationadvisor-3.8.1**..
+    Narzędzie do zbierania danych zostanie rozpakowane do katalogu **/home/techzone/Downloads/transformationadvisor-3.8.1**.
 
     ___
 
@@ -339,7 +339,7 @@ Teraz `zasymulujmy` kroki, aby uruchomić Data Collector.
     
     **WAŻNE!**
     
-    Na potrzeby tego laboratorium uruchomiliśmy już kolektor na serwerze aplikacji WebSphere. Wynikowe archiwum zebranych danych (plik zip) o nazwie AppSrv01.zip jest dostępne do przesłania do interfejsu Transformation Advisor UI. 
+    Na potrzeby tego laboratorium uruchomiliśmy już Data Collector na serwerze aplikacji WebSphere. Wynikowe archiwum zebranych danych (plik zip) o nazwie AppSrv01.zip jest dostępne do przesłania do interfejsu Transformation Advisor UI. 
     ___
 
 ### **6.4.1 WYŁĄCZNIE W CELACH POGLĄDOWYCH: Symulacja uruchomienia narzędzia Transformation Advisor Data Collector**
@@ -373,13 +373,6 @@ Jeśli WebSphere Application Server i Transformation Advisor mają połączenie,
     Oto przykład danych wyjściowych z Data Collector, pokazujący postęp analizy profili WebSphere. 
  
     ![](./images/media/image25.png)
-
-    ___
-    
-    **UWAGA: Poniższe informacje mają charakter wyłącznie poglądowy!**
-    
-    W tym laboratorium NIE będziesz uruchamiać Data Collector.
-    ___ 
 
     Proces ten wymaga czasu, w zależności od liczby aplikacji wdrożonych na serwerze WebSphere Application.
  
@@ -425,7 +418,7 @@ ___
  
     Po przesłaniu zbioru danych do Transformation Advisor nastąpi przekierowanie z powrotem do ekranu rekomendacji TA.
  
-    Zauważ, że strona pokazuje „**Wszystkie aplikacje Java**” z profilu WebSphere Application Server o nazwie **AppSrv01-3.8.1**..
+    Zauważ, że strona pokazuje „**Wszystkie aplikacje Java**” z profilu WebSphere Application Server o nazwie **AppSrv01-3.8.1**.
     
  
     ![](./images/media/image31.png)
@@ -456,7 +449,7 @@ W tej sekcji użyjesz interfejsu użytkownika Transformation Advisor, aby wyświ
  
      Gdy dane są przesyłane, Transformation Advisor automatycznie wykrywa **maszynę-hosta**, z której pochodzą dane, tzn. gdzie były uruchomione aplikacje serwera aplikacji WebSphere. TA tworzy odpowiednią **kolekcję** i dodaje do niej aplikacje.
  
-    Nazwę kolekcji można zmienić podczas uruchamiania narzędzia Data Collector lub edytować w interfejsie użytkownika Transformation Advisor po przesłaniu danych..
+    Nazwę kolekcji można zmienić podczas uruchamiania narzędzia Data Collector lub edytować w interfejsie użytkownika Transformation Advisor po przesłaniu danych.
  
     W tym przykładzie używana jest domyślna nazwa kolekcji: **admin.ibm.demo**, czyli maszyna hosta, z której pochodzą dane.
 
@@ -486,9 +479,9 @@ W tej sekcji użyjesz interfejsu użytkownika Transformation Advisor, aby wyświ
 
 3.  W sekcji **Migration Targets** wybierz wszystkie **trzy** cele migracji i zwróć uwagę na różne koszty modernizacji związane z migracją wszystkich 5 aplikacji w obszarze roboczym do różnych docelowych środowisk migracji.
 
-    Tutaj widać, że przeniesienie aplikacji w kolekcji do **WebSphere traditional** wymaga **0 dni** kosztów developmentu, co oznacza, że nie są konieczne żadne zmiany w kodzie.
+    Tutaj widać, że przeniesienie aplikacji w kolekcji do **`WebSphere traditional`** wymaga **0 dni** kosztów developmentu, co oznacza, że nie są konieczne żadne zmiany w kodzie.
  
-    Jednak przeniesienie do **"WebSphere Liberty ”** może wymagać **2,5 dnia**, a **Open Liberty** może wymagać **5,5 dnia** czasu na development.
+    Jednak przeniesienie do **`WebSphere Liberty `** może wymagać **2,5 dnia**, a **`Open Liberty`** może wymagać **5,5 dnia** czasu na development.
  
     ![](./images/media/image35.png)
  
@@ -508,7 +501,7 @@ W tej sekcji użyjesz interfejsu użytkownika Transformation Advisor, aby wyświ
 
     Następujące szczegóły są zawarte w tabeli podsumowującej (jest to widok dla poszczególnych aplikacji):
 
-    - **Application Name**: Nazwa pliku EAR/WAR znalezionego na serwerze aplikacji..
+    - **Application Name**: Nazwa pliku EAR/WAR znalezionego na serwerze aplikacji.
 
     - **Collection/Profile**: Collection reprezentuje nazwę hosta maszyny, na której znajduje się aplikacja. Profil reprezentuje nazwę profilu na serwerze aplikacji, na którym zainstalowana jest aplikacja.
 
@@ -606,7 +599,7 @@ Aby to zrobić, musimy zagłębić się w niektóre szczegóły i raporty.
     ![](./images/media/image116.png)
 
    
-2.	Wróć do karty przeglądarki, która wyświetla „**Stronę szczegółów aplikacji**” i wyświetl **`Technology Report`**.. 
+2.	Wróć do karty przeglądarki, która wyświetla „**stronę widoku szczegółowego**” i wyświetl **`Technology Report`**. 
 
     ![](./images/media/image44.png)
 
@@ -628,7 +621,7 @@ Spójrzmy, dlaczego przeniesienie aplikacji na platformę Open Liberty wymaga wi
 
 1.	Wróć do strony „**Wszystkie aplikacje Java**” w TA
 
-    **Uwaga** Liczba potrzebnych dni programowania na przeniesienie aplikacji do Open Liberty wynosi 3,5 dnia, podczas gdy przeniesienie do WebSphere Liberty wynosi 0 dni. Dowiedzmy się dlaczego. 
+    **Uwaga:** Liczba potrzebnych dni programowania na przeniesienie aplikacji do Open Liberty wynosi 3,5 dnia, podczas gdy przeniesienie do WebSphere Liberty wynosi 0 dni. Dowiedzmy się dlaczego. 
 
 2.	Kliknij na `CustomerOrderServicesApp.ear` dla **`Open Liberty`**, aby otworzyć jego widok szczegółowy. 
 
@@ -643,7 +636,7 @@ Spójrzmy, dlaczego przeniesienie aplikacji na platformę Open Liberty wymaga wi
 
     ![](./images/media/image120.png)
   
-4.	Przewiń w dół do sekcji **"Unique Code Issues ”** w widoku szczegółów. 
+4.	Przewiń w dół do sekcji **`Unique Code Issues`** w widoku szczegółów. 
 
     Zobaczysz podział nakładów pracy wymaganych do rozwiązania każdego z oznaczonych problemów. 
 
@@ -688,7 +681,7 @@ W tej sekcji przyjrzymy się **konfiguracji serwera Liberty** `server.xml`, któ
 
 Transformation Advisor tworzy plik server.xml, który zawiera konfigurację serwera Liberty wymaganą do uruchomienia aplikacji na Liberty.  
 
-1.	Wróć do strony **"Wszystkie aplikacje Java ”** w Transformation Advisor, która wyświetla listę podsumowania aplikacji Java 
+1.	Wróć do strony **`Wszystkie aplikacje Java`** w Transformation Advisor, która wyświetla listę podsumowania aplikacji Java 
 
     ![](./images/media/image127.png)
 
@@ -765,7 +758,7 @@ Transformation Advisor tworzy plik server.xml, który zawiera konfigurację serw
  
 W tej sekcji przejrzysz wyniki analizy dla aplikacji **modresorts-1_0_war.ear** i określisz, czy jest ona dobrym kandydatem do migracji do Open Liberty lub WebSphere Liberty.
 
-1.	Wróć do strony „All Java Applications” w Transformation Advisor.
+1.	Wróć do strony `All Java Applications` w Transformation Advisor.
 
     ![](./images/media/image101.png)
 
@@ -779,7 +772,7 @@ W tej sekcji przejrzysz wyniki analizy dla aplikacji **modresorts-1_0_war.ear** 
 
     W tym przykładzie poziom złożoności migracji aplikacji **modresorts-1_0_war.ear** do **Open Liberty** to **Simple**, co wskazuje, że kod aplikacji nie musi być zmieniany przed przeniesieniem do Open Liberty. 
 
-    Aplikacja nie ma żadnych zależności, nie ma wspólnego kodu ani współdzielonych bibliotek. Ma jeden kwestię informacyjną do rozważenia. 
+    Aplikacja nie ma żadnych zależności, nie ma wspólnego kodu ani współdzielonych bibliotek. Ma jedną kwestię informacyjną do rozważenia. 
 
     Szacowany nakład pracy na development wynosi zero dni, ponieważ nie jest wymagana zmiana kodu.
 
@@ -803,7 +796,7 @@ W tej sekcji przejrzysz wyniki analizy dla aplikacji **modresorts-1_0_war.ear** 
  
     ![](./images/media/image106.png)
 
-5.  Przewiń w dół do sekcji **`Complexity Rules`**. Możesz zobaczyć, że nie jest wymagana zmiana kodu i nie ma kosztów developmentu, szacowany koszt migracji wynosi **0 dni**..
+5.  Przewiń w dół do sekcji **`Complexity Rules`**. Możesz zobaczyć, że nie jest wymagana zmiana kodu i nie ma kosztów developmentu, szacowany koszt migracji wynosi **0 dni**.
 
     Szacunki te opierają się na danych pochodzących z usług IBM, które obejmują migrację kodu aplikacji, ale nie obejmują pełnego zakresu projektu migracji, który obejmowałby konfigurację serwerów, testowanie itp.
  
@@ -900,7 +893,7 @@ Transformation Advisor wyświetla szczegóły dotyczące **migration bundle**, k
 
 Teraz szybko przeanalizujmy **Migration Plan** dla aplikacji Mod Resorts, aby zobaczyć artefakty tworzone przez Transformation Advisor w celu przyspieszenia wdrożenia aplikacji na platformie OpenShift.
 
-1.  Wróć do strony „**Wszystkie aplikacje Java**” w Transformation Advisor, która wyświetla listę podsumowania aplikacji Java.
+1.  Wróć do strony **`Wszystkie aplikacje Java`** w Transformation Advisor, która wyświetla listę podsumowania aplikacji Java.
 
     ![](./images/media/image59.png)
 
@@ -962,10 +955,6 @@ Teraz szybko przeanalizujmy **Migration Plan** dla aplikacji Mod Resorts, aby zo
       - Pierwszy etap to „**build-stage**”, który tworzy obraz kontenera dla aplikacji modresorts.
     
       - Drugi etap wykorzystuje obraz kontenera **Open Liberty kernel** i artefakty kompilacji utworzone z „etapu kompilacji” do zbudowania obrazu kontenera modresorts z aplikacją Modresorts i plikami konfiguracyjnymi do wdrożenia w środowisku kontenerowym.
-    
-      - **RUN features.sh** pobiera funkcje Open Liberty zdefiniowane w pliku server.xml
-  
-      - **RUN configure.sh** instaluje funkcje Open Liberty w obrazie Docker.
 
     ![](./images/media/image68.png)
     

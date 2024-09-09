@@ -7,7 +7,7 @@
 ## Wstęp
 To laboratorium pokazuje podstawowy proces modernizacji istniejącej aplikacji Java do WebSphere Liberty, wdrożonej na platformie Kubernetes - Red Hat OpenShift Container Platform. 
 
-Laboratorium koncentruje się na praktycznych aspektach wdrożania i konfiguracji aplikacji, a nie na analizie wyników Transformation Advisor. *Poprzednie laboratoria szczegółowo omawiają Transformation Advisor.*
+Laboratorium koncentruje się na praktycznych aspektach wdrożania i konfiguracji aplikacji, a nie na analizie wyników Transformation Advisor. *Poprzednie laboratorium szczegółowo omówiło Transformation Advisor.*
 
 Po ukończeniu tego modułu zdobędziesz umiejętności używania `pakietu migracyjnego Transformation Advisor` do wdrażania i konfigurowania aplikacji w następujących scenariuszach: 
 
@@ -29,11 +29,11 @@ Cele tego laboratorium są następujące:
 
   - Dowiesz się, jak wdrożyć aplikację w OpenShift za pomocą jednego polecenia.
 
-  - Dowiesz się, jak utworzyć wiele konfiguracji dla aplikacji i wdrożyć je w OpenShift.
+  - Dowiesz się, jak utworzyć wiele konfiguracji dla aplikacji i wdrożyć je w OpenShift. (opcjonalnie)
 
 ## Wymagania wstępne
 
-Przed rozpoczęciem zajęć laboratoryjnych powinieneś spełnić następujące wymagania wstępne:
+Przed rozpoczęciem zajęć laboratoryjnych powinieneś:
 
   - Mieć podstawowe pojęcie o polecenich systemu Linux.
 
@@ -85,7 +85,7 @@ Jeśli wykonujesz to laboratorium w ramach warsztatu prowadzonego przez instrukt
 
    <br>
  
-     ![student vm screen](./images/media/techzone-user-pw.png)
+  ![student vm screen](./images/media/techzone-user-pw.png)
    
    <br>
 
@@ -148,7 +148,7 @@ Aby uprościć laboratorium i umożliwić skupienie się na pakiecie migracyjnym
 
 1.  Uruchom następujące polecenie w terminalu:
 
-    a.  Otwórz nowe okno Terminala i sklonuj repozytorium git, aby pobrać artefakty laboratoryjne. Jeśli wykonywałeś laboratorium Lab1_TA, przejdź do punktu **`b`**.
+    a.  Otwórz nowe okno Terminala i sklonuj repozytorium git, aby pobrać artefakty laboratoryjne. Jeśli wykonywałeś laboratorium Lab1_TA, przejdź do punktu **`c`**.
 
     ![A screen shot of a computer Description automatically generated](./images/media/image10.png)
 
@@ -158,7 +158,7 @@ Aby uprościć laboratorium i umożliwić skupienie się na pakiecie migracyjnym
 
         git clone https://github.com/IBMTechSales/appmod-pot-labfiles.git
 
-    c.  **Dodaj uprawnienia „execute” dla skryptów**.
+    c.  **Dodaj uprawnienia „execute” dla skryptów usprawniających**.
 
         find /home/techzone/appmod-pot-labfiles -name "*.sh" -exec chmod +x {} \;
 
@@ -188,7 +188,7 @@ Pakiet migracyjny zawiera różne artefakty, w zależności od potrzeb aplikacji
 
 Transformation Advisor jest uruchamiany lokalnie na maszynie wirtualnej **Stacji roboczej**. 
 
-1. Uruchom narzędzie Transformation Advisor, wykonując poniższe czynności. Jeśli wykonywałeś laboratorium Lab1_TA, TA jest ju uruchomione. Przejdź do punktu **`d`**.
+1. Uruchom narzędzie Transformation Advisor, wykonując poniższe czynności. **Jeśli wykonywałeś laboratorium Lab1_TA, TA jest już uruchomione.** Przejdź do punktu **`d`**.
 
     a.  Na pasku narzędzi pulpitu maszyny wirtualnej **Stacji roboczej** kliknij ikonę `Terminal`, aby otworzyć okno Terminala.
 
@@ -216,7 +216,7 @@ Transformation Advisor jest uruchamiany lokalnie na maszynie wirtualnej **Stacji
  
      ![](./images/media/image14.png)
 
-    W następnej sekcji utworzysz nowy „**Workspace**” w Transformation Advisor i prześlesz zapisane wyniki skanowania serwera aplikacji WebSphere, który ma wdrożoną pojedynczą aplikację o nazwie „PlantsByWebSphere”.
+    W następnej sekcji utworzysz nowy **`Workspace`** w Transformation Advisor i prześlesz zapisane wyniki skanowania serwera aplikacji WebSphere, który ma wdrożoną pojedynczą aplikację o nazwie `PlantsByWebSphere`.
 
 
 ## 1.3 Tworzenie nowego obszaru roboczego i przesyłanie wyników skanowania z serwera aplikacji WebSphere.
@@ -233,7 +233,7 @@ Przestrzeń robocza to wyznaczony obszar, który będzie zawierał zalecenia dot
 
      ![A screenshot of a computer Description automatically generated](./images/media/image15.png)
 
-2. Prześlij "**wyniki skanowania**" dostępne w laboratorium.
+2. Prześlij **`wyniki skanowania`** dostępne w laboratorium.
 
     Plik z wynikami skanowania jest dostępny w ramach plików laboratoryjnych.
 
@@ -241,7 +241,7 @@ Przestrzeń robocza to wyznaczony obszar, który będzie zawierał zalecenia dot
 
     a. Kliknij **`Upload`**
 
-    b. Kliknij łącze **`Drop or add file`**. Następnie kliknij przycisk **`Upload`**.
+    b. Kliknij **`Drop or add file`**.
 
     ![A screen shot of a computer Description automatically generated](./images/media/image16.png)
 
@@ -280,13 +280,13 @@ Przestrzeń robocza to wyznaczony obszar, który będzie zawierał zalecenia dot
  
    ___
    
-   **Uwaga:** Niektóre z innych informacji wyświetlanych w Transformation Advisor opiszemy w dalszej części laboratorium..
+   **Uwaga:** Niektóre z innych informacji wyświetlanych w Transformation Advisor opiszemy w dalszej części laboratorium.
 
    ___
 
 ![A screenshot of a computer Description automatically generated](./images/media/image20.png)
 
- ***Czemu aplikacja **plantsbywebsphereee6.ear** jest gotowa do wdrożenia, skoro wykazuje 4 problemy? ***
+ ***Czemu aplikacja **plantsbywebsphereee6.ear** jest gotowa do wdrożenia, skoro wykazuje 4 problemy?***
  
  W tym przypadku aplikacja ma cztery kwestie (problemy) **`Informacyjne`**.
  
@@ -318,7 +318,7 @@ Przestrzeń robocza to wyznaczony obszar, który będzie zawierał zalecenia dot
 
     a. Rozwiń sekcję, aby zobaczyć szczegóły
 
-    b. W tym przypadku do wdrożenia wymagane są sterowniki DB2 o nazwach **db2jcc.jar** i **db2cc_licence.jar**.
+    b. W tym przypadku do wdrożenia wymagane są biblioteki sterowników DB2 o nazwach **db2jcc.jar** i **db2cc_licence.jar**.
 
     ![A screenshot of a computer Description automatically generated](./images/media/image23.png)
 
@@ -329,7 +329,7 @@ Przestrzeń robocza to wyznaczony obszar, który będzie zawierał zalecenia dot
     ![A screenshot of a computer Description automatically generated](./images/media/image24.png)
 
 
-W następnych cześciach laboratorium krok po kroku przeprowadzisz proces korzystania z pakietu migracyjnego Transformation Advisor w celu wdrożenia **plantsbywebsphereee6.ear**.
+W następnych cześciach laboratorium krok po kroku przejdziesz przez proces korzystania z pakietu migracyjnego Transformation Advisor w celu wdrożenia **plantsbywebsphereee6.ear**.
 
   - Upewnisz się, że aplikacja może działać lokalnie na WebSphere Liberty
 
@@ -339,7 +339,7 @@ W następnych cześciach laboratorium krok po kroku przeprowadzisz proces korzys
 
   - Wdrożysz obraz aplikacji na środowisku „**dev**” (i skonfigurujesz go) za pomocą jednego polecenian na OpenShift.
 
-  - Ponownie wdrożysz i skonfigurować obraz dla środowiska „**staging**” za pomocą jednego polecenia na OpenShift.
+  - Ponownie wdrożysz i skonfigurować obraz dla środowiska „**staging**” za pomocą jednego polecenia na OpenShift. (opcjonalnie)
 
 # Cześć 2.: Modernizacja środowiska wykonawczego    
 
@@ -347,7 +347,7 @@ W następnych cześciach laboratorium krok po kroku przeprowadzisz proces korzys
 
 **Modernizacja środowiska wykonawczego** polegan na migracji aplikację do środowiska wykonawczego „stworzonego dla chmury”. WebSphere Liberty to szybki, dynamiczny i łatwy w użyciu serwer aplikacji Java.
 
-Liberty jest open source, idealny nadaje się do wdrożenia na środowiska chmurowe i kontenerowe, posiada prostą konfiguracją XML, krótki czasem uruchamiania i nie wymaga restartów serwera w celu załadowania zmian.
+Liberty jest open source, idealny nadaje się do wdrożenia na środowiska chmurowe i kontenerowe, posiada prostą konfiguracją XML, krótki czasem uruchamiania i nie wymaga restartów serwera w celu załadowania zmian w trybie developerskim.
 
 Aplikacje wdrażane w kontenerowym środowisku wykonawczym WebSphere Liberty mogą być budowane, wdrażane i zarządzane przy użyciu tych samych wspólnych technologii i metodologii, które byłyby używane przez aplikacje natywne dla chmury.
 
@@ -357,7 +357,7 @@ W tym środowisku laboratoryjnym WebSphere Liberty jest zainstalowany lokalnie n
 
 W tej cześci ćwiczeń utworzysz nowy serwer Liberty, na którym uruchomisz aplikacje **PlantsByWebSphere**.
 
-Następnie przejrzysz `placeholder files` (pliki do podmiany) w pakiecie Transformation Advisor, aby zobaczyć pliki zależności, które należy skopiować na serwer Liberty.
+Następnie przejrzysz `placeholder files` (pliki zastępcze) w pakiecie Transformation Advisor, aby zobaczyć pliki zależności, które należy skopiować na serwer Liberty.
 
 Następnie użyjesz pliku `server.xml` wygenerowanego przez Transformation Advisor i zawartego w pakiecie migracyjnym, aby skonfigurować serwer Liberty dla aplikacji.
 
@@ -434,7 +434,7 @@ W tej sekcji skopiowane zostaną wymagane pliki zależne i konfiguracja serwera 
 
   - Skopiujesz **biblioteki DB2** do katalogu zdefiniowanego w „konfiguracji sterownika DB2” w pliku server.xml.
 
-  - Skopiujesz plik **PlantsByWebSphere EAR** do katalogu „apps” na serwerze Liberty.
+  - Skopiujesz plik **PlantsByWebSphere EAR** do katalogu `apps` na serwerze Liberty.
 
   - Skopiujesz plik **server.xml** z pakietu migracyjnego na serwer Liberty, zastępując domyślny plik server.xml.
 
@@ -444,17 +444,17 @@ Uruchomienie skryptu, spowoduje wyświetlenie komunikatu o naciśnięciu „**En
 
 <br/>
 
-**Skrypt wykonuje następujące kroki. 
+**Skrypt wykonuje następujące kroki:** 
 
-- **Krok 1:**: Tworzy nowy katalog, w którym zostanie rozpakowany pakiet migracyjny.
+- **Krok 1**: Tworzy nowy katalog, w którym zostanie rozpakowany pakiet migracyjny.
 
 - **Krok 2**: **Rozpakuje pakiet migracyjny**, zastępując ten, który wcześniej rozpakowałeś w laboratorium.
 
 - **Krok 3:** Stwórzy katalog „**lib/global**” na serwerze Liberty, do którego zostaną skopiowane biblioteki DB2. Katalog ten odpowiada lokalizacji zdefiniowanej w pliku **server.xml**.
 
-- **Krok 4:** Kopiuje bibliotek sterownika DB2 do katalogu „lib/global” na serwerze Liberty.
+- **Krok 4:** Kopiuje biblioteki sterowników DB2 do katalogu `lib/global` na serwerze Liberty.
 
-- **Krok 5:** Kopiuje pliku EAR aplikacji **PlantsByWebSphere** na serwer Liberty. Plik EAR jest kopiowany do katalogu „**apps**” na serwerze.
+- **Krok 5:** Kopiuje pliku EAR aplikacji **PlantsByWebSphere** na serwer Liberty. Plik EAR jest kopiowany do katalogu **`apps`** na serwerze.
 
 - **Krok 6:** Kopiuje plik **server.xml** z pakietu migracyjnego na serwer Liberty. Zastąpi on istniejący domyślny plik server.xml, który został utworzony podczas tworzenia serwera.
 
@@ -635,7 +635,7 @@ Funkcje skalowania, routingu, klastrowania, wysokiej dostępności i ciągłej d
 Pozwala to zespołowi operacyjnemu na uruchamianie natywnych dla chmury i zmodernizowanych aplikacji w tym samym środowisku z tymi samymi standardowymi ramami rejestrowania, monitorowania i bezpieczeństwa.
 
 
-## 3.1.1 Analiza pliku `Containerfile` użytego do zbudowania PlantsByWebSphere jako obrazu kontenera
+### 3.1.1 Analiza pliku `Containerfile` użytego do zbudowania PlantsByWebSphere jako obrazu kontenera
 
 W poprzedniej sekcji użyłeś pliku **server.xml**, aby uruchomić aplikację na lokalnej instancji Liberty. Miało to na celu pokazanie, w jaki sposób używany jest plik **server.xml** wygenerowany przez Transformation Advisor. Jeśli przechodzisz na Liberty w maszynach wirtualnych jako nowe środowisko uruchomieniowe, to już wszystko! 
 
@@ -1208,8 +1208,8 @@ W tym module dowiedziałeś się, jak wdrożyć aplikacje do WebSphere Liberty p
 
 Zapoznano się z opcjami wdrażania: 
 
-  - Liberty uruchamiane lokalnie
-  - Liberty jako obraz uruchomiony w lokalnym kontenerze
+  - Liberty uruchamiane lokalnie.
+  - Liberty jako obraz uruchomiony w lokalnym kontenerze.
   - Liberty jako obraz uruchomiony w OpenShift.
 
 Dowiedziałeś się, jak łatwo skonfigurować pakiet migracyjny, aby umożliwić wdrożenie aplikacji dla różnych środowisk.
@@ -1226,7 +1226,7 @@ Możesz kontynuować naukę w opcjonalnych sekcjach laboratorium.
 ___
 
 
-# Optional Sections: 
+# Sekcje opcjonalne: 
 
 <details>
  <summary><b><font color="dodgerblue">Kliknij, aby rozwinąć:</font></b> Sekcja 3.4 (opcjonalna - teoretyczna) GitOps i zarządzanie konfiguracją

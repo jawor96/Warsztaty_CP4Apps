@@ -10,6 +10,7 @@
 ### Środowisko Laboratoryjne
 
 [Link dla uczestnika](https://techzone.ibm.com/my/workshops/student/66d81f1e684f19a4a8b06945)
+
 Hasło będzie podane podczas warsztatów.
 
 ### Laboratoria:

@@ -75,7 +75,7 @@ Jeśli wykonujesz to laboratorium w ramach warsztatu prowadzonego przez instrukt
    
 2.  Jeśli zostaniesz poproszony o zalogowanie się do maszyny wirtualnej `stacja robocza`, użyj poniższych danych uwierzytelniających: 
 
-    Dane logowania do maszyny wirtualnej „**stacja robocza**” to:
+    Dane logowania do maszyny wirtualnej **`stacja robocza`** to:
  
      - User ID: **techzone**
 
@@ -125,11 +125,11 @@ Jeśli wykonujesz to laboratorium w ramach warsztatu prowadzonego przez instrukt
 
 W tym laboratorium użyjesz `migration bundle` (pakiet artefaktów wdrożeniowych) Transformation Advisor do zbudowania obrazu kontenera i wdrożenia aplikacji na lokalnym kontenerze w celu przetestowania zbudowanego obrazu.
 
-Następnie aplikacja zostanie wdrożona w środowiskach „dev” i „staging” w OpenShift. 
+Następnie aplikacja zostanie wdrożona w środowiskach `dev` i `staging` w OpenShift. 
 
-Wykorzystasz narzędzia `WebSphere Liberty Operator`, Kustomize (natywny framework do zarządzania konfiguracją Kubernetes) oraz artefakty wdrożenia wygenerowane przez pakiet migracyjny IBM Cloud Transformation Advisor.
+Wykorzystasz narzędzia `WebSphere Liberty Operator`, `Kustomize` (natywny framework do zarządzania konfiguracją Kubernetes) oraz artefakty wdrożenia wygenerowane przez pakiet migracyjny IBM Cloud Transformation Advisor.
 
-Aby uprościć laboratorium i umożliwić skupienie się na pakiecie migracyjnym, niektóre oprogramowanie i artefakty zostały już przygotowane. Są one następujące:
+Aby uprościć laboratorium i umożliwić skupienie się na pakiecie migracyjnym, niektóre oprogramowanie i artefakty zostały już przygotowane. Są to:
 
   - **Transformation Advisor** został zainstalowany (w poprzednim laboratorium), a dane z serwara do migracji zostały zebrane.
 
@@ -139,7 +139,7 @@ Aby uprościć laboratorium i umożliwić skupienie się na pakiecie migracyjnym
 
   - **PlantsByWebSphere Sample Application**, zbudowana jako plik Enterprise Archive (EAR), jest dostępna w dostarczonym repozytorium laboratoryjnym.
 
-  - W celu zaoszczędzenia czasu i umożliwienia skupienia się na wartości i wynikach laboratorium, zostaną użyte **skrypty usprawniające** w celu przyspieszenia wykonywania zadań (w idealnym przypadku zautomatyzowane czynności byłyby również skryptowane w Twoim środowisku produkcyjnym).
+  - W celu zaoszczędzenia czasu i umożliwienia skupienia się na wartości i wynikach laboratorium, zostaną użyte **skrypty usprawniające** co przyspieszy wykonywanie zadań (w idealnym przypadku zautomatyzowane czynności byłyby również skryptowane w Twoim środowisku produkcyjnym).
 
 
 # Cześć 1.: Ocena aplikacji    
@@ -164,7 +164,7 @@ Aby uprościć laboratorium i umożliwić skupienie się na pakiecie migracyjnym
 
 2.  Uruchom skrypt, aby skonfigurować środowisko laboratoryjne.
 
-    Skrypt lab-setup.sh przenosi pliki ze sklonowanego repozytorium git do katalogu **student** używanego w laboratorium.
+    Skrypt `lab-setup.sh` przenosi pliki ze sklonowanego repozytorium git do katalogu **student** używanego w laboratorium.
  
         cd /home/techzone/appmod-pot-labfiles/labs/RuntimeModernization/scripts
  
@@ -221,7 +221,7 @@ Transformation Advisor jest uruchamiany lokalnie na maszynie wirtualnej **Stacji
 
 ## 1.3 Tworzenie nowego obszaru roboczego i przesyłanie wyników skanowania z serwera aplikacji WebSphere.
 
-W tej sekcji należy utworzyć nowy obszar roboczy o nazwie **"proof_of_concept ”**.
+W tej sekcji należy utworzyć nowy obszar roboczy o nazwie **`proof_of_concept`**.
 
 Przestrzeń robocza to wyznaczony obszar, który będzie zawierał zalecenia dotyczące migracji dostarczone przez Transformation Advisor na podstawie wyników skanowania środowiska serwera aplikacji przez Data Collector.
 
@@ -259,11 +259,11 @@ Przestrzeń robocza to wyznaczony obszar, który będzie zawierał zalecenia dot
 
     Obszar roboczy **proof-of-concept** zawiera dane dla pojedynczej aplikacji, którą wybraliśmy jako przypadek testowy. Przeanalizuj tą aplikację w Transformation Advisor.
 
-    Obszar roboczy „**proof_of_concept**” wyświetla stronę „**All Java Applications**”, która pokazuje zalecenia dla obszaru roboczego.
+    Obszar roboczy **`proof_of_concept`** wyświetla stronę **`All Java Applications`**, która pokazuje zalecenia dla obszaru roboczego.
 
     Istnieje jedna aplikacja o nazwie **plantsbywebsphereee6.ear**. 
     
-    Domyślnie jako cel modernizacji wybrana jest aplikacja „WebSphere Liberty”.
+    Domyślnie jako cel modernizacji wybrana jest aplikacja `WebSphere Liberty`.
 
     ![A screenshot of a computer Description automatically generated](./images/media/image19.png)
 
@@ -318,13 +318,13 @@ Przestrzeń robocza to wyznaczony obszar, który będzie zawierał zalecenia dot
 
     a. Rozwiń sekcję, aby zobaczyć szczegóły
 
-    b. W tym przypadku do wdrożenia wymagane są biblioteki sterowników DB2 o nazwach **db2jcc.jar** i **db2cc_licence.jar**.
+    b. W tym przypadku do wdrożenia wymagane są biblioteki sterowników DB2 o nazwach **`db2jcc.jar`** i **`db2cc_licence.jar`**.
 
     ![A screenshot of a computer Description automatically generated](./images/media/image23.png)
 
 3.  Pobierz pakiet migracyjny, klikając **`Download`** w prawym dolnym rogu. 
 
-    Plik zip o nazwie „**plantsbywebsphereee6.ear_migrationBundle.zip**” zostanie pobrany do folderu **Download**.
+    Plik zip o nazwie **`plantsbywebsphereee6.ear_migrationBundle.zip`** zostanie pobrany do folderu **Download**.
 
     ![A screenshot of a computer Description automatically generated](./images/media/image24.png)
 
@@ -333,13 +333,13 @@ W następnych cześciach laboratorium krok po kroku przejdziesz przez proces kor
 
   - Upewnisz się, że aplikacja może działać lokalnie na WebSphere Liberty
 
-  - Zbudujesz niezmienny obraz kontenera działający na WebSphere Liberty
+  - Zbudujesz obraz kontenera działający na WebSphere Liberty
 
   - Upewnisz się, że aplikacja może działać lokalnie na WebSphere Liberty w kontenerze.
 
-  - Wdrożysz obraz aplikacji na środowisku „**dev**” (i skonfigurujesz go) za pomocą jednego polecenian na OpenShift.
+  - Wdrożysz obraz aplikacji na środowisku **`dev`** (i skonfigurujesz ją) za pomocą jednego polecenian na OpenShift.
 
-  - Ponownie wdrożysz i skonfigurować obraz dla środowiska „**staging**” za pomocą jednego polecenia na OpenShift. (opcjonalnie)
+  - Ponownie wdrożysz i skonfigurować obraz dla środowiska **`staging`** za pomocą jednego polecenia na OpenShift. (opcjonalnie)
 
 # Cześć 2.: Modernizacja środowiska wykonawczego    
 
@@ -363,7 +363,7 @@ Następnie użyjesz pliku `server.xml` wygenerowanego przez Transformation Advis
 
 ### 2.1.2 Tworzenie lokalnego serwera Liberty
 
-1.  W oknie **`Terminal`** utwórz nowy lokalny serwer WebSphere Liberty o nazwie „**pbwserver**”.
+1.  W oknie **`Terminal`** utwórz nowy lokalny serwer WebSphere Liberty o nazwie **`pbwserver`**.
 
         /home/techzone/wlp/bin/server create pbwserver
 
@@ -395,7 +395,7 @@ Następnie użyjesz pliku `server.xml` wygenerowanego przez Transformation Advis
 
     [**http://localhost:9080/PlantsByWebSphere**](http://localhost:9080/PlantsByWebSphere)
  
-    Otrzymasz komunikat, że „**Context Root Not Found**”. Jest to oczekiwane, ponieważ aplikacja nie została jeszcze wdrożona na serwerze Liberty.
+    Otrzymasz komunikat, że **`Context Root Not Found`**. Jest to oczekiwane, ponieważ aplikacja nie została jeszcze wdrożona na serwerze Liberty.
     
     ![A screenshot of a computer Description automatically generated](./images/media/image26.png)  
 
@@ -406,7 +406,7 @@ Następnie użyjesz pliku `server.xml` wygenerowanego przez Transformation Advis
 
 W tej sekcji przejrzysz pakiet migracyjny, aby zobaczyć, jakie pliki należy dodać do konfiguracji WebSphere Liberty, aby uruchomić aplikację. 
 
-Następnie użyjesz dostarczonego pliku konfiguracyjnego Liberty, **`server.xml`**, aby skonfigurować serwer Liberty.
+Następnie użyjesz dostarczonego pliku konfiguracyjnego Liberty - **`server.xml`**, aby skonfigurować serwer.
 
 Plik `server.xml` służy do konfigurowania Liberty poprzez dostarczanie ustawień dla portów, zabezpieczeń, ścieżek kontekstowych oraz konfiguracji specyficznych dla aplikacji, takich jak dostęp do źródeł danych aplikacji.
 
@@ -438,9 +438,9 @@ W tej sekcji skopiowane zostaną wymagane pliki zależne i konfiguracja serwera 
 
   - Skopiujesz plik **server.xml** z pakietu migracyjnego na serwer Liberty, zastępując domyślny plik server.xml.
 
-Aby ułatwić wykonanie powyższych kroków „kopiowania”, przygotowaliśmy „**skrypt usprawniający**”, który tworzy wymagane katalogi i kopiuje pliki na serwer Liberty.
+Aby ułatwić wykonanie powyższych kroków „kopiowania”, przygotowaliśmy **`skrypt usprawniający`**, który tworzy wymagane katalogi i kopiuje pliki na serwer Liberty.
 
-Uruchomienie skryptu, spowoduje wyświetlenie komunikatu o naciśnięciu „**Enter**” przed wykonaniem każdego z poleceń w skrypcie. Pozwoli to na zapoznanie się z poleceniem, unikając konieczności wykonywania czynności kopiowania/wklejania w laboratorium.
+Uruchomienie skryptu, spowoduje wyświetlenie komunikatu o naciśnięciu **`Enter`** przed wykonaniem każdego z poleceń w skrypcie. Pozwoli to na zapoznanie się z poleceniem, unikając konieczności wykonywania czynności kopiowania/wklejania w laboratorium.
 
 <br/>
 
@@ -450,7 +450,7 @@ Uruchomienie skryptu, spowoduje wyświetlenie komunikatu o naciśnięciu „**En
 
 - **Krok 2**: **Rozpakuje pakiet migracyjny**, zastępując ten, który wcześniej rozpakowałeś w laboratorium.
 
-- **Krok 3:** Stwórzy katalog „**lib/global**” na serwerze Liberty, do którego zostaną skopiowane biblioteki DB2. Katalog ten odpowiada lokalizacji zdefiniowanej w pliku **server.xml**.
+- **Krok 3:** Stwórzy katalog **`lib/global`** na serwerze Liberty, do którego zostaną skopiowane biblioteki DB2. Katalog ten odpowiada lokalizacji zdefiniowanej w pliku **server.xml**.
 
 - **Krok 4:** Kopiuje biblioteki sterowników DB2 do katalogu `lib/global` na serwerze Liberty.
 
@@ -500,7 +500,7 @@ Uruchomienie skryptu, spowoduje wyświetlenie komunikatu o naciśnięciu „**En
 
     ___
 
-2.  Z **Terminala** uruchom serwer Liberty o nazwie „**pbwserver**”.
+2.  Z **Terminala** uruchom serwer Liberty o nazwie **`pbwserver`**.
 
         /home/techzone/wlp/bin/server start pbwserver
 
@@ -512,7 +512,7 @@ Uruchomienie skryptu, spowoduje wyświetlenie komunikatu o naciśnięciu „**En
  
     ![A website page of a garden Description automatically generated](./images/media/image36.png)
 
-4.  Spróbuj kliknąć dowolną z zakładek: “**Flowers**”, **Fruits & Vegetables**”, lub “**Trees**”..
+4.  Spróbuj kliknąć dowolną z zakładek: **`Flowers`**, **`Fruits & Vegetables`**, lub **`Trees`**.
 
     ___
 
@@ -526,7 +526,7 @@ Uruchomienie skryptu, spowoduje wyświetlenie komunikatu o naciśnięciu „**En
 
     **Co się stało?**
     
-    Transformation Advisor nie zbiera żadnych „wrażliwych danych” dla serwera aplikacji. Oznacza to, że informacje konfiguracyjne specyficzne dla aplikacji w pliku **server.xml** nie zostały ustawione. W tym przypadku brakuje `nazwy użytkownika` i `hasła` dostępu do bazy danych.
+    Transformation Advisor nie zbiera żadnych `wrażliwych danych` dla serwera aplikacji. Oznacza to, że informacje konfiguracyjne specyficzne dla aplikacji w pliku **server.xml** nie zostały ustawione. W tym przypadku brakuje `nazwy użytkownika` i `hasła` dostępu do bazy danych.
 
     W następnej sekcji przejrzysz plik server.xml i dodasz wrażliwe dane wymagane do uzyskania dostępu do bazy danych aplikacji.  
 
@@ -540,7 +540,7 @@ Plik **`server.xml`** definiuje zestaw **`funkcji`** wymaganych przez aplikację
 
 1. Przejrzyj plik server.xml
 
-    Używając edytora „**`gedit`**” w oknie **`Terminala`**, otwórz plik **server.xml** znajdujący się na serwerze Liberty
+    Używając edytora **`gedit`** w oknie **`Terminala`**, otwórz plik **server.xml** znajdujący się na serwerze Liberty
 
         gedit /home/techzone/wlp/usr/servers/pbwserver/server.xml
 
@@ -556,7 +556,7 @@ Plik **`server.xml`** definiuje zestaw **`funkcji`** wymaganych przez aplikację
 
       ![A computer code with green and white text Description automatically generated](./images/media/image39.png)
 
-    - **Sekcja 3:** **`datasource`** zawiera wszystkie informacje wymagane do uzyskania dostępu do bazy danych: Użytkownik bazy danych, hasło, nazwa bazy danych, host i numer portu.
+    - **Sekcja 3:** **`datasource`** zawiera wszystkie informacje wymagane do uzyskania dostępu do bazy danych: użytkownik bazy danych, hasło, nazwa bazy danych, host i numer portu.
 
       ![A computer screen shot of a program Description automatically generated](./images/media/image40.png)
 
@@ -572,7 +572,7 @@ Plik **`server.xml`** definiuje zestaw **`funkcji`** wymaganych przez aplikację
       ![A screenshot of a computer program Description automatically generated](./images/media/image42.png)
 
 
-2.  Powodem, dla którego aplikacja **PlantsByWebSphere** zwróciła „Exception” jest to, że wartości **zmiennych wrażliwych** nie zostały ustawione. 
+2.  Powodem, dla którego aplikacja **PlantsByWebSphere** zwróciła `Exception` jest to, że wartości **zmiennych wrażliwych** nie zostały ustawione. 
   
     ![](./images/media/image43.png)
 
@@ -582,11 +582,11 @@ Plik **`server.xml`** definiuje zestaw **`funkcji`** wymaganych przez aplikację
 ### 2.1.6 Zaktualizuj server.xml i ponownie przetestuj aplikację PlantsByWebSphere
 
 
-1. W oknie terminala zatrzymaj serwer Liberty o nazwie „pbwserver”.
+1. W oknie terminala zatrzymaj serwer Liberty o nazwie `pbwserver`.
 
         /home/techzone/wlp/bin/server stop pbwserver
 
-2. W otwartym edytorze `gedit` i zaktualizuj wartości w pliku **server.xml** dla zmiennych wrażliwych, jak pokazano poniżej:
+2. W otwartym edytorze `gedit` zaktualizuj wartości w pliku **server.xml** dla zmiennych wrażliwych, jak pokazano poniżej:
 
    a. Przewiń do dołu pliku server.xml, aby wyświetlić zmienne danych wrażliwych. 
 
@@ -608,12 +608,12 @@ Plik **`server.xml`** definiuje zestaw **`funkcji`** wymaganych przez aplikację
         http://localhost:9080/PlantsByWebSphere
 
 
-    a. Kliknij zakładkę „**Flowers**”. Powinien zostać wyświetlony katalog kwiatów.
+    a. Kliknij zakładkę **`Flowers`**. Powinien zostać wyświetlony katalog kwiatów.
 
     ![A screenshot of a computer Description automatically generated](./images/media/image45.png)
 
 
-3. W oknie **Terminal**, `Zatrzymaj` serwer Liberty o nazwie „**pbwserver**”.
+3. W oknie **Terminal**, `Zatrzymaj` serwer Liberty o nazwie **`pbwserver`**.
 
         /home/techzone/wlp/bin/server stop pbwserver
 
@@ -693,7 +693,7 @@ ___
 
       ![](./images/media/image53.png)
 
-    b. Zamknij edytor „gedit”. **NIE ZAPISUJ ŻADNYCH ZMIAN W PLIKU!** 
+    b. Zamknij edytor `gedit`. **NIE ZAPISUJ ŻADNYCH ZMIAN W PLIKU!** 
 
     <br/>
 
@@ -720,7 +720,7 @@ W tym laboratorium należy wykonać następujące kroki, aby zbudować, skonfigu
 
 Aby ułatwić wykonanie powyższych kroków, przygotowaliśmy „skrypt usprawniający”, który wykonuje te kroki.
 
-Uruchomienie skryptu, spowoduje wyświetlenie komunikatu o naciśnięciu „**Enter**” przed wykonaniem każdego z poleceń w skrypcie. Pozwoli to na zapoznanie się z poleceniem, unikając konieczności wykonywania czynności kopiowania/wklejania w laboratorium.
+Uruchomienie skryptu, spowoduje wyświetlenie komunikatu o naciśnięciu **`Enter`** przed wykonaniem każdego z poleceń w skrypcie. Pozwoli to na zapoznanie się z poleceniem, unikając konieczności wykonywania czynności kopiowania/wklejania w laboratorium.
 
 1. Uruchom następujące polecenie, aby skonfigurować, zbudować i uruchomić aplikację PlantsByWebSphere w lokalnym kontenerze.
 
@@ -728,7 +728,7 @@ Uruchomienie skryptu, spowoduje wyświetlenie komunikatu o naciśnięciu „**En
  
         ./build-container.sh -i
 
-    **Uwaga:** Parametr `-i` nakazuje skryptowi uruchomienie się w trybie interaktywnym, wyświetlając komunikat o naciśnięciu klawisza **Enter`** w celu uruchomienia pokazanego polecenia.
+    **Uwaga:** Parametr `-i` nakazuje skryptowi uruchomienie się w trybie interaktywnym, wyświetlając komunikat o naciśnięciu klawisza **`Enter`** w celu uruchomienia pokazanego polecenia.
 
     ___
 
@@ -827,7 +827,7 @@ W następnej sekcji przyjrzymy się, w jaki sposób pakiet migracyjny pomaga ła
 
 Korzystając z **`overlays`**, możesz oddzielić podstawowe informacje konfiguracyjne (porty, nazwy, hosty itp.) od wrażliwych danych (nazwy użytkowników, hasła itp.), które mogą ulec zmianie w każdym wdrożeniu.
 
-Każdy artefakt **kustomize** to zwykły `YAML`, który może być walidowany i przetwarzany w standardowy sposób. Dodatkowo sprawia to, że są bardzo czytelne dla użytkownika! Jest on natywnie wbudowany w **kubectl** i klienta **OpenShift**.
+Każdy artefakt **kustomize** to zwykły `YAML`, który może być walidowany i przetwarzany w standardowy sposób. Dodatkowo są bardzo czytelne dla użytkownika! Jest on natywnie wbudowany w **kubectl** i klienta **OpenShift**.
 
 1.  W oknie **`Terminala`** wylistuj zawartość folderu **`deploy`** pakietu migracyjnego
 
@@ -855,9 +855,9 @@ Każdy artefakt **kustomize** to zwykły `YAML`, który może być walidowany i 
 
     **base:**
 
-    - zawiera **`Kustomization.yaml`**, który opisuje zasoby zarządzane przez Kustomize
+    - zawiera **`kustomization.yaml`**, który opisuje zasoby zarządzane przez Kustomize
 
-    - zawiera **application.cr-yaml** Jest to **spersonalizowany plik zasobów operatora WebSphere Liberty**, który wykona wdrożenie i zamontuje niezbędne "secrets" i konfigurację, które są tworzone z pliku `secrets` i pliku `config map`. 
+    - zawiera **`application.cr-yaml`**. Jest to **spersonalizowany plik zasobów operatora WebSphere Liberty**, który wykona wdrożenie i zamontuje niezbędne "secrets" i konfigurację, które są tworzone z pliku `secrets` i pliku `config map`. 
     
     **Overlays:**
 
@@ -872,7 +872,7 @@ Każdy artefakt **kustomize** to zwykły `YAML`, który może być walidowany i 
 
     - Plik `secret yaml` będzie zawierał wszystkie wrażliwe dane specyficzne dla aplikacji, które zostaną utworzone jako secrets w OpenShift.
 
-    - Opcjonalnie zawierają dodatkowe pliki yaml, które nadpisują konfigurację w konfiguracji `base`.
+    - Opcjonalnie folder zawiera dodatkowe pliki yaml, które nadpisują konfigurację w konfiguracji `base`.
 
     ___
 
@@ -885,14 +885,14 @@ Każdy artefakt **kustomize** to zwykły `YAML`, który może być walidowany i 
 
 ## 3.3 Wdrożenie na OpenShift
 
-Z poprzednich sekcji laboratorium mamy już zbudowany „niezmienny obraz kontenera”. 
+Z poprzednich sekcji laboratorium mamy już zbudowany  `obraz kontenera`. 
 
-W tej sekcji zostanie on przesłany do rejestru obrazów, a następnie wdrożony do projektu OpenShift „**dev**” wraz z konfiguracją za pomocą jednego polecenia, przy użyciu `WebSphere Liberty Operator` i wygenerowanych artefaktów wdrożenia w `migration bundle`.
+W tej sekcji zostanie on przesłany do rejestru obrazów, a następnie wdrożony do projektu OpenShift **`dev`** wraz z konfiguracją za pomocą jednego polecenia, przy użyciu `WebSphere Liberty Operator` i wygenerowanych artefaktów wdrożenia w `migration bundle`.
 
 
-### 3.3.1 Wdrożenie aplikacji do środowiska OpenShift „dev”.
+### 3.3.1 Wdrożenie aplikacji do środowiska OpenShift `dev`.
 
-Aplikacja korzysta z bazy danych DB2, która zawiera katalog elementów używanych w środowisku „**dev**”.
+Aplikacja korzysta z bazy danych DB2, która zawiera katalog elementów używanych w środowisku **`dev`**.
 
 ___
 
@@ -911,19 +911,19 @@ Należy wykonać następujące kroki, które zostaną zrobione przy użyciu skry
 
   - Logowanie do OpenShift.
 
-  - Utworzenie projektu „dev”, w którym zostanie wdrożona aplikacja.
+  - Utworzenie projektu `dev`, w którym zostanie wdrożona aplikacja.
 
   - Logowanie do wewnętrznego rejestru OpenShift.
 
   - Wysłanie obrazu kontenera do rejestru.
 
-  - Wdrożenie aplikacji i jej konfiguracji w projekcie „dev” OpenShift.
+  - Wdrożenie aplikacji i jej konfiguracji w projekcie `dev` OpenShift.
 
 Aby przyspieszyć wykonywanie powyższych kroków, przygotowaliśmy „skrypt usprawniający”, który je wykonuje.
 
-Uruchomienie skryptu, spowoduje wyświetlenie komunikatu o naciśnięciu „**Enter**” przed wykonaniem każdego z poleceń w skrypcie. Pozwoli to na zapoznanie się z poleceniem, unikając konieczności wykonywania czynności kopiowania/wklejania w laboratorium.
+Uruchomienie skryptu, spowoduje wyświetlenie komunikatu o naciśnięciu **`Enter`** przed wykonaniem każdego z poleceń w skrypcie. Pozwoli to na zapoznanie się z poleceniem, unikając konieczności wykonywania czynności kopiowania/wklejania w laboratorium.
 
-1. Uruchom następujące polecenie, aby oznaczyć i wypchnąć obraz kontenera PlantsByWebSphere do wewnętrznego rejestru OpenShift i wdrożyć aplikację w projekcie „dev”.
+1. Uruchom następujące polecenie, aby oznaczyć i wypchnąć obraz kontenera PlantsByWebSphere do wewnętrznego rejestru OpenShift i wdrożyć aplikację w projekcie `dev`.
 
         cd /home/techzone/appmod-pot-labfiles/labs/RuntimeModernization/scripts
  
@@ -939,7 +939,7 @@ Uruchomienie skryptu, spowoduje wyświetlenie komunikatu o naciśnięciu „**En
 
 
     <details>
-     <summary><b><font color="dodgerblue">Kliknij, aby otowrzyć:</font></b> Zrzuty ekranu każdego kroku skryptu "dev-deploy-pbw-ocp".
+     <summary><b><font color="dodgerblue">Kliknij, aby otowrzyć:</font></b> Zrzuty ekranu każdego kroku skryptu `dev-deploy-pbw-ocp`.
      </summary>
 
    <br/> 
@@ -953,11 +953,11 @@ Uruchomienie skryptu, spowoduje wyświetlenie komunikatu o naciśnięciu „**En
 
     ![A white paper with black text Description automatically generated](./images/media/image66.png)
 
-    **Krok 3:** Utworzenie projektu „dev” w OpenShift, gdzie aplikacja zostanie wdrożona.
+    **Krok 3:** Utworzenie projektu `dev` w OpenShift, gdzie aplikacja zostanie wdrożona.
 
     ![A screenshot of a computer Description automatically generated](./images/media/image67.png)
 
-    **Krok 4:** Przejście do projektu „dev”, gdzie będą wykonywane kolejne polecenia OCP w skrypcie.
+    **Krok 4:** Przejście do projektu `dev`, gdzie będą wykonywane kolejne polecenia OCP w skrypcie.
 
     ![A screen shot of a computer Description automatically generated](./images/media/image68.png)
   
@@ -973,7 +973,7 @@ Uruchomienie skryptu, spowoduje wyświetlenie komunikatu o naciśnięciu „**En
 
     ![A close-up of a computer screen Description automatically generated](./images/media/image71.png)
 
-    **Krok 8:** Wdrożenie aplikacji PlantsByWebSphere i jej konfiguracji w projekcie „dev”.
+    **Krok 8:** Wdrożenie aplikacji PlantsByWebSphere i jej konfiguracji w projekcie `dev`.
 
     ![A screen shot of a computer program Description automatically generated](./images/media/image72.png)
 
@@ -986,7 +986,7 @@ Uruchomienie skryptu, spowoduje wyświetlenie komunikatu o naciśnięciu „**En
 
     ![A screenshot of a computer Description automatically generated](./images/media/image74.png)
 
-    **Krok 11:** Wyświetlenie `route` do aplikacji PlantsByWebSphere uruchomionej w projekcie „dev”.
+    **Krok 11:** Wyświetlenie `route` do aplikacji PlantsByWebSphere uruchomionej w projekcie `dev`.
 
     ![A screenshot of a computer Description automatically generated](./images/media/image75.png)
  
@@ -1013,7 +1013,7 @@ Uruchomienie skryptu, spowoduje wyświetlenie komunikatu o naciśnięciu „**En
 
     ![A website page of a garden Description automatically generated](./images/media/image78.png)
 
-4. Kliknij kategorię **`Trees`** i wyświetl drzewa załadowane do bazy danych środowiska „dev”.
+4. Kliknij kategorię **`Trees`** i wyświetl drzewa załadowane do bazy danych środowiska `dev`.
 
     Ten katalog drzew został pobrany z bazy danych DB2 w środowisku `dev`.
  
@@ -1021,14 +1021,14 @@ Uruchomienie skryptu, spowoduje wyświetlenie komunikatu o naciśnięciu „**En
 
 
 
-###  3.3.2 Przegląd konfiguracji „dev”, która została użyta do wdrożenia aplikacji i konfiguracji
+###  3.3.2 Przegląd konfiguracji `dev`, która została użyta do wdrożenia aplikacji i konfiguracji
 
 Katalog **`overlays/dev`** zawiera konfigurację, która jest specyficzna i unikalna dla wdrożenia **`dev`**.
 
 
 1. Sprawdź i dowiedz się, jak skonfigurować wrażliwe dane jako secret Kubernetes
  
-    a. W oknie **`Terminal`** przejdź do pliku yaml „`secrets`” w folderze „dev” w pakiecie migracyjnym.
+    a. W oknie **`Terminal`** przejdź do pliku yaml „`secrets`” w folderze `dev` w pakiecie migracyjnym.
 
         clear
         
@@ -1094,7 +1094,7 @@ Katalog **`overlays/dev`** zawiera konfigurację, która jest specyficzna i unik
 
     ![](./images/media/image84.png)
 
-    e.  **`Zamknij`** edytor `gedit`. **NIE ZAPISUJ ŻADNYCH ZMIAN W PLIKU!
+    e.  **`Zamknij`** edytor `gedit`. **NIE ZAPISUJ ŻADNYCH ZMIAN W PLIKU!**
     
 
 3.  W oknie **Terminal**, sprawdź `config map` dla wdrożenia `dev`
@@ -1108,11 +1108,11 @@ Katalog **`overlays/dev`** zawiera konfigurację, która jest specyficzna i unik
         gedit overlays/dev/plantsbywebsphereee6-configmap.yaml
 
 
-    a. Ta konfiguracja zastępuje **nazwę serwera bazy danych**. Odwołuje się do serwera bazy danych aplikacji dla środowiska „**dev**”.
+    a. Ta konfiguracja zastępuje **nazwę serwera bazy danych**. Odwołuje się do serwera bazy danych aplikacji dla środowiska **`dev`**.
 
     ![](./images/media/image85.png)
 
-    b.  **`Zamknij`** edytor „**gedit**”. **NIE ZAPISUJ ŻADNYCH ZMIAN W PLIKU!**
+    b.  **`Zamknij`** edytor **`gedit`**. **NIE ZAPISUJ ŻADNYCH ZMIAN W PLIKU!**
 
 
 
@@ -1149,7 +1149,7 @@ W tej sekcji przyjrzysz się **WebSphere Liberty Operator** w konsoli OpenShift,
 
     ![A green circle with text Description automatically generated](./images/media/image87.png)
 
-    b. Zobaczysz aplikację **plantsbywebsphereee6** wymienioną w namespace „dev”.
+    b. Zobaczysz aplikację **plantsbywebsphereee6** wymienioną w namespace `dev`.
 
     c. Kliknij łącze o nazwie **`plantsbywebsphereee6`** w kolumnie **Name**.
 
@@ -1190,7 +1190,7 @@ W tej sekcji przyjrzysz się **WebSphere Liberty Operator** w konsoli OpenShift,
 
     ![A screenshot of a computer Description automatically generated](./images/media/image95.png)
 
-    f.  Dodaj kontekst główny „**PlantsByWebSphere ”**, aby uzyskać dostęp do aplikacji PlantsByWebSphere.
+    f.  Dodaj kontekst główny **`PlantsByWebSphere`**, aby uzyskać dostęp do aplikacji PlantsByWebSphere.
 
         http://plantsbywebsphereee6-dev.apps.ocp.ibm.edu/PlantsByWebSphere
 
@@ -1242,19 +1242,19 @@ Konfigurację można dalej dystrybuować do różnych repozytoriów dla każdego
 
 ![Czarne tło z białymi strzałkami i kropkami Opis wygenerowany automatycznie](./images/media/image105.png)
 
-Powyższa ilustracja pochodzi z interesującego artykułu na temat GitOps w świecie rzeczywistym: <https://developer.ibm.com/blogs/gitops-best-practices-for-the-real-world/>.
+Powyższa ilustracja pochodzi z interesującego artykułu na temat zastosowania GitOps w prawdziwym świecie: <https://developer.ibm.com/blogs/gitops-best-practices-for-the-real-world/>.
 
 W tym laboratorium nie będziemy szczegółowo omawiać wszystkich aspektów GitOps, jednak istnieją dwa istotne obszary, o których warto krótko wspomnieć.
 
 **Dryf konfiguracji**
 
-W przypadku podejścia GitOps istnieje ryzyko, że wdrożona konfiguracja klastra OpenShift nie odpowiada temu, co znajduje się w repozytorium Git. Ktoś mógł na przykład bezpośrednio zaktualizować klaster OpenShift. Istnieje wiele narzędzi do zarządzania tym dryfem konfiguracji, przy czym ArgoCD jest powszechnym narzędziem do rozwiązywania tego problemu. Można go skonfigurować do synchronizacji ręcznej lub automatycznej, dzięki czemu wszelkie zmiany wprowadzone bezpośrednio w klastrze są przywracane do tego, co znajduje się w repozytorium Git. 
+W przypadku podejścia GitOps istnieje ryzyko, że wdrożona konfiguracja klastra OpenShift nie odpowiada temu, co znajduje się w repozytorium Git. Ktoś mógł na przykład bezpośrednio zaktualizować klaster OpenShift. Istnieje wiele narzędzi do zarządzania tym dryfem. `ArgoCD` jest powszechnym narzędziem do rozwiązywania tego problemu. Można go skonfigurować do synchronizacji ręcznej lub automatycznej, dzięki czemu wszelkie zmiany wprowadzone bezpośrednio w klastrze są przywracane do tego, co znajduje się w repozytorium Git. 
 
 Operator OpenShift GitOps może być użyty do zainstalowania ArgoCD w klastrze OpenShift. Więcej informacji na ten temat można znaleźć tutaj: <https://developer.ibm.com/tutorials/deploy-open-liberty-applications-with-gitops/>
 
 **Zabezpieczanie Secrets**
 
-Nawet w przypadku kontroli i ograniczonego dostępu do repozytoriów Git, przechowywanie wrażliwych danych w postaci zwykłego tekstu (czyli wartości wprowadzonych do plików sekretów) nie jest uważane za dobrą praktykę. Zasadniczo istnieją dwa podejścia, które można zastosować, aby sobie z tym poradzić: zaszyfrować wartości lub użyć odniesienia:
+Nawet w przypadku kontroli i ograniczonego dostępu do repozytoriów Git, przechowywanie wrażliwych danych w postaci zwykłego tekstu (czyli wartości wprowadzonych do plików sekretów) nie jest uważane za dobrą praktykę. Zasadniczo istnieją dwa podejścia, które można zastosować, aby sobie z tym poradzić. Możemy zaszyfrować wartości lub użyć odniesienia:
 
   - **Szyfrowanie wartości**: W tym podejściu wartość w pliku sekretnym jest szyfrowana, gdy jest zatwierdzana w repozytorium Git. Podczas wdrażania na OpenShift istnieje dodatkowy krok, w którym tajne wartości są odszyfrowywane. `SealedSecrets` jest jedną z implementacji takiego podejścia.
 
@@ -1267,28 +1267,28 @@ W obu przypadkach należy wykonać dodatkową pracę ponad to, co zostało omów
 
 
 <details>
- <summary><b><font color="dodgerblue">Kliknij, aby rozwinąć:</font></b> Sekcja 4: (opcjonalna - praktyczna) Promocja PlantsByWebSphere do środowiska „staging” w OpenShift
+ <summary><b><font color="dodgerblue">Kliknij, aby rozwinąć:</font></b> Sekcja 4: (opcjonalna - praktyczna) Promocja PlantsByWebSphere do środowiska `staging` w OpenShift
  </summary>
 
 <br/>
 
-## 4.1 Ponowne wdrożenie PlantsByWebSphere do środowiska „staging” w OpenShift
+## 4.1 Ponowne wdrożenie PlantsByWebSphere do środowiska `staging` w OpenShift
 
-Wdrożyłeś aplikację PlantsByWebSphere z jej konfiguracją do środowiska „dev” za pomocą pojedynczego polecenia kustomize.
+Wdrożyłeś aplikację PlantsByWebSphere z jej konfiguracją do środowiska `dev` za pomocą pojedynczego polecenia kustomize.
 
-W tej sekcji ponownie wdrożysz tę samą aplikację, z inną konfiguracją, do środowiska „staging”, używając pojedynczego polecenia kustomize z inną konfiguracją o nazwie „staging”. 
+W tej sekcji ponownie wdrożysz tę samą aplikację, z inną konfiguracją, do środowiska `staging`, używając pojedynczego polecenia kustomize z inną konfiguracją o nazwie `staging`. 
 
 **Aby to zrobić, musimy wykonać następujące czynności:**
 
-  - Skopiować pliki yaml „dev” do nowego folderu. Nazwiemy go „staging”.
+  - Skopiować pliki yaml `dev` do nowego folderu. Nazwiemy go `staging`.
 
-  - Zaktualizować konfigurację specyficzną dla środowiska w nowym folderze „staging”.
+  - Zaktualizować konfigurację specyficzną dla środowiska w nowym folderze `staging`.
 
 ___
 
 **Uwaga:**. 
 
-W tej części laboratorium, aplikacja PlantsByWebSphere wdrażana w środowisku „staging”, będzie korzystać z innej bazy danych DB2, niż ta używana w środowisku „dev”.
+W tej części laboratorium, aplikacja PlantsByWebSphere wdrażana w środowisku `staging`, będzie korzystać z innej bazy danych DB2, niż ta używana w środowisku `dev`.
 
 Typowe jest korzystanie z różnych baz danych, gdy aplikacja jest promowana do wyższych środowisk, które obsługują różne fazy testowania do produkcji.
 ___
@@ -1296,17 +1296,17 @@ ___
 
 ### 4.1.1 Konfiguracja i sprawdzenie konfiguracji wdrożenia „staging
 
-W tym laboratorium baza danych „staging” ma inny zestaw „**Trees**” załadowany do katalogu niż baza danych „dev”.
+W tym laboratorium baza danych `staging` ma inny zestaw **`Trees`** załadowany do katalogu niż baza danych `dev`.
 
-Podczas gdy w rzeczywistym środowisku różne bazy danych mogą używać różnych poświadczeń dostępu do bazy danych, w tym środowisku laboratoryjnym poświadczenia pozostają takie same jak w bazie danych „dev”.
+Podczas gdy w rzeczywistym środowisku różne bazy danych mogą używać różnych poświadczeń dostępu do bazy danych, w tym środowisku laboratoryjnym poświadczenia pozostają takie same jak w bazie danych `dev`.
 
-**Jakie są zmiany w konfiguracji między środowiskami „dev” i „staging” w tym scenariuszu laboratoryjnym?**
+**Jakie są zmiany w konfiguracji między środowiskami `dev` i `staging` w tym scenariuszu laboratoryjnym?**
 
-  - **Nazwa hosta** **serwera** bazy danych różni się między środowiskiem „dev” i „staging”.
+  - **Nazwa hosta** **serwera** bazy danych różni się między środowiskiem `dev` i `staging`.
 
-**Co pozostaje niezmienione między wdrożeniem „dev” i „staging”?**
+**Co pozostaje niezmienione między wdrożeniem `dev` i `staging`?**
 
-  - Ten sam niezmienny obraz kontenera dla aplikacji PlantsByWebSphere jest używany w „dev” i „staging”.
+  - Ten sam niezmienny obraz kontenera dla aplikacji PlantsByWebSphere jest używany w `dev` i `staging`.
 
   - Nadal używamy tej samej nazwy bazy danych: PBW.
 
@@ -1314,15 +1314,15 @@ Podczas gdy w rzeczywistym środowisku różne bazy danych mogą używać różn
 
   - Nadal używamy tych samych poświadczeń dostępu do bazy danych
 
-Wartości **nazwy bazy danych, portu i hosta** są przechowywane w pliku **config map** yaml. Dlatego plik config map yaml w folderze „staging” będzie inny, niż plik config map używany w folderze „dev”.
+Wartości **nazwy bazy danych, portu i hosta** są przechowywane w pliku **config map** yaml. Dlatego plik config map yaml w folderze `staging` będzie inny, niż plik config map używany w folderze `dev`.
 
-Oznacza to, że aby wdrożyć aplikację PlantsByWebSphere w środowisku „staging”, wystarczy zaktualizować nazwę hosta `DB2` w pliku yaml `config map` znajdującym się w folderze „staging”. Następnie uruchom pojedyncze polecenie, aby wdrożyć aplikację PlantsByWebSphere w środowisku przejściowym.
+Oznacza to, że aby wdrożyć aplikację PlantsByWebSphere w środowisku `staging`, wystarczy zaktualizować nazwę hosta `DB2` w pliku yaml `config map` znajdującym się w folderze `staging`. Następnie uruchom pojedyncze polecenie, aby wdrożyć aplikację PlantsByWebSphere w środowisku przejściowym.
 
-**Teraz jesteśmy gotowi do rozpoczęcia:**.
+**Teraz jesteśmy gotowi do rozpoczęcia:**
 
-  - Skopiuj pliki yaml nakładek „dev” do nowego folderu nakładek. Nazwij go „staging”.
+  - Skopiuj pliki yaml folderu `dev` do nowego folderu. Nazwij go `staging`.
 
-  - Zaktualizuj konfigurację specyficzną dla środowiska w nowym folderze  „staging”.
+  - Zaktualizuj konfigurację specyficzną dla środowiska w nowym folderze  `staging`.
 
 Aby usprawnić wykonywanie powyższych kroków, przygotowaliśmy `skrypt usprawniający`, który wykonuje te kroki.
 
@@ -1356,14 +1356,14 @@ Po uruchomieniu skryptu przejrzymy zmiany wprowadzone w pliku config map yaml.
 
 4.  Plik **plantsbywebspheree6-configmap.yaml** zawiera konfigurację środowiska **staging**.
 
-    W szczególności „**DataSource serverName**” dla bazy danych DB2 został zaktualizowany do hosta bazy danych środowiska `staging`
+    W szczególności **`DataSource serverName`** dla bazy danych DB2 został zaktualizowany do hosta bazy danych środowiska `staging`
  
         gedit /home/techzone/Student/labs/appmod/pbw-bundle-complete/deploy/kustomize/overlays/staging/plantsbywebsphereee6-configmap.yaml
  
     ![](./images/media/image99.png)
 
 
-5. **Zamknij** edytor „gedit”. **NIE ZAPISUJ ŻADNYCH ZMIAN W PLIKU!**
+5. **Zamknij** edytor `gedit`. **NIE ZAPISUJ ŻADNYCH ZMIAN W PLIKU!**
 
 
 ### 4.1.2 Wdrażanie PlantsByWebSphere w środowisku przejściowym
@@ -1373,9 +1373,9 @@ W tej sekcji wykonasz te same kroki, aby wdrożyć i skonfigurować aplikację w
 Różnica polega na zbadaniu różnic konfiguracyjnych w folderach overlays/staging w pakiecie migracyjnym. 
 
 
-1.  Uruchom następujący `skrypt usprawniający`, aby wdrożyć aplikację PlantsByWebSphere w środowisku „**staging**".
+1.  Uruchom następujący `skrypt usprawniający`, aby wdrożyć aplikację PlantsByWebSphere w środowisku **`staging**".
 
-    **Uwaga:** Skrypt wykonuje te same kroki, co wdrożenie w środowisku „dev”.
+    **Uwaga:** Skrypt wykonuje te same kroki, co wdrożenie w środowisku `dev`.
  
     ___
 
@@ -1402,7 +1402,7 @@ Różnica polega na zbadaniu różnic konfiguracyjnych w folderach overlays/stag
  
     ![A green screen with a pergola Description automatically generated](./images/media/image102.png)
 
-3.  W aplikacji kliknij kategorię „**Trees**”. Jest to lista drzew w bazie danych „**staging**”.
+3.  W aplikacji kliknij kategorię **`Trees`**. Jest to lista drzew w bazie danych **`staging`**.
 
     ![A screenshot of a computer Description automatically generated](./images/media/image103.png)
 
@@ -1441,7 +1441,7 @@ TA zapewnia zalecenia dotyczące modernizacji, które obejmują i uwzględniają
     ![](./images/media/ta-proof-of-concept.png)
 
 
-3.  Przewiń w dół do sekcji `Aplikacje Java` i zwróć uwagę na podsumowanie wysokiego poziomu oceny aplikacji „**plantsbywebsphereee6.ear**”.
+3.  Przewiń w dół do sekcji `Aplikacje Java` i zwróć uwagę na podsumowanie wysokiego poziomu oceny aplikacji **`plantsbywebsphereee6.ear`**.
 
   - Złożoność
 
@@ -1455,15 +1455,15 @@ TA zapewnia zalecenia dotyczące modernizacji, które obejmują i uwzględniają
 
 Ten obszar roboczy ma tylko jedną nazwę aplikacji `plantsbywebsphereee6.ear`. Jest ona podsumowana jako `simple` do modernizacji do WebSphere Liberty.  
 
- *** Wartości złożoności i ich znaczenie:***
+ ***Wartości złożoności i ich znaczenie:***
  
 **`Simple`**: Aplikacja jest gotowa do wdrożenia, nie jest wymagany dostęp do kodu źródłowego. 
 
-  - Prosta złożoność reprezentuje zazwyczaj około 20% aplikacji.
+  - Prosta złożoność reprezentuje zazwyczaj około 25% aplikacji.
  
  **`Moderate`**: Zmiany w kodzie są wymagane przed wdrożeniem, jednak te zmiany w kodzie są dobrze znane, a dla każdego problemu zapewniona jest konkretna pomoc w jego rozwiązaniu. 
  
-   - Wartość umiarkowanej złożoności zazwyczaj reprezentuje około 80% aplikacji.
+   - Wartość umiarkowanej złożoności zazwyczaj reprezentuje około 74% aplikacji.
  
  **`Complex`**: Aplikacja wykorzystuje technologię, która nie ma bezpośredniego odpowiednika w nowym środowisku uruchomieniowym i konieczne będzie przyjęcie nowego podejścia. Z naszego doświadczenia wynika, że tylko około 1 na 6 klientów ma tego rodzaju aplikacje. 
  

@@ -72,7 +72,7 @@ Jeśli wykonujesz to laboratorium w ramach warsztatu prowadzonego przez instrukt
      
     `Środowisko Laboratoryjne` jest skonfigurowany tak, aby zapewnić dostęp do maszyny wirtualnej **`Stacji roboczej`** poprzez interfejs noVNC.
     
-    a. Otwórz link otrzymany przez instruktora w przeglądarce internetowej. 
+    a. Otwórz link otrzymany przez instruktora w przeglądarce internetowej.
 
     b. Kliknij na link **`Published Service`**, który wyświetli **Spis katalogów**  
     
@@ -260,9 +260,6 @@ Aby ocenić lokalne aplikacje Java, należy uruchomić narzędzie **Transformati
 
     - Prześlesz istniejący plik zip do Transformation Advisor w celu przeprowadzenia analizy aplikacji.
 
-    - Użyjesz akceleratorów wygenerowanych przez Transformation Advisor, aby wdrożyć aplikację Mod Resorts na Liberty w kontenerze.
-
-
 
 2.  Kliknij przycisk **`Download`**, aby pobrać Data Collector dla systemu Linux
 
@@ -443,7 +440,7 @@ ___
 
 W tej sekcji użyjesz interfejsu użytkownika Transformation Advisor, aby wyświetlić wyniki analizy danych aplikacji, które zostały zebrane w poprzednich sekcjach.
 
-1.  Na stronie “**All Java applications”** można zobaczyć, że przeanalizowano łącznie 5 aplikacji z serwera WAS.
+1.  Na stronie “**All Java applications**" można zobaczyć, że przeanalizowano łącznie 5 aplikacji z serwera WAS.
 
     ![](./images/media/image32.png)
  
@@ -481,7 +478,7 @@ W tej sekcji użyjesz interfejsu użytkownika Transformation Advisor, aby wyświ
 
     Tutaj widać, że przeniesienie aplikacji w kolekcji do **`WebSphere traditional`** wymaga **0 dni** kosztów developmentu, co oznacza, że nie są konieczne żadne zmiany w kodzie.
  
-    Jednak przeniesienie do **`WebSphere Liberty `** może wymagać **2,5 dnia**, a **`Open Liberty`** może wymagać **5,5 dnia** czasu na development.
+    Jednak przeniesienie do **`WebSphere Liberty`** może wymagać **2,5 dnia**, a **`Open Liberty`** może wymagać **5,5 dnia** czasu na development.
  
     ![](./images/media/image35.png)
  
@@ -532,7 +529,7 @@ Dowiesz się, dlaczego różne środowiska docelowe mają różne koszty develop
 
 2.	Pierwszą rzeczą, którą rzuca się w oczy to liczba problemów i koszt developmentu związany z aplikacją dla każdego z trzech środowisk docelowych:
 
-    - Przeniesienie aplikacji z WebSphere traditional na maszynach wirtualnych do **WebSphere traditional w kontenerach** ma **SIMPLE** poziom złożoności, nie wymaga zmiany kodu, wymaga zerowych kosztów developmentu i zgłoszono 2 kwestie informacyjne. 
+    - Przeniesienie aplikacji z WebSphere traditional na maszynach wirtualnych do **WebSphere traditional w kontenerach** ma poziom złożoności **SIMPLE**, nie wymaga zmiany kodu, wymaga zerowych kosztów developmentu i zgłoszono 2 kwestie informacyjne. 
 
     - Przeniesienie aplikacji do **WebSphere Liberty** ma poziom złożoności **SIMPLE**, nie wymaga zmiany kodu, wymaga zerowych kosztów developmentu i zgłoszono 3 kwestie informacyjne. 
 
@@ -555,7 +552,7 @@ Aby to zrobić, musimy zagłębić się w niektóre szczegóły i raporty.
 
     b.	Rozwiń **`Complexity Rules`** dla przeniesienia aplikacji do WebSphere Liberty. 
 
-    Z tego widoku można uzyskać wgląd w powiązane kwestie, które mogą wymagać zmian kodu lub konfiguracji. 
+    Z tego widoku można uzyskać wgląd w kwestie, które mogą wymagać zmian kodu lub konfiguracji. 
 
     *W tym przykładzie zgłoszono 3 kwestie informacyjne:*
 
@@ -642,7 +639,7 @@ Spójrzmy, dlaczego przeniesienie aplikacji na platformę Open Liberty wymaga wi
 
     ___
     
-    **Uwaga** Konieczność poświęcenia dużej ilości czasu jest związana z tymi kwestiami technologicznymi.  
+    **Uwaga:** Konieczność poświęcenia dużej ilości czasu jest związana z tymi kwestiami technologicznymi.  
 
     Problemy te nie występują w przypadku przejścia na WebSphere Liberty, ponieważ interfejsy API są zawarte w WebSphere Liberty. 
     ___ 
@@ -844,13 +841,13 @@ W tej sekcji przejrzysz wyniki analizy dla aplikacji **modresorts-1_0_war.ear** 
 
 9. W raporcie `Inventory report` przejrzyj nazwy pakietów klas w utility Jars
     
-    a.  Przewiń w dół, aby wyświetlić sekcję **Contained Archives** i kliknij link „**show details**” obok **modresorts-1.0.war**.
+    a.  Przewiń w dół, aby wyświetlić sekcję **Contained Archives** i kliknij link **`show details`** obok **modresorts-1.0.war**.
     
-    b.  Następnie przewiń w dół do **Użytkowe pliki JAR** i kliknij link „**pokaż szczegóły**” obok **Utility JAR files**.
+    b.  Następnie przewiń w dół do **Użytkowe pliki JAR** i kliknij link **`show details`** obok **Utility JAR files**.
     
     c.  Przejrzyj **nazwy archiwów** plików jar i **pakiety** użyte w plikach JAR.
 
-    Jest to dobry sposób na określenie, czy kod w utility JARS zawiera kod klienta lub czy są to pliki jars firm trzecich, takie jak (org.pache\*).
+    Jest to dobry sposób na określenie, czy kod w utility JARs zawiera kod klienta lub czy są to pliki JARs firm trzecich, takie jak (org.pache\*).
  
     Dodatkowo, jeśli złożoność migracji aplikacji to SIMPLE, warto sprawdzić, czy JARy narzędziowe zawierają jakiekolwiek pakiety firmowe zaczynające się od org lub inne nazwy pakietów, które są domyślnie IGNOROWANE w Transformation Advisor Data Collector.
  
@@ -860,7 +857,7 @@ W tej sekcji przejrzysz wyniki analizy dla aplikacji **modresorts-1_0_war.ear** 
  
     Z raportów analitycznych, które przejrzałeś powyżej, wiemy, że aplikacja Mod Resorts jest obsługiwana przez Open Liberty, a problem zidentyfikowany przez narzędzie nie wpłynie na migrację aplikacji.
  
-    Aplikacja `Mod resort` jest dobrym kandydatem do migracji do Open Liberty przy minimalnej pracy.
+    Aplikacja `Mod Resort` jest dobrym kandydatem do migracji do Open Liberty przy minimalnej pracy.
 
 
 
@@ -891,7 +888,7 @@ Plan migracji obejmuje pakiet migracji wygenerowanych artefaktów wdrożenia, kt
 Transformation Advisor wyświetla szczegóły dotyczące **migration bundle**, który został wygenerowany w celu przyspieszenia modernizacji aplikacji do Liberty lub tradycyjnego WebSphere w kontenerach i na OpenShift. Pakiet migracyjny zawiera różne artefakty, w zależności od potrzeb aplikacji, aby przyspieszyć kompilację i wdrożenie obrazu Docker aplikacji na platformie OpenShift.
 
 
-Teraz szybko przeanalizujmy **Migration Plan** dla aplikacji Mod Resorts, aby zobaczyć artefakty tworzone przez Transformation Advisor w celu przyspieszenia wdrożenia aplikacji na platformie OpenShift.
+Teraz szybko przeanalizujmy **Migration Plan** dla aplikacji Mod Resorts, aby zobaczyć artefakty tworzone przez Transformation Advisor w celu przyspieszenia wdrożenia aplikacji w kontenerach.
 
 1.  Wróć do strony **`Wszystkie aplikacje Java`** w Transformation Advisor, która wyświetla listę podsumowania aplikacji Java.
 
@@ -913,7 +910,7 @@ Teraz szybko przeanalizujmy **Migration Plan** dla aplikacji Mod Resorts, aby zo
 
 5.  Rozpakuj artefakty pakietu migracji do nowego folderu na maszynie wirtualnej Workstation.
 
-    a.  W oknie terminala uruchom następujące polecenia, aby rozpakować pakiet migracji do nowego katalogu o nazwie „**modresorts-bundle**”:
+    a.  W oknie terminala uruchom następujące polecenia, aby rozpakować pakiet migracji do nowego katalogu o nazwie **`modresorts-bundle`**:
 
         mkdir /home/techzone/modresorts-bundle
         
@@ -991,12 +988,12 @@ W tej sekcji użyjesz pliku `Containerfile` z pakietu Transformation Advisor do 
 
             docker build --no-cache -t modresorts:1.0 -f Containerfile .
 
-    Po zakończeniu zobaczysz, że obraz kontenera został utworzony i oznaczony jako „**modresorts:1.0**”.
+    Po zakończeniu zobaczysz, że obraz kontenera został utworzony i oznaczony jako **`modresorts:1.0`**.
 
     ![](./images/media/image77.png)
 
 
-    c. Wyświetl obraz kontenera i jego znacznik. Nazwa obrazu to „**modresorts**” i jest on oznaczony jako „**1.0**”.
+    c. Wyświetl obraz kontenera i jego znacznik. Nazwa obrazu to **`modresorts`** i jest on oznaczony jako **`1.0`**.
 
         docker images | grep modresorts
 
@@ -1018,14 +1015,14 @@ W tej sekcji użyjesz pliku `Containerfile` z pakietu Transformation Advisor do 
 
         docker ps | grep modresorts
 
-    Polecenie „**docker ps**” wyświetla listę kontenerów, które są „uruchomione”.
+    Polecenie **`docker ps`** wyświetla listę kontenerów, które są „uruchomione”.
  
-    Uruchomienie „**docker ps -a**” wyświetla listę wszystkich kontenerów, w tym kontenerów, które są zatrzymane.
+    Uruchomienie **`docker ps -a`** wyświetla listę wszystkich kontenerów, w tym kontenerów, które są zatrzymane.
  
     ![](./images/media/image79.png)
 
 
-4.  Wyświetl dziennik Open Liberty w kontenerze „**modresorts**”, aby sprawdzić, czy aplikacja modresorts została zainstalowana i jest uruchomiona.
+4.  Wyświetl dziennik Open Liberty w kontenerze **`modresorts`**, aby sprawdzić, czy aplikacja modresorts została zainstalowana i jest uruchomiona.
 
         docker logs modresorts
 
@@ -1048,15 +1045,14 @@ W tej sekcji użyjesz pliku `Containerfile` z pakietu Transformation Advisor do 
     <tr class="odd">
     <td><img src="./images/media/image23.png" style="width:0.90625in;height:0.60625in" alt="sign-caution" /></td>
     <td><p><strong>Rada!</strong></p>
-    <p>Jeśli aplikacja nie odpowiada po kliknięciu menu „WHERE TO?”, zwiększ rozmiar okna przeglądarki..</p>
-    <p>Wygląda na to, że jest to usterka aplikacji</p></td>
+    <p>Jeśli aplikacja nie odpowiada po kliknięciu menu „WHERE TO?”, zwiększ rozmiar okna przeglądarki.</p></td>
     </tr>
     </tbody>
     </table>
 
     ![](./images/media/image75.png)
 
-6.  **`Zatrzymaj`** i **`Usuń`** kontener. Następnie sprawdź, czy kontener został usunięty, używając polecenia „**docker ps -a ”**.
+6.  **`Zatrzymaj`** i **`Usuń`** kontener. Następnie sprawdź, czy kontener został usunięty, używając polecenia **`docker ps -a`**.
 
         docker stop modresorts
         

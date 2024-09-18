@@ -2,14 +2,14 @@
 
 **Lokalizacja:** IBM Polska - Krakowiaków 32, 02-255 Warszawa
 
-**Data:** 18 i 19 września 2024
+**Data:** 19 września 2024
 
 ### Agenda warsztatów:
 ![](./images/AgendaCP4Apps_v2.png)
 
 ### Środowisko Laboratoryjne
 
-[Link dla uczestnika](https://techzone.ibm.com/my/workshops/student/66d81f1e684f19a4a8b06945)
+[Link dla uczestnika](https://techzone.ibm.com/my/workshops/student/66d82435d361e1cd7ea1d58a)
 
 Hasło będzie podane podczas warsztatów.
 
